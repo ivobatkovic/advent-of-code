@@ -1,13 +1,15 @@
+import math
+
 def fuel_counter(masses):
   """ Function that computes the fuel needed for the input masses.
   Expected input is required to either be a list/tuple or scalar"""
   if isinstance(masses,(tuple,list)):
     return sum(fuel_counter(mass) for mass in masses)
-  return max(int(round(masses/3)-2),0)
+  return max(int(math.floor(masses/3)-2),0)
 
 def fuel_needed_total(mass):
   """ Function that computes the fuel needed for the mass and its own fuel.
-  Expected input is a """
+  Expected input is a scalar """
   required_fuel = fuel_counter(mass)
   if required_fuel > 0:
     return required_fuel + fuel_needed_total(required_fuel)
