@@ -20,10 +20,6 @@ def fuel_counter_extended(masses):
     return sum(fuel_counter_extended(mass) for mass in masses)
   return fuel_needed_total(masses)
 
-  fuel = fuel_counter(masses)
-  extra_fuel = fuel_needed_for_fuel(fuel)
-  return fuel+extra_fuel
-
 def main():
   # Open data file and read through all lines
   file_location = "../data.txt"
