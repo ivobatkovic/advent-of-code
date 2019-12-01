@@ -7,9 +7,6 @@ def fuel_counter(masses):
     return int(sum(round(mass/3)-2 for mass in masses))
   return int(round(masses/3)-2)
 
-
-
-
 def main():
   # Open data file and read through all lines
   filepath = "../data.txt"
@@ -24,8 +21,6 @@ def main():
   except:
     print("Cannot file at: " + filepath)
   
-
-
 if __name__ == "__main__":
   main()
 
