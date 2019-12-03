@@ -37,7 +37,6 @@ def solve_intcode_extended(x,output):
   for noun in range(0,100):
     for verb in range(0,100):
       if(solve_intcode(x,noun,verb)==output):
-        print(noun,verb)
         return 100*noun+verb
   return 0
 
@@ -54,10 +53,9 @@ def main():
 
         # Map to list to int
         intcode_input = map(int,row)
-        print(intcode_input)
+
         print("Solution to part one: " +
           str(solve_intcode(intcode_input,12,2)))
-
         print("Solution to part two: " +
           str(solve_intcode_extended(intcode_input,19690720)))
     csvfile.close()
