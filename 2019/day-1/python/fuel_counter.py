@@ -14,7 +14,7 @@ def fuel_needed_total(mass):
   if required_fuel > 0:
     return required_fuel + fuel_needed_total(required_fuel)
   return 0
-  
+
 def fuel_counter_extended(masses):
   """ Function that computes the fuel needed for the input masses and the extra fuel needed for the new fuel itself.
   Expected input is required to either be a list/tuple or scalar"""
@@ -28,14 +28,15 @@ def main():
   try:
     with open(file_location) as f:
       masses = f.readlines()
+
     # Remove whitespace characters at end of each line
-    masses = [int(x.strip()) for x in masses] 
-    f.close()
+    masses = [int(x.strip()) for x in masses]
+
     # Print solutions
     print("Fuel needed for part one: " + str(fuel_counter(masses)))
     print("Fuel needed for part two: " + str(fuel_counter_extended(masses)))
   except IOError:
     print("Cannot find file at: " + file_location)
-  
+
 if __name__ == "__main__":
   main()
