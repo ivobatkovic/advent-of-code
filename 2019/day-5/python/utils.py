@@ -11,7 +11,7 @@ class IO:
         for row in reader:
 
           # Map to list to int
-          intcode_input = map(int,row)
+          intcode_input = [int(x) for x in row]
           data.append(intcode_input)
 
       return intcode_input

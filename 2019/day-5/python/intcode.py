@@ -1,12 +1,14 @@
 from utils import IO
-import copy
+import copy,numpy as np
 class Intcode():
   """ Class containing the intcode computer."""
 
-  def __init__(self,file_location):
+  def __init__(self,file_location,input = [], verbose = True, reset = True):
     """ Read file and give input to the intcode computer."""
-    self.memory,x = IO.read_file(file_location),None
-    self.input,self.output = None,None
+    self.memory,self.x = IO.read_file(file_location),None
+    self.input,self.output = input, None
+    self.verbose = verbose
+    self.reset = reset
     self.n = len(self.memory)
     self.i = 0
 
@@ -46,11 +48,11 @@ class Intcode():
     elif oper=='2':
       self.x[out] = p1 * p2
     elif oper=='3':
-      self.x[p1] = self.input[0] if self.input else 0
+      self.x[p1] = self.input[0]
       self.input.pop(0)
     elif oper=='4':
       self.output=p1
-      print(p1)
+      if self.verbose: print(p1)
     elif oper=='5':
       self.i = p2 if p1 != 0 else self.i
     elif oper=='6':
@@ -62,24 +64,35 @@ class Intcode():
 
   def __call__(self,input):
     """ Call to solve the intcode. """
-    self.x = copy.deepcopy(self.memory)
-    self.input = input if isinstance(input,list) else [input]
+
+    self.x = copy.deepcopy(self.memory) if self.reset else self.memory
+    self.input.append(input)
+
     while(self.i < self.n):
       if(self.x[self.i]==99):
-        break
+        self.i = 0
+        return True,self.output
       oper,p1,p2,out = self.parse_opcode(str(self.x[self.i]))
       self.operate(oper,p1,p2,out)
 
+      if (not self.reset) and oper == '4':
+        return False,self.output
+
     # Reset iterator
     self.i = 0
+
     return self.output
 
 
 def main():
 
-  intcode = Intcode("../data.csv")
-  print("Solution for part one: " + str(intcode(1)))
-  print("Solution for part two: " + str(intcode([5])))
+  intcode = Intcode("../data.csv",verbose=False,reset=True)
+
+  _,part_one = intcode(1)
+  print("Solution for part one: " + str(part_one))
+
+  _,part_two = intcode(5)
+  print("Solution for part two: " + str(part_two))
 
 if __name__ == "__main__":
   main()
