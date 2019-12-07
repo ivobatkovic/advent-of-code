@@ -1,3 +1,5 @@
+import time
+
 class Orbit:
   """ Class containing the orbit computer."""
 
@@ -75,4 +77,6 @@ def main():
   print("Solution part two: " + str(o.minimum('YOU','SAN')))
 
 if __name__ == "__main__":
+  t0 = time.time()
   main()
+  print("Time taken: " + str(time.time()-t0) + "s")
