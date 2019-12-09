@@ -1,5 +1,4 @@
 import numpy as np
-import sys
 from utils import IO
 
 class SpaceImage:
@@ -14,22 +13,16 @@ class SpaceImage:
     """ Finds the layer in an image with fewest zeros and multiplies the number
     of 1 digits with number of 2 digits for that layer. """
 
-    zero_layer, min_zeros = None, sys.maxsize
-    for layer, img in enumerate(self.img):
-
-      n_zeros = np.sum(img==0)
-      if n_zeros < min_zeros:
-        min_zeros = n_zeros
-        zero_layer = layer
-
-    return np.sum(self.img[zero_layer]==1)*np.sum(self.img[zero_layer]==2)
+    n_zero_layers = np.count_nonzero(self.img==0,axis=(1,2))
+    layer = np.argmin(n_zero_layers)
+    return np.sum(self.img[layer]==1)*np.sum(self.img[layer]==2)
 
   def reconstruct_image(self):
     """ Decodes and prints the image. """
 
     out = 2 * np.ones((self.tall,self.wide))
-    for img in self.img[:]:
-      mask = np.logical_and(out==2,img!=2)
+    for img in self.img:
+      mask = out==2
       out[mask] = img[mask]
 
     # Printing each row
@@ -45,4 +38,4 @@ def main():
   print("Solution to part two:"); si.reconstruct_image()
 
 if __name__=="__main__":
-  main()
+    main()

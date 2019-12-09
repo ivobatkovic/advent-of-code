@@ -7,9 +7,7 @@ class IO:
     try:
       with open(file_location) as f:
         x = list(map(int,f.readline().strip()))
-        n_layers = len(x) / (width * height)
-
-        return np.reshape(x, (n_layers, height, width))
+        return np.reshape(x, (-1, height, width))
 
     except IOError:
       print("Cannot find file at: " + file_location)
