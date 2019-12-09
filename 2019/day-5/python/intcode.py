@@ -1,42 +1,56 @@
 from utils import IO
 import copy,numpy as np
+from itertools import repeat
+
 class Intcode():
   """ Class containing the intcode computer."""
 
-  def __init__(self,file_location,input = [], verbose = True, reset = True):
+  def __init__(self,file,input = [], verbose = True, reset = True):
     """ Read file and give input to the intcode computer."""
-    self.memory,self.x = IO.read_file(file_location),None
-    self.input,self.output = input, None
+    self.memory = IO.read_file(file)
+    self.x, self.output = None, None
+    self.input = input if isinstance(input,list) else [input]
     self.verbose = verbose
     self.reset = reset
     self.n = len(self.memory)
-    self.i = 0
+    self.i,self.base = 0, 0
 
   def parse_opcode(self,op):
     """ Opcode parsing - analyzes the opcode string. """
     oper = op[-1]
-    mode = '00'+op[:-2]
+    mode = '000'+op[:-2]
 
     # Parse position vs immediate mode for each operation
     j = self.i
+
+    # Relative base check
+    b0 = self.base if mode[-1] == '2' else 0
+    b1 = self.base if mode[-2] == '2' else 0
+    b2 = self.base if mode[-3] == '2' else 0
+
     if oper == '1' or oper == '2' or oper == '7' or  oper == '8':
-      p1 = self.x[self.x[j+1]] if mode[-1]=='0' else self.x[j+1]
-      p2 = self.x[self.x[j+2]] if mode[-2]=='0' else self.x[j+2]
-      out = self.x[j+3]
+      p1 = self.x[j+1] if mode[-1]=='1' else self.x[b0+self.x[j+1]]
+      p2 = self.x[j+2] if mode[-2]=='1' else self.x[b1+self.x[j+2]]
+      out = b2+self.x[j+3]
       self.i = self.i + 4
       return oper,p1,p2,out
     elif oper == '5' or oper  == '6':
-      p1 = self.x[self.x[j+1]] if mode[-1]=='0' else self.x[j+1]
-      p2 = self.x[self.x[j+2]] if mode[-2]=='0' else self.x[j+2]
-      out = self.x[j+3]
+      p1 = self.x[j+1] if mode[-1]=='1' else self.x[b0+self.x[j+1]]
+      p2 = self.x[j+2] if mode[-2]=='1' else self.x[b1+self.x[j+2]]
+      out = self.x[b2+j+3]
       self.i = self.i + 3
       return oper,p1,p2,None
     elif oper == '4':
-      p = self.x[self.x[j+1]] if mode[-1]=='0' else self.x[j+1]
+      p = self.x[j+1] if mode[-1]=='1' else self.x[b0+self.x[j+1]]
       self.i = self.i + 2
       return oper,p,None,None
+    elif oper =='9':
+      base = self.x[j+1] if mode[-1]=='1' else self.x[b0+self.x[j+1]]
+      self.i = self.i + 2
+      self.base += base
+      return None,None,None,None
     else:
-      p = self.x[j+1]
+      p = b0+self.x[j+1]
       self.i = self.i + 2
       return oper,p,None,None
 
@@ -62,24 +76,26 @@ class Intcode():
     elif oper=='8':
       self.x[out] = 1 if p1 == p2 else 0
 
-  def __call__(self,input):
+  def __call__(self,input=[]):
     """ Call to solve the intcode. """
 
     self.x = copy.deepcopy(self.memory) if self.reset else self.memory
-    self.input.append(input)
+
+    if isinstance(input,list):
+      if len(input)>0:
+        self.input.append(input)
+    else:
+      self.input.append(input)
 
     while(self.i < self.n):
       if(self.x[self.i]==99):
-        self.i = 0
+        self.i, self.base = 0,0
         return True,self.output
       oper,p1,p2,out = self.parse_opcode(str(self.x[self.i]))
       self.operate(oper,p1,p2,out)
 
       if (not self.reset) and oper == '4':
         return False,self.output
-
-    # Reset iterator
-    self.i = 0
 
     return self.output
 
