@@ -3,7 +3,7 @@ CFLAGS = -o
 
 STD= -std=c++11
 SOURCES = src/fuel_counter.cpp
-EXECUTABLE = fuel_counter
+EXECUTABLE = fuel_counter.out
 
 INCLUDEPATH = -I./include
 

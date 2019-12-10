@@ -34,7 +34,7 @@ def compute_wire_segments(wires):
                 orientation = 1
 
             # Update position
-            pos += [dx,dy,step,orientation]
+            pos += [dx,dy,step,orientation-pos[0,3]]
 
             # Add position to wire_segment
             wire_segment[i+1,:] = pos
@@ -92,8 +92,8 @@ def intersect_wires(wire1,wire2):
     return intersection,steps
 
 def crossed_wires(wires):
-    """ This function assumes that the wires aren't routed along eachother, i.e.,
-	they will only cross perpendicularly, hence it is enough only to check
+    """ This function assumes that the wires aren't routed along eachother,
+    i.e., they will only cross perpendicularly, hence it is enough only to check
     vertical wire segments vs horizontal wire segments."""
 
     # Compute the wire positions for each wire

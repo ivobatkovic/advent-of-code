@@ -3,7 +3,7 @@ CFLAGS = -o
 
 STD= -std=c++11
 SOURCES = src/intcode.cpp
-EXECUTABLE = intcode
+EXECUTABLE = intcode.out
 
 INCLUDEPATH = -I./include
 
