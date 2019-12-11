@@ -13,12 +13,7 @@ void CrossedWires::crossed_wires(vector<vector<string>> & input, int & dist, int
 
   vector<vector<int>> wire_segments[2];
   compute_wire_segments(input,wire_segments);
-
-  vector<int> points;
-  vector<int> steps;
-  intersect_wires(wire_segments[0],wire_segments[1],points,steps);
-  dist = *std::min_element(points.begin(),points.end());
-  step = *std::min_element(steps.begin(),steps.end());
+  intersect_wires(wire_segments[0],wire_segments[1],dist,step);
 
 }
 
@@ -26,7 +21,7 @@ void CrossedWires::compute_wire_segments(vector<vector<string>> & wires,vector<v
 
   for (unsigned int i = 0; i < wires.size(); i++) {
     vector<int> pos {0, 0, 0, 0};
-    vector<vector<int>> wire_segment; wire_segment.push_back(pos);
+    vector<vector<int>> wire_segment{pos};
 
     for (unsigned int j = 0; j < wires[i].size(); j++) {
       string w = wires[i][j];
@@ -46,8 +41,9 @@ void CrossedWires::compute_wire_segments(vector<vector<string>> & wires,vector<v
   }
 }
 
-void CrossedWires::intersect_wires(vector<vector<int>> & wire1,vector<vector<int>> & wire2, vector<int> & dist, vector<int> & steps) {
+void CrossedWires::intersect_wires(vector<vector<int>> & wire1,vector<vector<int>> & wire2, int & dists, int & step) {
 
+  vector<int> dist, steps;
   for (unsigned int i = 0; i < wire1.size()-1; i++){
     for (unsigned int j = 0; j <wire2.size()-1; j++) {
       vector<int> point; int st;
@@ -57,6 +53,9 @@ void CrossedWires::intersect_wires(vector<vector<int>> & wire1,vector<vector<int
       }
     }
   }
+  dists = *std::min_element(dist.begin(),dist.end());
+  step = *std::min_element(steps.begin(),steps.end());
+
 }
 
 bool CrossedWires::intersect(vector<int> & A, vector<int> & B,vector<int> & C, vector<int> & D,vector<int> & point,int  & steps) {
