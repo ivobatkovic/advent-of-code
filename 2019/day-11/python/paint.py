@@ -5,6 +5,8 @@ from intcode import Intcode
 from collections import defaultdict
 
 def get_painted_tiles(map,intcode):
+  """ Feeds input from the map (dict) to the intcode until it terminates.
+  Returns the number of unique painted tiles."""
 
   px,py = 0,0
   dir = np.pi/2
@@ -26,19 +28,22 @@ def get_painted_tiles(map,intcode):
       map[px,py] = color
 
     py,px = py+int(np.cos(dir)), px-int(np.sin(dir))
-    condition = cond1 or cond2
-    if condition:
-      break
+
+    # Intcode terminated
+    terminated = cond1 or cond2
 
   return len(painted_tiles),map
 
 def print_map(map):
+  """ Given the dict map, find [xmin,xmax] and [ymin,ymax] keys to print the
+  painted registration. """
 
   x = [key[0] for key in map.keys()]
   y = [key[1] for key in map.keys()]
 
-  for row in range(np.min(x),np.max(x)+1):
-    print("".join(["X" if map[row,j]=='#' else ' ' for j in range(np.min(y),np.max(y)+1)]))
+  for row in range(min(x),max(x)+1):
+    msg = ["X" if map[row,j]=='#' else ' ' for j in range(min(y),max(y)+1)]
+    print("".join(msg))
 
 def main():
 
