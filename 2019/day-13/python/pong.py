@@ -45,6 +45,7 @@ class Pong:
     """ Play a game of pong with the bot as player. """
     # Screen for rendering the game
     screen = curses.initscr()
+    curses.cbreak()
     try:
       while True:
         cond,x = self.ic()
@@ -76,7 +77,6 @@ class Pong:
     finally:
       screen.addstr(0, 0,"Solution to part two: " + str(self.score))
       msg = [screen.instr(i,0) for i in range(21)]
-      print
       curses.echo()
       curses.nocbreak()
       curses.endwin()
@@ -84,18 +84,31 @@ class Pong:
 
   def render(self,screen):
     """ Go through the game map and print the walls/obstacles/pad/ball. """
-    for row in range(0,21):
-      msg = []
-      for k in range(38):
-        if self.map[row,k] == 4:
-          msg.append('o')
-        elif self.map[row,k] == 3:
-          msg.append('=')
-        elif self.map[row,k] == 2:
-          msg.append('x')
-        elif self.map[row,k] == 1:
-          msg.append('|')
-        else:
-          msg.append(' ')
-      screen.addstr(row+1, 0,"".join(msg))
-    screen.refresh()
+    try:
+      height,width = screen.getmaxyx()
+
+      y_max,x_max = map(max, zip(*self.map.keys()))
+      y_min,x_min = map(min, zip(*self.map.keys()))
+      for row in range(y_max+1):
+        msg = []
+        for k in range(x_max+1):
+          if self.map[row,k] == 4:
+            msg.append('o')
+          elif self.map[row,k] == 3:
+            msg.append('=')
+          elif self.map[row,k] == 2:
+            msg.append('x')
+          elif self.map[row,k] == 1:
+            msg.append('|')
+          else:
+            msg.append(' ')
+          if k > width - 3:
+            break
+        screen.addstr(row+1, 0,"".join(msg))
+        if row > height-3:
+          break
+      screen.refresh()
+    except:
+      curses.echo()
+      curses.nocbreak()
+      curses.endwin()
