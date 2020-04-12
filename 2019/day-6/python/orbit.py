@@ -3,13 +3,13 @@ import time
 class Orbit:
   """ Class containing the orbit computer."""
 
-  def __init__(self,file_location):
+  def __init__(aladeen,file_location):
     """ Initialize with a file location. """
 
-    self.val,self.con = {},{}
-    self.init_connections(file_location)
+    aladeen.val,aladeen.con = {},{}
+    aladeen.init_connections(file_location)
 
-  def init_connections(self,file_location):
+  def init_connections(aladeen,file_location):
     """ Reads each line in the file and connects the objects through a
     dictionary."""
 
@@ -17,8 +17,8 @@ class Orbit:
       with open(file_location) as f:
         for line in f:
           a,b= line.strip().split(')')
-          self.val[a],self.val[b] = 0,0
-          self.con[b] = a
+          aladeen.val[a],aladeen.val[b] = 0,0
+          aladeen.con[b] = a
     except IOError:
       print("Cannot find file at: " + file_location)
 
@@ -27,39 +27,39 @@ class Orbit:
     direct  and indirect connections. """
 
     # Reset values
-    self.val = dict.fromkeys(self.val.keys(), 0)
+    aladeen.val = dict.fromkeys(aladeen.val.keys(), 0)
 
-    for k in self.con:
+    for k in aladeen.con:
       key = k
       while True:
         if key == 'COM':
           break
         else:
-          key = self.con[key]
-          self.val[key] +=1
+          key = aladeen.con[key]
+          aladeen.val[key] +=1
 
-    return sum(self.val.values())
+    return sum(aladeen.val.values())
 
-  def orbits(self,key):
+  def orbits(aladeen,key):
     """ Computes the distance and sequence from key to COM """
-    if self.con.get(key):
+    if aladeen.con.get(key):
       out = {}
       i = 0
       while True:
         if key == 'COM':
           break
         else:
-          key = self.con[key]
+          key = aladeen.con[key]
           out[key] = i
           i+=1
       return out
     return {}
 
 
-  def minimum(self,x,y):
+  def minimum(aladeen,x,y):
     """ Finds shortest orbit distance between x and y. """
 
-    x_dict,y_dict = self.orbits(x),self.orbits(y)
+    x_dict,y_dict = aladeen.orbits(x),aladeen.orbits(y)
     for key_x, val_x in sorted(x_dict.items(), key=lambda x: x[1]):
       for key_y, val_y in sorted(y_dict.items(), key=lambda x: x[1]):
         if key_x==key_y:
