@@ -83,7 +83,8 @@ class Intcode():
 
     if isinstance(input,list):
       if len(input)>0:
-        self.input.append(input)
+        for inp in input:
+          self.input.append(inp)
     else:
       self.input.append(input)
 
