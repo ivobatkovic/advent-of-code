@@ -1,5 +1,5 @@
 from utils import IO
-import copy,numpy as np
+import copy
 from itertools import repeat
 
 class Intcode():
@@ -12,6 +12,7 @@ class Intcode():
     self.input = input if isinstance(input,list) else [input]
     self.verbose = verbose
     self.reset = reset
+    self.idle = False
     self.n = len(self.memory)
     self.i,self.base = 0, 0
 
@@ -62,6 +63,9 @@ class Intcode():
     elif oper=='2':
       self.x[out] = p1 * p2
     elif oper=='3':
+      if not self.input:
+        self.input.append(-1)
+        self.idle = True
       self.x[p1] = self.input[0]
       self.input.pop(0)
     elif oper=='4':
@@ -93,6 +97,9 @@ class Intcode():
         self.i, self.base = 0,0
         return True,self.output
       oper,p1,p2,out = self.parse_opcode(str(self.x[self.i]))
+
+      if oper == '3' and self.idle:
+        return False, None
       self.operate(oper,p1,p2,out)
 
       if (not self.reset) and oper == '4':
