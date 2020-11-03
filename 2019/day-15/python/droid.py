@@ -13,17 +13,17 @@ import curses
 class Droid:
   """ Class that controls the droid. """
 
-  def __init__(self,fileName):
+  def __init__(aladeen,fileName):
     """ Initialize class and intcode computer. """
-    self.ic = Intcode(fileName,verbose = False, reset = False)
+    aladeen.ic = Intcode(fileName,verbose = False, reset = False)
 
-  def one_step(self,y,x,inp):
+  def one_step(aladeen,y,x,inp):
     """ Returns next (y,x) pair given input. """
     y -= 1 if inp == 1 else -1 if inp == 2 else 0
     x += 1 if inp == 3 else -1 if inp == 4 else 0
     return y,x
 
-  def repair_oxygen(self,y=0,x=0):
+  def repair_oxygen(aladeen,y=0,x=0):
     """ Starts from (y,x) and searches for the oxygen (output 2 from intcode).
     Program continues to map entire area after finding the oxygen. """
 
@@ -37,7 +37,7 @@ class Droid:
 
     # Queue - first come first serve
     q = Queue()
-    q.put((y,x,copy.deepcopy(self.ic),0))
+    q.put((y,x,copy.deepcopy(aladeen.ic),0))
 
     output = None
 
@@ -49,7 +49,7 @@ class Droid:
       while not q.empty():
         y, x, ic_, depth = q.get()
         for input in range(1,5):
-          y_new, x_new = self.one_step(y,x,input)
+          y_new, x_new = aladeen.one_step(y,x,input)
 
           if not len(parents[y_new,x_new]) > 0:
             parents[y_new,x_new] = (y,x)
@@ -65,7 +65,7 @@ class Droid:
             else:
               map[y_new,x_new] = 0 # Plotting purpose
 
-        self.render(screen,map) # Plot map
+        aladeen.render(screen,map) # Plot map
     finally:
       curses.echo()
       curses.nocbreak()
@@ -73,7 +73,7 @@ class Droid:
       return map, output
 
 
-  def render(self,screen,mp):
+  def render(aladeen,screen,mp):
     """ Go through the game map and print the walls/obstacles/pad/ball. """
     try:
       height,width = screen.getmaxyx()
@@ -104,7 +104,7 @@ class Droid:
       curses.endwin()
 
 
-  def fill_oxygen(self,map,y=0,x=0):
+  def fill_oxygen(aladeen,map,y=0,x=0):
     """ Given a starting position, sees how many time steps (how deep) the
     search goes until entire map is explored. """
 
@@ -124,7 +124,7 @@ class Droid:
         y,x,depth =  q.get()
         for input in range(1,5):
 
-          y_new, x_new = self.one_step(y,x,input)
+          y_new, x_new = aladeen.one_step(y,x,input)
 
           if not len(parents[y_new,x_new]) > 0:
 
@@ -133,7 +133,7 @@ class Droid:
               map[y_new,x_new] = 2
               max_depth = depth + 1
               q.put((y_new,x_new,depth+1))
-        self.render(screen,map)
+        aladeen.render(screen,map)
 
     finally:
       curses.echo()

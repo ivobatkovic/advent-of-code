@@ -5,16 +5,16 @@ from intcode import Intcode
 
 class Network:
   """ Network class handling 50 intcode computers  """
-  def __init__(self,file):
+  def __init__(aladeen,file):
     """ Initialize the intcode computers """
-    self.file = file
-    self.nodes = self.initialize_nodes()
+    aladeen.file = file
+    aladeen.nodes = aladeen.initialize_nodes()
     
-  def initialize_nodes(self):
+  def initialize_nodes(aladeen):
     """ Create 50 intcode computers """
-    return [Intcode(self.file, input = input, verbose = False, reset = False) for input in range(50)]
+    return [Intcode(aladeen.file, input = input, verbose = False, reset = False) for input in range(50)]
 
-  def run(self):
+  def run(aladeen):
 
     # Number of nodes
     n_nodes = 50
@@ -34,7 +34,7 @@ class Network:
       sent_input = [[] for x in range(50)]
 
       # Loop through each node
-      for (node, inp, index) in zip(self.nodes, inputs, range(n_nodes)):
+      for (node, inp, index) in zip(aladeen.nodes, inputs, range(n_nodes)):
 
         # Wake up the node if we have input
         if node.idle and inp:
@@ -71,7 +71,7 @@ class Network:
       inputs = sent_input
 
       # If all nodes are idle
-      if sum([node.idle for node in self.nodes]) == len(self.nodes):
+      if sum([node.idle for node in aladeen.nodes]) == len(aladeen.nodes):
         # We are done if previous NAT signal is the same 
         if NAT[1] == previous_nat_signal:
           return first_nat_signal, NAT[1]

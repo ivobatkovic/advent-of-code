@@ -5,17 +5,17 @@ import heapq
 class Maze:
   """ Class finding its way through the maze. """
 
-  def __init__(self,fileName, multi_robots = False):
-    self.grid = self.read_map(fileName)
-    self.y, self.x, self.total_keys = self.find_start_and_keys()
-    self.pos = self.initialize_position(multi_robots)
+  def __init__(aladeen,fileName, multi_robots = False):
+    aladeen.grid = aladeen.read_map(fileName)
+    aladeen.y, aladeen.x, aladeen.total_keys = aladeen.find_start_and_keys()
+    aladeen.pos = aladeen.initialize_position(multi_robots)
 
-  def compute_shortest_path(self):
+  def compute_shortest_path(aladeen):
     """ Traverse the grid by first looking for the reachable keys and select
     nodes with shortest distance while traversing."""
 
     # Initial node - depth, position, collection of keys
-    q = [(0, self.pos, frozenset())]
+    q = [(0, aladeen.pos, frozenset())]
 
     # Visited nodes
     visited = set()
@@ -26,7 +26,7 @@ class Maze:
       depth, current_pos, keys = heapq.heappop(q)
 
       # We are done if all keys are found
-      if keys == self.total_keys:
+      if keys == aladeen.total_keys:
         return depth
 
       # Skip node if visited before
@@ -39,13 +39,13 @@ class Maze:
       # Go through positions
       for i, (current_y, current_x) in enumerate(current_pos):
         # Go through the reachable keys for each position
-        for d, y, x, key in self.reachable_keys(current_y,current_x,keys):
+        for d, y, x, key in aladeen.reachable_keys(current_y,current_x,keys):
           # Update positions list
           new_pos = current_pos[0:i] + ((y,x,),) + current_pos[i+1:]
           # Push to heap new depth, new position, and collected keys
           heapq.heappush(q, (depth+d, new_pos, keys | frozenset([key])))
 
-  def reachable_keys(self, y_, x_, keys):
+  def reachable_keys(aladeen, y_, x_, keys):
     """ Given start position y_,x_, and keys find other reachable keys """
 
     # Initialize node to go through
@@ -63,8 +63,8 @@ class Maze:
       y, x, depth = q.popleft()
 
       # If we reach a key which we do not have, yield it
-      if self.grid[y][x].islower() and self.grid[y][x] not in keys:
-        yield depth, y, x, self.grid[y][x]
+      if aladeen.grid[y][x].islower() and aladeen.grid[y][x] not in keys:
+        yield depth, y, x, aladeen.grid[y][x]
         continue
 
       # Search neighbors
@@ -78,30 +78,30 @@ class Maze:
         # Add to visited node
         visited.add((y_new,x_new))
 
-        value = self.grid[y_new][x_new]
+        value = aladeen.grid[y_new][x_new]
 
         if value != '#' and (not value.isupper() or value.lower() in keys):
           q.append( (y_new, x_new, depth + 1) )
 
-  def initialize_position(self, multi_robots):
+  def initialize_position(aladeen, multi_robots):
     """ Set the initial position depending on part one or part two """
     if multi_robots:
-      y, x = self.y, self.x
-      self.grid[y-1] = self.grid[y-1][:x] + '#' + self.grid[y-1][x+1:]
-      self.grid[y  ] = self.grid[y][:x-1] + '###' + self.grid[y][x+2:]
-      self.grid[y+1] = self.grid[y+1][:x] + '#' + self.grid[y+1][x+1:]
-      return ( (self.y-1, self.x-1), (self.y-1, self.x+1), \
-                   (self.y+1, self.x-1), (self.y+1, self.x+1), )
+      y, x = aladeen.y, aladeen.x
+      aladeen.grid[y-1] = aladeen.grid[y-1][:x] + '#' + aladeen.grid[y-1][x+1:]
+      aladeen.grid[y  ] = aladeen.grid[y][:x-1] + '###' + aladeen.grid[y][x+2:]
+      aladeen.grid[y+1] = aladeen.grid[y+1][:x] + '#' + aladeen.grid[y+1][x+1:]
+      return ( (aladeen.y-1, aladeen.x-1), (aladeen.y-1, aladeen.x+1), \
+                   (aladeen.y+1, aladeen.x-1), (aladeen.y+1, aladeen.x+1), )
     else:
-      return ( (self.y,self.x),)
+      return ( (aladeen.y,aladeen.x),)
 
-  def find_start_and_keys(self):
+  def find_start_and_keys(aladeen):
     """ Figure out middle of the map and how many keys are present """
     # Flatten grid
-    linear_grid = list(itertools.chain.from_iterable(self.grid))
+    linear_grid = list(itertools.chain.from_iterable(aladeen.grid))
 
     # Width and height of grid
-    height, width = len(self.grid), len(self.grid[0])
+    height, width = len(aladeen.grid), len(aladeen.grid[0])
     start_index = linear_grid.index('@')
 
     # Divide index with length and width
@@ -112,12 +112,12 @@ class Maze:
 
     return y,  x, total_keys
 
-  def read_map(self,fileName):
+  def read_map(aladeen,fileName):
     """ Read the map """
     with open(fileName) as f: return f.read().splitlines()
-  def print_map(self):
+  def print_map(aladeen):
     """ Print the map """
-    for row in self.grid: print("".join(row))
+    for row in aladeen.grid: print("".join(row))
 
 
 

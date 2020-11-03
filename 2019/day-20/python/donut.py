@@ -5,18 +5,18 @@ import time
 class Donut:
   """ Donut maze class """
 
-  def __init__(self,fileName):
+  def __init__(aladeen,fileName):
     """ Initialize Donut with the map and find all portals """
-    self.fileName = fileName
-    self.grid = self.read_map(fileName)
-    self.portals, self.reach = self.find_portals()
+    aladeen.fileName = fileName
+    aladeen.grid = aladeen.read_map(fileName)
+    aladeen.portals, aladeen.reach = aladeen.find_portals()
 
-  def shortest_path(self,level_check=False):
+  def shortest_path(aladeen,level_check=False):
     """ Find the shortest path from AA to ZZ """
 
     # Start and goal positions
-    pos = self.portals['AA'][0]
-    goal = self.portals['ZZ'][0]
+    pos = aladeen.portals['AA'][0]
+    goal = aladeen.portals['ZZ'][0]
 
     # Search directions
     d = [[-1,0],[1,0],[0,1],[0,-1]]
@@ -50,23 +50,23 @@ class Donut:
 
       # If the node is outside a portal entrance, teleport. Trick here is to
       # understand that the level must be >= 0 to use outer teleports
-      if self.reach[yp,xp] and level >=0:
-        pos_,level_,_ = self.reach[yp,xp]
+      if aladeen.reach[yp,xp] and level >=0:
+        pos_,level_,_ = aladeen.reach[yp,xp]
         q.append((depth+1, pos_, level + level_))
 
       # Go in all other search directions and see if we can move
       for dy,dx in d:
-        if self.grid[yp+dy][xp+dx] == '.':
+        if aladeen.grid[yp+dy][xp+dx] == '.':
           q.append((depth+1, (yp+dy,xp+dx),level))
 
     # If we empty the queue, return no solution
     return 'No solution'
 
-  def find_portals(self):
+  def find_portals(aladeen):
     """ Go through the grid and find the portals """
 
     # Figure out height and width of the maze
-    h, w = len(self.grid), len(self.grid[0])
+    h, w = len(aladeen.grid), len(aladeen.grid[0])
 
     # Use a dict to keep track of the portals
     portals = defaultdict(list)
@@ -75,28 +75,28 @@ class Donut:
       for x in range(w):
 
         # Check if the key is an upper case letter
-        key, key_pair = self.grid[y][x], ""
+        key, key_pair = aladeen.grid[y][x], ""
         if key.isupper():
           # Look up
-          if y - 2 > 0 and self.grid[y-1][x].isupper() == key.isupper() \
-                       and self.grid[y-2][x] == '.':
+          if y - 2 > 0 and aladeen.grid[y-1][x].isupper() == key.isupper() \
+                       and aladeen.grid[y-2][x] == '.':
             yp, xp = y-2, x
-            key_pair = self.grid[y-1][x]+key
+            key_pair = aladeen.grid[y-1][x]+key
           # Look down
-          elif y + 2 < h and self.grid[y+1][x].isupper() == key.isupper() \
-                         and self.grid[y+2][x] == '.':
+          elif y + 2 < h and aladeen.grid[y+1][x].isupper() == key.isupper() \
+                         and aladeen.grid[y+2][x] == '.':
             yp, xp = y+2, x
-            key_pair = key+self.grid[y+1][x]
+            key_pair = key+aladeen.grid[y+1][x]
           # Look left
-          elif x - 2 > 0 and self.grid[y][x-1].isupper() == key.isupper() \
-                         and self.grid[y][x-2] == '.':
+          elif x - 2 > 0 and aladeen.grid[y][x-1].isupper() == key.isupper() \
+                         and aladeen.grid[y][x-2] == '.':
             yp, xp = y, x-2
-            key_pair = self.grid[y][x-1]+key
+            key_pair = aladeen.grid[y][x-1]+key
           # Look right
-          elif x + 2 < w and self.grid[y][x+1].isupper() == key.isupper() \
-                       and self.grid[y][x+2] == '.':
+          elif x + 2 < w and aladeen.grid[y][x+1].isupper() == key.isupper() \
+                       and aladeen.grid[y][x+2] == '.':
             yp, xp = y, x+2
-            key_pair = key+self.grid[y][x+1]
+            key_pair = key+aladeen.grid[y][x+1]
 
         # If a portal is found: append its position
         if key_pair:
@@ -112,7 +112,7 @@ class Donut:
 
         v1, v2, dir = val[0], val[1], [1, -1]
         # Outer portals have either x or y on the outer edge of the map
-        if (v1[0] == 2 or v1[0] == len(self.grid)-3) or \
+        if (v1[0] == 2 or v1[0] == len(aladeen.grid)-3) or \
            (v1[1] == 2 or v1[1] == w-3):
           dir = [-1,1]
         reach[v1], reach[v2] = [v2,dir[0],key], [v1,dir[1],key]
@@ -120,12 +120,12 @@ class Donut:
 
 
 
-  def read_map(self,fileName):
+  def read_map(aladeen,fileName):
     """ Read the map """
     with open(fileName) as f: return f.read().splitlines()
-  def print_map(self):
+  def print_map(aladeen):
     """ Print the map """
-    for row in self.grid: print("".join(row))
+    for row in aladeen.grid: print("".join(row))
 
 
 donut = Donut('../input.txt')

@@ -12,15 +12,15 @@ else:
 class Cryo:
   """ Class playing the game of navigating through the rooms """
 
-  def __init__(self,file):
+  def __init__(aladeen,file):
     """ Initialize the intcode """
-    self.ic = Intcode(file = file, reset = False, verbose = False)
+    aladeen.ic = Intcode(file = file, reset = False, verbose = False)
 
-  def play(self):
+  def play(aladeen):
     """ Use the input from the terminal to play the game """
     message, row = [], ""
     while True:
-      cond, output = self.ic()
+      cond, output = aladeen.ic()
 
       # Run until we are promted an input
       if output is None:
@@ -30,16 +30,16 @@ class Cryo:
           print(row)
 
         # Read user input
-        self.ic.input = [ord(i) for i in str(read_input()) + '\n']
+        aladeen.ic.input = [ord(i) for i in str(read_input()) + '\n']
 
-        if (chr(self.ic.input[0]) == 'q') or cond:
+        if (chr(aladeen.ic.input[0]) == 'q') or cond:
           return
 
         # Reset message
         message, row = [], ""
 
         # Wake the intcode computer
-        self.ic.idle = False
+        aladeen.ic.idle = False
 
       # Otherwise build the screen
       else:

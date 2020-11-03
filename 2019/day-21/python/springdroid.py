@@ -6,32 +6,32 @@ from intcode import Intcode
 class Springdroid:
   """ Class for the springdroid """
 
-  def __init__(self,file):
+  def __init__(aladeen,file):
     """ Assign filename """
-    self.file = file
+    aladeen.file = file
 
-  def part_one(self):
+  def part_one(aladeen):
     """ Solve part one by writing the program """
 
     program = ["NOT B T\n","AND D T\n","OR T J\n", "NOT C T\n","AND D T\n",\
                "OR T J\n","NOT A T\n","OR T J\n", "WALK\n"]
 
-    return self.solve_program(program)
+    return aladeen.solve_program(program)
 
-  def part_two(self):
+  def part_two(aladeen):
     """ Solve part one by writing the program """
 
     program = ["NOT B T\n", "AND D T\n", "OR T J\n", "NOT C T\n", "AND D T\n", \
                "AND H T\n","OR T J\n", "NOT A T\n", "OR T J\n", "RUN\n"]
 
-    return self.solve_program(program)
+    return aladeen.solve_program(program)
 
-  def solve_program(self,program):
+  def solve_program(aladeen,program):
     """ Uses the program to run the springdroid """
 
     # Go through the program and pass it on to the intcode computer
     input = [ord(asci) for letter in program for asci in letter]
-    intcode = Intcode(self.file, input = input, verbose = False, reset = False)
+    intcode = Intcode(aladeen.file, input = input, verbose = False, reset = False)
 
     message, row_message = [], ""
     while True:
