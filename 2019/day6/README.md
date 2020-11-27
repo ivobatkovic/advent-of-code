@@ -1,7 +1,6 @@
-# --- Day 6: Universal Orbit Map ---
-You've landed at the Universal Orbit Map facility on Mercury. Because navigation in space often involves transferring between orbits, the orbit maps here are useful for finding efficient routes between, for example, you and Santa. You download a map of the local orbits (your puzzle input).
-
-<p>Except for the universal Center of Mass (<code>COM</code>), every object in space is in orbit around. An orbit looks roughly like this:</p>
+<main>
+<article class="day-desc"><h2>--- Day 6: Universal Orbit Map ---</h2><p>You've landed at the Universal Orbit Map facility on Mercury.  Because navigation in space often involves transferring between orbits, the orbit maps here are useful for finding efficient routes between, for example, you and Santa. You download a map of the local orbits (your puzzle input).</p>
+<p>Except for the universal Center of Mass (<code>COM</code>), every object in space is in orbit around <span title="What do you mean, Kerbal Space Program doesn't have accurate orbital physics?">exactly one other object</span>.  An <a href="https://en.wikipedia.org/wiki/Orbit">orbit</a> looks roughly like this:</p>
 <pre><code>                  \
                    \
                     |
@@ -44,10 +43,8 @@ COM - B - C - D - E - F
 </ul>
 <p>The total number of direct and indirect orbits in this example is <code><em>42</em></code>.</p>
 <p><em>What is the total number of direct and indirect orbits</em> in your map data?</p>
-
-
-# --- Part Two ---
-ow, you just need to figure out how many <em>orbital transfers</em> you (<code>YOU</code>) need to take to get to Santa (<code>SAN</code>).</p>
+</article>
+<article class="day-desc"><h2 id="part2">--- Part Two ---</h2><p>Now, you just need to figure out how many <em>orbital transfers</em> you (<code>YOU</code>) need to take to get to Santa (<code>SAN</code>).</p>
 <p>You start at the object <code>YOU</code> are orbiting; your destination is the object <code>SAN</code> is orbiting. An orbital transfer lets you move from any object to an object orbiting or orbited by that object.</p>
 <p>For example, suppose you have the following map:</p>
 <pre><code>COM)B
@@ -90,3 +87,5 @@ COM - B - C - D - E - F
                   <em>YOU</em>
 </code></pre>
 <p><em>What is the minimum number of orbital transfers required</em> to move from the object <code>YOU</code> are orbiting to the object <code>SAN</code> is orbiting? (Between the objects they are orbiting - <em>not</em> between <code>YOU</code> and <code>SAN</code>.)</p>
+</article>
+</main>

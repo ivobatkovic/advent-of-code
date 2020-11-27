@@ -1,5 +1,4 @@
 <main>
-<script async="" src="//www.google-analytics.com/analytics.js"></script><script>window.addEventListener('click', function(e,s,r){if(e.target.nodeName==='CODE'&&e.detail===3){s=window.getSelection();s.removeAllRanges();r=document.createRange();r.selectNodeContents(e.target);s.addRange(r);}});</script>
 <article class="day-desc"><h2>--- Day 9: Sensor Boost ---</h2><p>You've just said goodbye to the rebooted rover and left Mars when you receive a faint distress signal coming from the asteroid belt.  It must be the Ceres monitoring station!</p>
 <p>In order to lock on to the signal, you'll need to boost your sensors. The Elves send up the latest <em>BOOST</em> program - Basic Operation Of System Test.</p>
 <p>While BOOST (your puzzle input) is capable of boosting your sensors, for <span title="Oh sure, NOW safety is a priority.">tenuous safety reasons</span>, it refuses to do so until the computer it runs on passes some checks to demonstrate it is a <em>complete Intcode computer</em>.</p>
