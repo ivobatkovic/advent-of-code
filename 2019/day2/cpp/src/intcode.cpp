@@ -2,10 +2,10 @@
 #include "utils.hpp"
 #include <iostream>
 
-Intcode::Intcode(bool reset) : m_memory(), m_reset(reset) {}
+Intcode::Intcode(bool reset) : m_file_name(), m_memory(), m_reset(reset) {}
 
 Intcode::Intcode(std::string file_name, bool reset) : 
-    m_memory(), m_reset(reset)
+   m_file_name(), m_memory(), m_reset(reset)
 {
 
   std::vector<std::vector<int>> input_memory;

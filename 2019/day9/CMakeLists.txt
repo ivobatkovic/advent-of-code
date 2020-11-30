@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 
 project(day9)
 
-# Include header files
-include_directories(cpp/include)
-
 # Set sources to be compiled
 set( MAIN_SOURCES "cpp/src/main.cpp" )
 
