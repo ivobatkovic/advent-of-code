@@ -19,14 +19,6 @@ The solutions for [advent of code 2020](https://adventofcode.com/2020) are struc
 ```
 
 ## Installation (Linux/MacOS)
-### Dependencies
-To install dependencies run
-```bash
-virtualenv venv            # (optional)
-source venv/bin/activate   # (optional")
-pip install --upgrade pip
-pip install -r requirements.txt
-```
 
 ### Python
 To run the python scripts, move to the dayXX/python directory:

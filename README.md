@@ -19,5 +19,14 @@ docker run -v $(pwd):/adventofcode -ti adventofcode bash
 ```
 This will open up a bash shell for the docker image, and mount the current folder to the running container.
 
+## Dependencies
+To install dependencies run
+```bash
+virtualenv venv            # (optional)
+source venv/bin/activate   # (optional)
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -1,6 +1,6 @@
 # 2019 Solutions
 
-The solutions for advent of code 2019 are structured in different folders called day1, day2, ..., day25, which have the following structure:
+The solutions for [advent of code 2019](https://adventofcode.com/2019/) are structured in different folders called day1, day2, ..., day25, which have the following structure:
 ```bash
 .
 ├──day1
@@ -10,8 +10,7 @@ The solutions for advent of code 2019 are structured in different folders called
 │   |    └── tests
 |   ├── python         # Contains python source files
 |   ├── data           # Contains input data
-|   ├── CMakeLists.txt # Build configuraiton
-|   └── README.md      # Problem description
+|   └── CMakeLists.txt # Build configuraiton
 .
 .
 ├──day25
@@ -21,8 +20,7 @@ The solutions for advent of code 2019 are structured in different folders called
 │   |    └── tests
 |   ├── python      
 |   ├── data        
-|   ├── CMakeLists.txt
-|   └── README.md   
+|   └── CMakeLists.txt
 ├──utils               # Input/output C++ library
 |   ├── src            
 |   ├── include
