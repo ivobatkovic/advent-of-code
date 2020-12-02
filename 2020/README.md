@@ -1,70 +1,48 @@
 # 2020 Solutions
 
-The solutions for advent of code 2020 are structured in different folders called day1, day2, ..., day25, which have the following structure:
+The solutions for [advent of code 2020](https://adventofcode.com/2020) are structured in different folders called day1, day2, ..., day25, which have the following structure:
 ```bash
 .
 ├──day1
-|   ├── cpp            # Containing c++ source files
-│   |    ├── src
-│   |    ├── include
-│   |    └── tests
 |   ├── python         # Contains python source files
-|   ├── data           # Contains input data
-|   ├── CMakeLists.txt # Build configuraiton
-|   └── README.md      # Problem description
-.
+|   └── data           # Contains input 
 .
 ├──day25
-|   ├── cpp         
-│   |    ├── src
-│   |    └── include
-│   |    └── tests
 |   ├── python      
-|   ├── data        
-|   ├── CMakeLists.txt
-|   └── README.md   
-├──utils               
-|   ├── cpp            # Input/output C++ library
-│   |    ├── src
-│   |    └── include
-│   |    └── tests
-|   ├── python         # python IO functions
-|   └── CMakeLists.txt 
-├──cmake               # cmake settings
+|   └── data   
+├──templates               
+|   ├── python         # Template python project     
+|   └── data           # Template data
+├──bootstrap.py        # Script to set up new day
+├──requirements.txt    # Python dependencies
 └──CMakeLists.txt      # cmake settings for the project
 ```
 
 ## Installation (Linux/MacOS)
-### C++
-To configure the build for c++ run the following commands (uses c++14):
+### Dependencies
+To install dependencies run
 ```bash
-mkdir build        # create a build folder
-cd build           # move into the build folder
-cmake ..           # configure build files
+virtualenv venv            # (optional)
+source venv/bin/activate   # (optional")
+pip install --upgrade pip
+pip install -r requirements.txt
 ```
-To compile the code for all days, including the test cases, run:
-```bash
-make all           # compiles all days
-make build_tests   # compiles all tests
-make test          # runs all tests
-````
-To build everything and run the tests in parallel
-```bash
-make all build_tests test -j$(nproc)
-```
-To compile dayX (where X=[1,...,25]), run:
-```bash
-make dayX         # replace X with the desired day
-make dayX_test    # compiles the test suite for dayX
-```
-Then to run the built program simply type:
-```bash
-./dayX/dayX       # to run the program solving dayX
-./dayX/dayX_test  # to run the tests for dayX
-```
+
 ### Python
 To run the python scripts, move to the dayXX/python directory:
 ```bash
 cd dayXX/python   # Move to folder dayXX/python
 python dayXX.py   # Run python script
+pytest dayXX.py   # To run tests
+```
+### Bootstraping
+To generate the project structure for a given day, run the following:
+```bash
+python bootstrap.py -d <dayNumber>
+```
+
+### Download input
+To download the input using [aocd](https://github.com/wimglenn/advent-of-code-data), you need to export the session ID:
+```bash
+export AOC_SESSION=<session_id>
 ```

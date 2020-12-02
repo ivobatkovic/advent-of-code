@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from os.path import dirname, realpath, join
-import time
+import time, pytest
+
 def transform_input(input_):
   # custom transform for the day
   return int(input_)
@@ -41,8 +42,20 @@ def main():
   time_part2 = round((time.time()-t0)*1e3)
   print(f'Solution to part one: {part2} (time taken {time_part2}[ms])')
 
-  
-
 
 if __name__ == '__main__':
   main()
+
+@pytest.mark.parametrize("input1,output1", [
+  ('../data/test_input0.txt', 514579)
+])
+
+def test1(input1,output1):
+  assert solve_part1(read_input(input1)) == output1
+
+@pytest.mark.parametrize("input2,output2", [
+  ('../data/test_input0.txt', 241861950)
+])
+
+def test2(input2,output2):
+  assert solve_part2(read_input(input2)) == output2
