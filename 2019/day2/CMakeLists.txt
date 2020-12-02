@@ -4,7 +4,6 @@ project(day2)
 
 # Include header files
 include_directories(cpp/include)
-include_directories(${CMAKE_SOURCE_DIR}/utils/cpp/include)
 
 # Set sources to be compiled
 set( SOURCES "cpp/src/intcode.cpp" ${UTILS_SOURCES} )
@@ -16,9 +15,6 @@ add_executable (${PROJECT_NAME} ${MAIN_SOURCES} ${SOURCES})
 # Give the relative path of the compilation as SOURCE_DIR
 target_compile_definitions(${PROJECT_NAME} 
                            PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
-# Link iolibrary from utils
-target_link_libraries(${PROJECT_NAME} iolib)
-
 
 # Build tests
 set( TEST_SOURCES "cpp/tests/day2_test.cpp")
@@ -26,8 +22,9 @@ set ( TEST_TARGET ${PROJECT_NAME}_tests)
 
 # Test exectuable
 add_executable (${TEST_TARGET} ${TEST_SOURCES} ${SOURCES})
-target_link_libraries(${TEST_TARGET} gtest gtest_main iolib)
-target_compile_definitions(${TEST_TARGET} PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+target_link_libraries(${TEST_TARGET} gtest gtest_main)
+target_compile_definitions(${TEST_TARGET} 
+                           PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 set_target_properties(${TEST_TARGET} PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
 # Set up test

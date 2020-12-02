@@ -38,6 +38,7 @@ endif()
 
 # Compilation flags to be used on the projects
 INCLUDE (CompileFlags)
+include_directories(utils/cpp/include)
 
 # Enable testing for directories containing the solutions to day 1 through 25
 enable_testing()

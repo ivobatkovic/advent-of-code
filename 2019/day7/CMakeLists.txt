@@ -4,8 +4,6 @@ project(day7)
 
 # Include header files
 include_directories(cpp/include)
-include_directories(${CMAKE_SOURCE_DIR}/utils/cpp/include)
-include_directories(${CMAKE_SOURCE_DIR}/day5/cpp/include)
 
 # Set sources to be compiled
 set( SOURCES "cpp/src/amplifier.cpp")
