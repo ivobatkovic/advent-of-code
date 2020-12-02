@@ -3,7 +3,9 @@ from os.path import dirname, realpath, join
 import time
 def transform_input(input_):
   # custom transform for the day
-  return int(input_)
+  count, letter, pw = input_.replace(':','').split()
+  low, high = count.split('-')
+  return int(low), int(high), letter, pw
 
 
 def read_input(file_name = '../data/input.txt'):
@@ -14,17 +16,17 @@ def read_input(file_name = '../data/input.txt'):
   return input_
 
 def solve_part1(input_):
-  for i, v1 in enumerate(input_[:-1]):
-    for j, v2 in enumerate(input_[i:]):
-      if v1 + v2 == 2020:
-        return v1*v2
+  n_pws = 0
+  for low, high, letter, pw in input_:
+    n_pws += 1 if low <= pw.count(letter) <= high else 0
+  return n_pws
+    
 
 def solve_part2(input_):
-  for i, v1 in enumerate(input_[:-2]):
-    for j, v2 in enumerate(input_[i:-1]):
-      for k, v3 in enumerate(input_[j:]):
-        if v1 + v2 + v3== 2020:
-          return v1*v2*v3
+  n_pws = 0
+  for low, high, letter, pw in input_:
+    n_pws += 1 if (pw[low-1] == letter) ^ (pw[high-1] == letter) else 0
+  return n_pws
 
 
 def main():
@@ -40,9 +42,6 @@ def main():
   part2 = solve_part2(input_)
   time_part2 = round((time.time()-t0)*1e3)
   print(f'Solution to part one: {part2} (time taken {time_part2}[ms])')
-
-  
-
 
 if __name__ == '__main__':
   main()

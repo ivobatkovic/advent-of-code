@@ -1,9 +1,11 @@
+""" Credit: code taken from https://github.com/amrit110/aoc """
 #!/usr/bin/env python3
 from os.path import dirname, realpath, join
 import time
+
 def transform_input(input_):
   # custom transform for the day
-  return int(input_)
+  return input_
 
 
 def read_input(file_name = '../data/input.txt'):
@@ -14,17 +16,11 @@ def read_input(file_name = '../data/input.txt'):
   return input_
 
 def solve_part1(input_):
-  for i, v1 in enumerate(input_[:-1]):
-    for j, v2 in enumerate(input_[i:]):
-      if v1 + v2 == 2020:
-        return v1*v2
+  pass
+
 
 def solve_part2(input_):
-  for i, v1 in enumerate(input_[:-2]):
-    for j, v2 in enumerate(input_[i:-1]):
-      for k, v3 in enumerate(input_[j:]):
-        if v1 + v2 + v3== 2020:
-          return v1*v2*v3
+  pass
 
 
 def main():
