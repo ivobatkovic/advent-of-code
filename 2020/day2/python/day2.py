@@ -11,7 +11,7 @@ def transform_input(input_):
 
 def read_input(file_name = '../data/input.txt'):
   dir_path = dirname(realpath(__file__))
-  with open(file_name, 'r') as f:
+  with open(join(dir_path,file_name), 'r') as f:
     input_ = [transform_input(x.strip()) for x in f.readlines()]
 
   return input_
