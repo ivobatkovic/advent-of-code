@@ -4,6 +4,9 @@ if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
         -Wswitch-default")
     set(C_COMPILER_FLAGS "-std=c99")
     set(CXX_COMPILER_FLAGS "-std=c++14")
+    #Since CMAKE uses -isysroot flag and these paths are ignored for Mac
+    link_directories(/usr/local/lib)
+    include_directories(/usr/local/include)
 elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
     set(COMPILER_FLAGS "-fstack-protector-all -fsanitize=undefined,address \
         -fPIC -O2 -Wall -Weffc++ -Werror -Wextra -Wshadow -pedantic-errors")
