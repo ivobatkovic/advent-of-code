@@ -4,13 +4,13 @@ import time, pytest
 
 def transform_input(input_):
   # custom transform for the day
-  return int(input_)
+  return [int(inp) for inp in input_.splitlines()]
 
 
 def read_input(file_name = '../data/input.txt'):
   dir_path = dirname(realpath(__file__))
   with open(join(dir_path,file_name), 'r') as f:
-    input_ = [transform_input(x.strip()) for x in f.readlines()]
+    input_ = transform_input(f.read())
 
   return input_
 

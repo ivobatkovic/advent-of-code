@@ -1,85 +1,60 @@
 #!/usr/bin/env python3
 from os.path import dirname, realpath, join
-import time, pytest
-
+import time, pytest, re
 
 
 def transform_input(input_):
   # custom transform for the day
-  if not input_:
-    return None
-  else:
-    # Split into spaces and then into key, value pairs
-    return [parts.split(':') for parts in input_.split()]
+
+  passports, n_passports = [dict()], 0
+
+  for inp in input_.splitlines():
+    if not inp:
+      passports.append(dict())
+      n_passports += 1
+    else:
+      for parts in inp.split():
+        key, value = parts.split(':')
+        passports[n_passports][key]=value
+
+  return passports
       
 
 def read_input(file_name = '../data/input.txt'):
   
   dir_path = dirname(realpath(__file__))
   with open(join(dir_path,file_name), 'r') as f:
-    # Transform input
-    input_ = [transform_input(x.strip()) for x in f.readlines()]
+    input_ = transform_input(f.read())
 
-    # Assing input into passports
-    passports, n_passports = [dict()], 0
-    for ip in input_:
-      if ip == None:
-        passports.append(dict())
-        n_passports += 1
-      else:
-        for key,val in ip:
-          passports[n_passports][key] = val
-
-  return passports
+  return input_
 
 def solve_part1(input_):
   # Required fields
-  req = ['byr', 'iyr', 'eyr', 'hgt','hcl','ecl','pid','cid']
-
-  n_valid = 0
-  for ip in input_:
-    # Since cid is not necessary, just pop it in
-    if not 'cid' in ip: ip['cid'] = None
-
-    # Check if we have as many matches as required keys
-    if sum([key in req for key in ip.keys()])==len(req): n_valid +=1
-        
-  return n_valid
+  req = ['byr', 'iyr', 'eyr', 'hgt','hcl','ecl','pid']
+  # Check if all keys for each passport contain the required keys
+  return sum([1 for inp in input_ if set(inp).issuperset(set(req))])
 
 
 def solve_part2(input_):
 
-  # Matching strings
-  colors = ['amb','blu','brn','gry','grn','hzl','oth']
-  hair_color = '0123456789abcdef'
-  
-  n_valid = 0
-  for ip in input_:
-    # Continue if passport is OK
-    if solve_part1([ip]):
-      nOk = 0
-      for key in ip.keys():
-        if key == 'byr' and 1920<=int(ip[key])<=2002: nOk +=1  
-        if key == 'iyr' and 2010<=int(ip[key])<=2020: nOk +=1
-        if key == 'eyr' and 2020<=int(ip[key])<=2030: nOk +=1
-        if key == 'hgt':
-          if ip[key][-2:] == 'cm' and 150<=int(ip[key][:-2])<=193: nOk +=1
-          elif ip[key][-2:] == 'in' and 59<=int(ip[key][:-2])<=76: nOk +=1
-        if key == 'hcl' and ip[key][0] == '#' \
-          and sum(k in hair_color for k in ip[key][1:])==6: nOk +=1
-        if key == 'ecl' and len(ip[key]) == 3 and ip[key] in colors: nOk +=1
-        if key == 'pid' and len(ip[key])==9 and ip[key].isdigit(): nOk += 1
-        if key == 'cid': nOk += 1
-      if nOk == len(ip.keys()):
-        n_valid +=1
-        
-  return n_valid
-  
+  # Matching regex for validation
+  rgx = {'byr' : r'^(19[2-9]\d|200[0-2])$',
+         'iyr' : r'^20(1\d|20)', 
+         'eyr' : r'^20(2\d|30)',
+         'hgt' : r'^(1([5-8]\d|9[0-3])cm|(59|6\d|7[0-6])in)$',
+         'hcl' : r'^#[\da-f]{6}',
+         'ecl' : r'^(amb|blu|brn|gry|grn|hzl|oth)$',
+         'pid' : r'^(\d{9})$',
+         'cid' : r'^'}
 
+  matches = lambda inp : sum([1 for key,val in inp.items()
+                              if re.search(rgx[key],val)]) == len(inp)
+  return sum([ 1 for inp in input_ if solve_part1([inp]) and matches(inp) ])
+  
 
 def main():
   
-  input_ = read_input()
+  input_ = read_input('../data/input.txt')
   t0 = time.time()
   part1 = solve_part1(input_)
   time_part1 = round((time.time()-t0)*1e3)

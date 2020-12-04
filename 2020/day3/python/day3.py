@@ -4,20 +4,20 @@ import time, pytest
 
 def transform_input(input_):
   # custom transform for the day
-  return input_
+  return input_.splitlines()
 
 
 def read_input(file_name = '../data/input.txt'):
   dir_path = dirname(realpath(__file__))
   with open(join(dir_path,file_name), 'r') as f:
-    input_ = [transform_input(x.strip()) for x in f.readlines()]
+    input_ = transform_input(f.read())
 
   return input_
 
 
 def solve_part1(input_):
   h, w = len(input_), len(input_[0])
-
+  print(h,w)
   dy, dx = 1, 3
   s = 0
   for y in range(h-1):

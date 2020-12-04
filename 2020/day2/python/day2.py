@@ -4,15 +4,19 @@ import time, pytest
 
 def transform_input(input_):
   # custom transform for the day
-  count, letter, pw = input_.replace(':','').split()
-  low, high = count.split('-')
-  return int(low), int(high), letter, pw
+
+  output = []
+  for inp in input_.splitlines():
+    count, letter, pw = inp.replace(':','').split()
+    low, high = count.split('-')
+    output.append([int(low),int(high),letter,pw])
+  return output
 
 
 def read_input(file_name = '../data/input.txt'):
   dir_path = dirname(realpath(__file__))
   with open(join(dir_path,file_name), 'r') as f:
-    input_ = [transform_input(x.strip()) for x in f.readlines()]
+    input_ = transform_input(f.read())
 
   return input_
 
