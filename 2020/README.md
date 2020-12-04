@@ -21,11 +21,10 @@ The solutions for [advent of code 2020](https://adventofcode.com/2020) are struc
 ## Installation (Linux/MacOS)
 
 ### Python
-To run the python scripts, move to the dayXX/python directory:
+To run the python scripts:
 ```bash
-cd dayXX/python   # Move to folder dayXX/python
-python dayXX.py   # Run python script
-pytest dayXX.py   # To run tests
+python dayX/python/dayX.py # To run dayX
+pytest dayX/python/dayX.py # To run tests for dayX
 ```
 ### Bootstraping
 To generate the project structure for a given day, run the following:

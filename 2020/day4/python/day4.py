@@ -37,7 +37,7 @@ def solve_part1(input_):
 
 def solve_part2(input_):
 
-  # Matching regex for validation (idea from user https://github.com/hoxovic)
+  # Validation regex (nice idea from user https://github.com/hoxovic)
   rgx = {'byr' : r'^(19[2-9]\d|200[0-2])$',
          'iyr' : r'^20(1\d|20)', 
          'eyr' : r'^20(2\d|30)',
