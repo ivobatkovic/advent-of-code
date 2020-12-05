@@ -32,11 +32,13 @@ def setup_cpp_source(day):
   src_files = [os.path.join(f'day{day}','CMakeLists.txt_tmp'),
            os.path.join(*[f'day{day}','cpp','include',f'day.hpp_tmp']),
            os.path.join(*[f'day{day}','cpp','src',f'day.cpp_tmp']),
-           os.path.join(*[f'day{day}','cpp','src','main.cpp_tmp'])]
+           os.path.join(*[f'day{day}','cpp','src','main.cpp_tmp']),
+           os.path.join(*[f'day{day}','cpp','src','test.cpp_tmp'])]
   dst_files = [os.path.join(f'day{day}','CMakeLists.txt'),
                os.path.join(*[f'day{day}','cpp','include',f'day{day}.hpp']),
                os.path.join(*[f'day{day}','cpp','src',f'day{day}.cpp']),
-               os.path.join(*[f'day{day}','cpp','src','main.cpp'])]
+               os.path.join(*[f'day{day}','cpp','src','main.cpp']),
+               os.path.join(*[f'day{day}','cpp','src','test.cpp'])]
   for src,dst in zip(src_files,dst_files): os.rename(src,dst)
 
   # Update files with the corresponding day
