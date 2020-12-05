@@ -8,7 +8,7 @@ class PartOne : public ::testing::TestWithParam<std::tuple<string, string>>
 {{
 }};
 
-TEST_P(PartOne, partOneTest)
+TEST_P(PartOne, PartOneTest)
 {{ 
   auto param = GetParam();
   auto file_name = string(SOURCE_DIR) + "/data/" + std::get<0>(param);
@@ -17,7 +17,7 @@ TEST_P(PartOne, partOneTest)
 }}
 
 INSTANTIATE_TEST_SUITE_P(
-    partOneTest,
+    PartOneTest,
     PartOne,
     ::testing::Values(std::make_tuple("test_input0.txt", "1")));
 
