@@ -73,8 +73,8 @@ def bootstrap_solution(day):
     print(f'Failed to create directory day{day}') 
 
   # Download latest data
-  # data_dst = os.path.join(*[f'day{day}','data','input.txt'])
-  # download_data(2020,day,data_dst)
+  data_dst = os.path.join(*[f'day{day}','data','input.txt'])
+  download_data(2020,day,data_dst)
     
 def main():
     args = parse_args()
