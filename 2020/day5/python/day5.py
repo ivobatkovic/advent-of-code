@@ -9,10 +9,10 @@ def transform_input(input_):
   for line in input_.splitlines():
     row, col = [0, 127], [0, 7]
     for seat in line:
-      if seat == 'B':    row[0] = (row[0]+1 + row[1]) // 2
-      elif seat == 'F':  row[1] = (row[0] + row[1]) // 2
-      elif seat == 'R':  col[0] = (col[0]+1 + col[1]) // 2
-      elif seat == 'L':  col[1] = (col[0] + col[1]) // 2
+      if   seat == 'B':  row[0] = (row[0] + 1 + row[1]) // 2
+      elif seat == 'F':  row[1] = (row[0]     + row[1]) // 2
+      elif seat == 'R':  col[0] = (col[0] + 1 + col[1]) // 2
+      elif seat == 'L':  col[1] = (col[0]     + col[1]) // 2
     inp.append([min(row),min(col)])
     
   return inp
@@ -28,7 +28,6 @@ def read_input(file_name = '../data/input.txt'):
 def solve_part1(input_):
   # Compute the seat ids from the input and return the max element
   return max([row*8+col for row, col in input_])
-    
 
 
 def solve_part2(input_):
@@ -44,7 +43,6 @@ def solve_part2(input_):
 
 def main():
   
-  input_ = read_input('../data/test_input0.txt')
   input_ = read_input()
 
   t0 = time.time()
