@@ -1,0 +1,26 @@
+#include "day{day}.hpp"
+#include "utils.hpp"
+
+using day{day}::input_type;
+
+input_type day{day}::transform_input(std::vector<std::string> &input) {{
+  return input;
+}}
+
+input_type day{day}::read_input(std::string file_name) {{
+  auto input = utils::readFile(file_name);
+  return transform_input(input);
+}}
+
+// Implement part one solution
+std::string day{day}::solve_part1(input_type input_) {{
+  std::cout << typeid(input_).name() << std::endl;
+  return "Implement part one";
+}}
+
+// Implement part two solution
+std::string day{day}::solve_part2(input_type input_) {{
+  std::cout << typeid(input_).name() << std::endl;
+  return "Implement part two";
+}}
+

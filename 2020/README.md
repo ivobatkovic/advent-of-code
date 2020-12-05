@@ -33,7 +33,7 @@ python bootstrap.py -d <dayNumber>
 ```
 
 ### Download input
-To download the input using [aocd](https://github.com/wimglenn/advent-of-code-data), you need to export the session ID:
+To download the input using [aocd](https://github.com/wimglenn/advent-of-code-data), you need to export the [session ID](https://github.com/wimglenn/advent-of-code-wim/issues/1):
 ```bash
 export AOC_SESSION=<session_id>
 ```
