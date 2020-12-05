@@ -17,7 +17,7 @@ def read_input(file_name = '../data/input.txt'):
 
 def solve_part1(input_):
   h, w = len(input_), len(input_[0])
-  print(h,w)
+  
   dy, dx = 1, 3
   s = 0
   for y in range(h-1):
