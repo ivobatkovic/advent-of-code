@@ -1,3 +1,5 @@
+![Python](https://github.com/ivobatkovic/advent-of-code/workflows/Python/badge.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 # 2020 Solutions
 
 The solutions for [advent of code 2020](https://adventofcode.com/2020) are structured in different folders called day1, day2, ..., day25, which have the following structure:
