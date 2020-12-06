@@ -2,8 +2,8 @@
 #include "day{day}.hpp"
 #include <tuple>
 
-
 using std::string;
+
 class PartOne : public ::testing::TestWithParam<std::tuple<string, string>>
 {{
 }};
