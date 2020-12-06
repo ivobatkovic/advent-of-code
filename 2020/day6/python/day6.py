@@ -6,15 +6,15 @@ from itertools import chain
 def transform_input(input_):
   # custom transform for the day
 
-  group, n_groups = [""], 0
+  group, n_groups = [[]], 0
 
   for inp in input_.splitlines():
     if not inp:
       n_groups += 1
-      group.append("")
+      group.append([])
     else:
-      # Use comma separator to keep track of individual answers
-      group[n_groups] += inp + ','
+      # Use list of sets to keep track of individual answers
+      group[n_groups].append(set(list(inp)))
 
   return group
 
@@ -27,16 +27,14 @@ def read_input(file_name = '../data/input.txt'):
   return input_
 
 def solve_part1(input_):
-  """ Input data is a list of 'answer1,answer2,...,answerN' for each group. 
-  We remove the comma separators and check the size of the obtained set """
-  return sum([len(set(inp.replace(',',''))) for inp in input_])
+  """ Input data is a list of [set(answer1),set(answer2),...,set(answerN)] 
+  for each group. Go through the input list to find size of the union """
+  return sum([len(set.union(*inp)) for inp in input_])
   
 
 def solve_part2(input_):
-  # For each group, create a list of sets with answers
-  ansrs = [set(inp.split(',')[:-1]) for inp in input_]
-  # Go through the group sets and find the intersection of all answers
-  return sum([ len(set().union(*ans).intersection(*ans)) for ans in ansrs])
+  """ For each group, find the size of the intersection """
+  return sum([len(set.intersection(*inp)) for inp in input_])
 
 
 def main():
