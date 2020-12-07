@@ -4,33 +4,29 @@ from os.path import realpath
 from os.path import join
 import time
 import pytest
+import re
 from collections import defaultdict
-from queue import Queue
 
 
 def transform_input(input_):
     # custom transform for the day
 
-    # bag_contained_by[key] = list of bag_color
-    bag_contained_by = defaultdict(list)
-    # bag_contains[key] = list of [bag_color, n_bags]
     bag_contains = defaultdict(list)
 
-    for inp in input_.splitlines():
-        sentence = inp.split()
+    for sentence in input_.splitlines():
+        bag, contents = sentence.split("contain")
+        bag_color = re.sub("bag(.*)", "", bag).strip()
+        bag_contents = [re.sub("bag.*", "", c) for c in contents.split(",")]
 
-        # Figure out bag color
-        bag = sentence[0] + " " + sentence[1]
+        for parts in bag_contents:
+            # Include bag if we have something in it
+            match = re.search("^\\s+(\\d+)", parts)
+            if match:
+                n_bags = match.group(0)
+                color = parts[len(n_bags) :].strip()
+                bag_contains[bag_color].append([color, int(n_bags)])
 
-        # Append the contained bags
-        for i in range(4, len(sentence), 4):
-            num_bags = sentence[i]
-            bag_color = sentence[i + 1] + " " + sentence[i + 2]
-            if num_bags != "no":
-                bag_contains[bag].append([bag_color, int(num_bags)])
-                bag_contained_by[bag_color].append(bag)
-
-    return [bag_contained_by, bag_contains]
+    return bag_contains
 
 
 def read_input(file_name="../data/input.txt"):
@@ -41,23 +37,20 @@ def read_input(file_name="../data/input.txt"):
     return input_
 
 
+def contains_bag(input_, color):
+    if color not in input_.keys():
+        return False
+    return any(
+        [
+            True if c == "shiny gold" else contains_bag(input_, c)
+            for c, _ in input_[color]
+        ]
+    )
+
+
 def solve_part1(input_):
-
-    bag_contained_by = input_[0]
-    # Number of colors that contain "shiny gold"
-    n_colors = set()
-
-    # Go through the input_ dictionary
-    q = Queue()
-    q.put("shiny gold")
-    while not q.empty():
-        colors = q.get()
-        if not bag_contained_by[colors]:
-            continue
-        for color in bag_contained_by[colors]:
-            n_colors.add(color)
-            q.put(color)
-    return len(n_colors)
+    # Go through each unique key and see if it leads to a shiny gold bag
+    return sum([contains_bag(input_, c) for c in input_])
 
 
 def bags_in_bag(bag, color, n_bags):
@@ -70,12 +63,8 @@ def bags_in_bag(bag, color, n_bags):
 
 
 def solve_part2(input_):
-    bag, num_bags = input_[1], 0
-
-    return bags_in_bag(bag, "shiny gold", 1) - 1
-    for colors, n_bags in bag["shiny gold"]:
-        num_bags += bags_in_bag(bag, colors, n_bags)
-    return num_bags
+    # Subtract 1 - don't count the "shiny gold" bag itself
+    return bags_in_bag(input_, "shiny gold", 1) - 1
 
 
 def main():
@@ -96,7 +85,10 @@ if __name__ == "__main__":
     main()
 
 
-@pytest.mark.parametrize("input1, output1", [("../data/test_input0.txt", 4)])
+@pytest.mark.parametrize(
+    "input1, output1",
+    [("../data/test_input0.txt", 4), ("../data/test_input2.txt", 4)],
+)
 def test1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
