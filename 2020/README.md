@@ -1,6 +1,5 @@
 # 2020 Solutions
 
-
 The solutions for [advent of code 2020](https://adventofcode.com/2020) are structured in different folders called day1, day2, ..., day25, which have the following structure:
 ```bash
 .
