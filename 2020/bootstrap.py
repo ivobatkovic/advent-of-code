@@ -93,7 +93,7 @@ def bootstrap_solution(day):
 
     # Download latest data
     data_dst = join(*[f"day{day}", "data", "input.txt"])
-    # download_data(2020, day, data_dst)
+    download_data(2020, day, data_dst)
 
 
 def main():
