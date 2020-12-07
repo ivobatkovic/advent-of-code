@@ -31,6 +31,3 @@ jobs:
     - name: Black code format
       run: |
         black 2020/. --check --line-length 79
-    - name: Python unit tests
-      run: |
-        pytest 2020/.
