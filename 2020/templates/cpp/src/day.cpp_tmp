@@ -8,7 +8,7 @@ input_type day{day}::transform_input(std::vector<std::string> &input) {{
 }}
 
 input_type day{day}::read_input(std::string file_name) {{
-  auto input = utils::readFile(file_name);
+  auto input = utils::read_file(file_name);
   return transform_input(input);
 }}
 
