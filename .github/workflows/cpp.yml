@@ -18,15 +18,17 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y cmake make build-essential python3 python3-pip libncurses5-dev libboost-dev
+      run: |
+        apt-get update
+        apt-get install -y g++ make git build-essential python3 python3-pip libncurses5-dev libboost-dev clang-format
+        pip3 install --upgrade pip && pip3 install -r requirements.txt
+        pip3 install cmake --upgrade
 
     - name: Create Build Environment
 
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Configure CMake
-      # Use a bash shell so we can use the same syntax for environment variable
-      # access regardless of the host operating system
       shell: bash
       working-directory: ${{runner.workspace}}/build
       run: cmake $GITHUB_WORKSPACE/2020 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
@@ -34,10 +36,15 @@ jobs:
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build . --target all build_tests --config $BUILD_TYPE
 
     - name: Test
       working-directory: ${{runner.workspace}}/build
       shell: bash
       run: ctest -C $BUILD_TYPE
+
+    - name: Check if clang-format passes
+      working-directory: ./2020
+      shell: bash
+      run: sh check_clang_format.sh
+    
