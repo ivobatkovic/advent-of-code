@@ -6,6 +6,9 @@ import time
 import pytest
 import re
 from collections import defaultdict
+import sys
+
+sys.path.append(join(dirname(realpath(__file__)), *["..", ".."]))
 
 
 def transform_input(input_):

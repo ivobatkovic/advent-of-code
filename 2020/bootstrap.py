@@ -18,26 +18,30 @@ def download_data(year, day, dst):
         f.write(data)
 
 
-""" Initialize python source file. """
-
-
+# Initialize python source file.
 def setup_python_source(day):
     # Rename template_day.py
-    src = join(*[f"day{day}", "python", "day.py_tmp"])
-    dst = join(*[f"day{day}", "python", f"day{day}.py"])
-    os.rename(src, dst)
+    src_files = [
+        join(*[f"day{day}", "python", "day.py_tmp"]),
+        join(*[f"day{day}", "python", "__init__.py_tmp"]),
+    ]
+    dst_files = [
+        join(*[f"day{day}", "python", f"day{day}.py"]),
+        join(*[f"day{day}", "python", "__init__.py"]),
+    ]
+    for src, dst in zip(src_files, dst_files):
+        os.rename(src, dst)
 
     # Remove top line from template_day.py
-    with open(dst, "r+") as f:
+    print(dst_files)
+    with open(dst_files[0], "r+") as f:
         data = f.readlines()[1:]
         f.truncate(0)
         f.seek(0)
         f.writelines(data)
 
 
-""" Initialize c++ build and source files """
-
-
+# Initialize c++ build and source files
 def setup_cpp_source(day):
     # Rename files
     src_files = [
@@ -80,9 +84,10 @@ def bootstrap_solution(day):
         # Copy templates folder
         copytree("templates", f"day{day}")
 
-        # Copy python source
+        # Copy python sources
         setup_python_source(day)
 
+        # Copy c++ sources
         setup_cpp_source(day)
 
         # Done
