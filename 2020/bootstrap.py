@@ -33,7 +33,6 @@ def setup_python_source(day):
         os.rename(src, dst)
 
     # Remove top line from template_day.py
-    print(dst_files)
     with open(dst_files[0], "r+") as f:
         data = f.readlines()[1:]
         f.truncate(0)
@@ -83,15 +82,17 @@ def bootstrap_solution(day):
     try:
         # Copy templates folder
         copytree("templates", f"day{day}")
+        print(f"Copied tree for day{day}")
 
         # Copy python sources
         setup_python_source(day)
-
+        print(f"Set up python structure for day{day}")
         # Copy c++ sources
         setup_cpp_source(day)
+        print(f"Set up c++ structure for day{day}")
 
         # Done
-        print(f"Created skeleton for day{day}")
+        print(f"Completed setup for day{day}")
 
     except OSError:
         print(f"Failed to create directory day{day}")
