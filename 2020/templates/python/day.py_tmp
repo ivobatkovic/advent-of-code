@@ -5,6 +5,9 @@ from os.path import realpath
 from os.path import join
 import time
 import pytest
+import sys
+
+sys.path.append(join(dirname(realpath(__file__)), *["..", ".."]))
 
 
 def transform_input(input_):
@@ -39,7 +42,7 @@ def main():
     t0 = time.time()
     part2 = solve_part2(input_)
     time_part2 = round((time.time() - t0) * 1e3)
-    print(f"Solution to part one: {part2} (time taken {time_part2}[ms])")
+    print(f"Solution to part two: {part2} (time taken {time_part2}[ms])")
 
 
 if __name__ == "__main__":
