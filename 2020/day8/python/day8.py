@@ -9,70 +9,85 @@ import sys
 sys.path.append(join(dirname(realpath(__file__)), *["..", ".."]))
 
 
-def transform_input(input_):
-    # custom transform for the day
+class Console:
+    def __init__(self, file_name="../data/input.txt"):
+        self.program = self.read_input(file_name)
+        self.n_instructions = len(self.program)
+        self.reset()
 
-    def process(x):
-        return [x[0], int(x[1])]
+    def reset(self):
+        self.accumulator, self.offset = 0, 0
+        self.processed_instructions = set()
 
-    return [process(inp.split()) for inp in input_.splitlines()]
+    def transform_input(self, input_):
+        # custom transform for the day
+
+        def process(x):
+            return [x[0], int(x[1])]
+
+        return [process(inp.split()) for inp in input_.splitlines()]
+
+    def read_input(self, file_name):
+        with open(file_name, "r") as f:
+            input_ = self.transform_input(f.read())
+        return input_
+
+    def __call__(self):
+
+        while True and self.offset < self.n_instructions:
+            op, val = self.program[self.offset]
+            if self.offset in self.processed_instructions:
+                output = self.accumulator
+                self.reset()
+                return output, False
+            self.processed_instructions.add(self.offset)
+
+            if op == "acc":
+                self.accumulator += val
+            elif op == "jmp":
+                self.offset += val - 1
+            self.offset += 1
+
+        # Reset
+        output = self.accumulator
+        self.reset()
+        return output, True
 
 
 def read_input(file_name="../data/input.txt"):
-    dir_path = dirname(realpath(__file__))
-    with open(join(dir_path, file_name), "r") as f:
-        input_ = transform_input(f.read())
-
-    return input_
+    return join(dirname(realpath(__file__)), file_name)
 
 
 def solve_part1(input_):
-    offset, glob_value = 0, 0
-    d = dict()
-
-    input_size = len(input_)
-    while True and offset < input_size:
-
-        op, val = input_[offset]
-        opval_string = op + str(val) + "line" + str(offset)
-        if opval_string in d:
-            return glob_value, False
-        d[opval_string] = glob_value
-
-        if op == "acc":
-            glob_value += val
-        elif op == "jmp":
-            offset += val - 1
-        offset += 1
-
-    return glob_value, True
+    return Console(file_name=input_)()[0]
 
 
 def solve_part2(input_):
 
-    cond = False
-    for i in range(len(input_)):
+    console = Console(file_name=input_)
+    for line in range(len(console.program)):
+
         # Modify instruction
-        op = input_[i][0]
+        op = console.program[line][0]
         if op == "nop":
-            input_[i][0] = "jmp"
+            console.program[line][0] = "jmp"
         elif op == "jmp":
-            input_[i][0] = "nop"
+            console.program[line][0] = "nop"
 
         # Evaluate instruction - if <cond> is true, we terminated naturally
-        val, cond = solve_part1(input_)
+        val, cond = console()
         if cond:
             return val
 
         # Reset input
-        input_[i][0] = op
+        console.program[line][0] = op
 
 
 def main():
     input_ = read_input()
-
+    print(input_)
     t0 = time.time()
-    part1, _ = solve_part1(input_)
+    part1 = solve_part1(input_)
     time_part1 = round((time.time() - t0) * 1e3)
     print(f"Solution to part one: {part1} (time taken {time_part1}[ms])")
 
@@ -86,13 +101,11 @@ if __name__ == "__main__":
     main()
 
 
-@pytest.mark.parametrize(
-    "input1, output1", [("../data/test_input0.txt", (5, False))]
-)
+@pytest.mark.parametrize("input1, output1", [("../data/test_input0.txt", 5)])
 def test1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
 
-@pytest.mark.parametrize("input2, output2", [("../data/test_input1.txt", 8)])
+@pytest.mark.parametrize("input2, output2", [("../data/test_input0.txt", 8)])
 def test2(input2, output2):
     assert solve_part2(read_input(input2)) == output2
