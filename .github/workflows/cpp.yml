@@ -36,7 +36,7 @@ jobs:
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      run: cmake --build . --target all build_tests --config $BUILD_TYPE
+      run: cmake --build . --target build_tests --config $BUILD_TYPE
 
     - name: Test
       working-directory: ${{runner.workspace}}/build
