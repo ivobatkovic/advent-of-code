@@ -1,7 +1,18 @@
-# 2020 Solutions
-![Python](https://github.com/ivobatkovic/advent-of-code/workflows/Python/badge.svg)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-![C++](https://github.com/ivobatkovic/advent-of-code/workflows/C++/badge.svg)![Cpp style: google](https://img.shields.io/badge/clang%20format-google-000000.svg)
+# Advent of code 2020: Solutions
+<p align="center">
+    <img src="https://img.shields.io/badge/Developed%20and%20tested%20for-macOS%2011.0%7C%20Ubuntu%2018.04-informational"/>
+    <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-informational"/></a>
+</p>
+<p align="center">
+    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/Python/badge.svg"/>
+    <img src="https://img.shields.io/badge/versions-3.6%20%7C%203.9-informational"/>
+    <a href="https://github.com/psf/black">
+    <img src="https://img.shields.io/badge/code%20style-black-000000.svg"/></a>    
+    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/C++/badge.svg"/>
+    <img src="https://img.shields.io/badge/standard-c++14-informational"/>
+    <img src="https://img.shields.io/badge/clang%20format-google-000000.svg"/>
+</p>
 
 
 The solutions for [advent of code 2020](https://adventofcode.com/2020) are structured in different folders called day1, day2, ..., day25, which have the following structure:

@@ -2,49 +2,45 @@ name: C++
 
 on:
   push:
-    branches: [ master ]  
+    branches:
+      - master
+    paths:
+      - '2020/day*/cpp/**'
+      - '2020/utils/cpp/**'
   pull_request:
-    branches: [ master ]
 
 env:
   BUILD_TYPE: Release
 
 jobs:
   build:
-    
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macOS-11.0]
     steps:
     - uses: actions/checkout@v2
-
-    - name: Install dependencies
+    - name: Install Ubuntu dependencies
+      if: matrix.os == 'ubuntu-18.04'
       run: |
         sudo apt-get update
-        sudo apt-get install -y g++ make libncurses5-dev libboost-dev clang-format
-        python -m pip install --upgrade pip
-        pip install cmake --upgrade
-
+        sudo apt-get install -y libboost-dev clang-format      
+    - name: Install macOS dependencies
+      if: matrix.os == 'macOS-11.0'
+      run: |
+        brew install boost clang-format
     - name: Create Build Environment
-
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Configure CMake
-      shell: bash
       working-directory: ${{runner.workspace}}/build
       run: cmake $GITHUB_WORKSPACE/2020 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
-    - name: Build
+    - name: Build and run
       working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: cmake --build . --target build_tests --config $BUILD_TYPE -j$(nproc)
-
-    - name: Test
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: ctest -C $BUILD_TYPE
+      run: cmake --build . --target build_tests test --config $BUILD_TYPE -j$(nproc)
 
     - name: Check if clang-format passes
       working-directory: ./2020
-      shell: bash
-      run: sh check_clang_format.sh
+      run: sh ./utils/bash/check_clang_format.sh
     

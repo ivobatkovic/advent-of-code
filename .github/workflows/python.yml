@@ -2,32 +2,31 @@ name: Python
 
 on:
   push:
-    branches: [ master ]  
+    branches:
+      - master
+    paths:
+      - '2020/day*/python/**'
   pull_request:
-    branches: [ master ]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macOS-11.0]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install flake8 black
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip3 install --upgrade pip setuptools wheel
+        pip3 install -r requirements.txt
     - name: Flake8 linting
       run: |
-        flake8 2020/. --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
-        flake8 2020/. --count --exit-zero --max-complexity=10 --ignore=E203,E402 --statistics
+        python3 -m flake8 2020/. --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
+        python3 -m flake8 2020/. --count --exit-zero --max-complexity=10 --ignore=E203,E402 --statistics
     - name: Black code format
       run: |
-        black 2020/. --check --line-length 79
+        python3 -m black 2020/. --check --line-length 79
     - name: Python unit tests
-      run: pytest 2020/day*/python/day*.py
+      run: |
+        python3 -m pytest 2020/day*/python/day*.py
