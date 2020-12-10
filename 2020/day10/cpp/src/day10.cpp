@@ -2,6 +2,8 @@
 
 #include "utils.hpp"
 
+#include <algorithm>
+
 using day10::input_type;
 using day10::output_type;
 
