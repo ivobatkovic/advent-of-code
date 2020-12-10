@@ -30,6 +30,4 @@ jobs:
       run: |
         black 2020/. --check --line-length 79
     - name: Python unit tests
-      working-directory: ./2020
-      shell: bash
-      run: sh ./run_python_tests.sh
+      run: pytest 2020/day*/python/day*.py
