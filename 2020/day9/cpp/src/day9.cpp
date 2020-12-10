@@ -1,7 +1,7 @@
 #include "day9.hpp"
 
-#include <unordered_set>
 #include <algorithm>
+#include <unordered_set>
 
 #include "utils.hpp"
 using day9::input_type;
