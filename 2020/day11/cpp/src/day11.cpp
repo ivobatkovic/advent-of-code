@@ -11,6 +11,13 @@ using neighbor_map =
     std::map<std::pair<int, int>, std::vector<std::pair<int, int>>>;
 using positions = std::vector<std::pair<int, int>>;
 
+positions get_seat_positions(input_type &input);
+positions get_neighbor_directions();
+int update_seats(input_type &input_, positions &seat_positions,
+                 neighbor_map &neighbors, int adjacent_seats);
+neighbor_map get_neighbors_part1(input_type &input, positions &seat_position);
+neighbor_map get_neighbors_part2(input_type &input, positions &seat_position);
+
 input_type day11::transform_input(std::vector<std::string> &input) {
   // Pad the input data so that we can traverse the grid easier later
   input_type output(1, std::string(input[0].size() + 2, 'X'));
@@ -119,6 +126,7 @@ neighbor_map get_neighbors_part1(input_type &input, positions &seat_position) {
 }
 
 // Implement part one solution
+
 output_type day11::solve_part1(input_type input_) {
   auto seat_positions = get_seat_positions(input_);
   auto neighbors = get_neighbors_part1(input_, seat_positions);
