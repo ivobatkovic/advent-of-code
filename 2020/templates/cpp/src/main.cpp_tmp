@@ -24,7 +24,7 @@ int main() {{
   begin = steady_clock::now();
 
   auto part_two = day{day}::solve_part2(inp_);
-  std::cout << "Solution to part one: " << part_two << " ";
+  std::cout << "Solution to part two: " << part_two << " ";
 
   end = steady_clock::now();
   std::cout << "(time taken " << 
