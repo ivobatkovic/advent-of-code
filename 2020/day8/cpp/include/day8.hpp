@@ -18,9 +18,9 @@ using input_type = std::string;
 input_type read_input(std::string file_name = std::string(SOURCE_DIR) +
                                               "/data/input.txt");
 
-std::string solve_part1(input_type input);
+std::string solve_part1(const input_type &input);
 
-std::string solve_part2(input_type input);
+std::string solve_part2(const input_type &input);
 }  // namespace day8
 
 #endif

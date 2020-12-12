@@ -14,7 +14,7 @@ input_type day3::read_input(std::string file_name) {
 }
 
 // Implement part one solution
-std::string day3::solve_part1(input_type input_) {
+std::string day3::solve_part1(const input_type &input_) {
   auto w = input_[0].size();
   int n_trees(0);
   for (size_t y = 0; y < input_.size() - 1; y++) {
@@ -25,7 +25,7 @@ std::string day3::solve_part1(input_type input_) {
 }
 
 // Implement part two solution
-std::string day3::solve_part2(input_type input_) {
+std::string day3::solve_part2(const input_type &input_) {
   auto w = input_[0].size();
 
   std::vector<float> x_diff({1, 3, 5, 7, 0.5});

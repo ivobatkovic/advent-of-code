@@ -33,7 +33,7 @@ input_type day4::read_input(std::string file_name) {
 }
 
 // Implement part one solution
-std::string day4::solve_part1(input_type input_) {
+std::string day4::solve_part1(const input_type &input_) {
   // Required fields
   std::string req[] = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"};
   std::set<std::string> req_set(std::begin(req), std::end(req));
@@ -54,7 +54,7 @@ std::string day4::solve_part1(input_type input_) {
 }
 
 // Implement part two solution
-std::string day4::solve_part2(input_type input_) {
+std::string day4::solve_part2(const input_type &input_) {
   std::map<std::string, std::string> rgx = {
       {"byr", "^(19[2-9]\\d|200[0-2])$"},
       {"iyr", "^20(1\\d|20)"},

@@ -22,7 +22,7 @@ input_type day9::read_input(std::string file_name) {
 }
 
 // Implement part one solution
-output_type day9::solve_part1(input_type input_, int preamble) {
+output_type day9::solve_part1(const input_type &input_, int preamble) {
   std::unordered_set<int64_t> preamble_set(input_.begin(),
                                            input_.begin() + preamble);
 
@@ -46,7 +46,7 @@ output_type day9::solve_part1(input_type input_, int preamble) {
 }
 
 // Implement part two solution
-output_type day9::solve_part2(input_type input_, int preamble) {
+output_type day9::solve_part2(const input_type &input_, int preamble) {
   auto invalid_num = solve_part1(input_, preamble);
 
   size_t start(0), end(0);

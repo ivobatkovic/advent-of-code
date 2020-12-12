@@ -33,19 +33,20 @@ input_type day5::read_input(std::string file_name) {
 }
 
 // Implement part one solution
-std::string day5::solve_part1(input_type input_) {
+std::string day5::solve_part1(const input_type &input_) {
   return std::to_string(*std::max_element(input_.begin(), input_.end()));
   return "Implement part one";
 }
 
 // Implement part two solution
-std::string day5::solve_part2(input_type input_) {
+std::string day5::solve_part2(const input_type &input_) {
   // Go through input and sort it
-  std::sort(input_.begin(), input_.end());
+  auto sorted = input_;
+  std::sort(sorted.begin(), sorted.end());
 
-  for (size_t i = 0; i < input_.size() - 1; i++) {
-    if (abs(input_[i] - input_[i + 1]) > 1) {
-      return std::to_string(input_[i] + 1);
+  for (size_t i = 0; i < sorted.size() - 1; i++) {
+    if (abs(sorted[i] - sorted[i + 1]) > 1) {
+      return std::to_string(sorted[i] + 1);
     }
   }
   return "Implement part two";

@@ -21,9 +21,9 @@ input_type transform_input(std::vector<std::string> &input);
 input_type read_input(std::string file_name = std::string(SOURCE_DIR) +
                                               "/data/input.txt");
 
-output_type solve_part1(input_type input, int preamble = 25);
+output_type solve_part1(const input_type &input, int preamble = 25);
 
-output_type solve_part2(input_type input, int preamble = 25);
+output_type solve_part2(const input_type &input, int preamble = 25);
 }  // namespace day9
 
 #endif
