@@ -15,8 +15,10 @@ positions get_seat_positions(const input_type &input);
 positions get_neighbor_directions();
 int update_seats(const input_type &input_, positions &seat_positions,
                  neighbor_map &neighbors, int adjacent_seats);
-neighbor_map get_neighbors_part1(const input_type &input, positions &seat_position);
-neighbor_map get_neighbors_part2(const input_type &input, positions &seat_position);
+neighbor_map get_neighbors_part1(const input_type &input,
+                                 positions &seat_position);
+neighbor_map get_neighbors_part2(const input_type &input,
+                                 positions &seat_position);
 
 input_type day11::transform_input(std::vector<std::string> &input) {
   // Pad the input data so that we can traverse the grid easier later
@@ -106,7 +108,8 @@ int update_seats(const input_type &input_, positions &seat_positions,
   return occupied_seats;
 }
 
-neighbor_map get_neighbors_part1(const input_type &input, positions &seat_position) {
+neighbor_map get_neighbors_part1(const input_type &input,
+                                 positions &seat_position) {
   auto adjacent = get_neighbor_directions();
   neighbor_map neighbors;
 
@@ -134,7 +137,8 @@ output_type day11::solve_part1(const input_type &input_) {
   return update_seats(input_, seat_positions, neighbors, 4);
 }
 
-neighbor_map get_neighbors_part2(const input_type &input, positions &seat_position) {
+neighbor_map get_neighbors_part2(const input_type &input,
+                                 positions &seat_position) {
   auto adjacent = get_neighbor_directions();
   neighbor_map neighbors;
 

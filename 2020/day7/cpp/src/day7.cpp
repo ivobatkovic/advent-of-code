@@ -44,7 +44,6 @@ input_type day7::read_input(std::string file_name) {
 }
 
 bool day7::contains_bag(const input_type &input_, std::string color) {
-
   if (input_.count(color)) {
     for (auto &c : input_.at(color)) {
       if (c.first == "shiny gold") {
