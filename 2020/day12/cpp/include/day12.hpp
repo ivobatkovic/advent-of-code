@@ -11,8 +11,8 @@
 namespace day12 {
 
 // Default input type for each day: need to change
-using output_type = std::string;
-using input_type = std::vector<std::string>;
+using output_type = int;
+using input_type = std::vector<std::pair<char, int>>;
 
 // Transformation method: parse input -> input_type
 input_type transform_input(std::vector<std::string> &input);
@@ -21,9 +21,9 @@ input_type transform_input(std::vector<std::string> &input);
 input_type read_input(std::string file_name = std::string(SOURCE_DIR) +
                                               "/data/input.txt");
 
-output_type solve_part1(input_type input);
+output_type solve_part1(const input_type &input);
 
-output_type solve_part2(input_type input);
+output_type solve_part2(const input_type &input);
 }  // namespace day12
 
 #endif
