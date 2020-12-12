@@ -32,7 +32,7 @@ input_type day2::read_input(std::string file_name) {
 }
 
 // Implement part one solution
-std::string day2::solve_part1(input_type input_) {
+std::string day2::solve_part1(const input_type &input_) {
   int n_pws(0);
   for (auto &i : input_) {
     auto low = std::get<0>(i), high = std::get<1>(i);
@@ -46,7 +46,7 @@ std::string day2::solve_part1(input_type input_) {
 }
 
 // Implement part two solution
-std::string day2::solve_part2(input_type input_) {
+std::string day2::solve_part2(const input_type &input_) {
   int n_pws(0);
   for (auto &i : input_) {
     auto low = std::get<0>(i), high = std::get<1>(i);

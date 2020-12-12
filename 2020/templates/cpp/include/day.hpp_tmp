@@ -21,9 +21,9 @@ namespace day{day} {{
   input_type read_input(std::string file_name = 
       std::string(SOURCE_DIR)+"/data/input.txt");
 
-  output_type solve_part1(input_type input);
+  output_type solve_part1(const input_type &input);
 
-  output_type solve_part2(input_type input);
+  output_type solve_part2(const input_type &input);
 }}
 
 #endif

@@ -30,7 +30,7 @@ input_type day6::read_input(std::string file_name) {
 }
 
 // Implement part one solution
-std::string day6::solve_part1(input_type input_) {
+std::string day6::solve_part1(const input_type &input_) {
   size_t n_unique(0);
   for (auto &inp : input_) {
     std::set<char> set, set_;
@@ -45,7 +45,7 @@ std::string day6::solve_part1(input_type input_) {
 }
 
 // Implement part two solution
-std::string day6::solve_part2(input_type input_) {
+std::string day6::solve_part2(const input_type &input_) {
   size_t n_unique(0);
   for (auto &inp : input_) {
     std::set<char> superset = *inp.begin();

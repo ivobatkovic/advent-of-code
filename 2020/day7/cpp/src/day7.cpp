@@ -43,18 +43,20 @@ input_type day7::read_input(std::string file_name) {
   return transform_input(input);
 }
 
-bool day7::contains_bag(input_type &input_, std::string color) {
-  for (auto &c : input_[color]) {
-    if (c.first == "shiny gold") {
-      return true;
-    } else if (contains_bag(input_, c.first)) {
-      return true;
+bool day7::contains_bag(const input_type &input_, std::string color) {
+  if (input_.count(color)) {
+    for (auto &c : input_.at(color)) {
+      if (c.first == "shiny gold") {
+        return true;
+      } else if (contains_bag(input_, c.first)) {
+        return true;
+      }
     }
   }
   return false;
 }
 
-std::string day7::solve_part1(input_type input_) {
+std::string day7::solve_part1(const input_type &input_) {
   int n_colors(0);
   for (auto &inp : input_) {
     n_colors += (contains_bag(input_, inp.first)) ? 1 : 0;
@@ -63,16 +65,16 @@ std::string day7::solve_part1(input_type input_) {
 }
 
 // Implement part two solution
-int day7::bags_in_bag(input_type &bag, std::string color, int n_bags) {
+int day7::bags_in_bag(const input_type &bag, std::string color, int n_bags) {
   if (!bag.count(color)) {
     return n_bags;
   }
   int bags_in_color(0);
-  for (auto &i : bag[color]) {
+  for (auto &i : bag.at(color)) {
     bags_in_color += n_bags * bags_in_bag(bag, i.first, i.second);
   }
   return n_bags + bags_in_color;
 }
-std::string day7::solve_part2(input_type input_) {
+std::string day7::solve_part2(const input_type &input_) {
   return std::to_string(bags_in_bag(input_, "shiny gold", 1) - 1);
 }

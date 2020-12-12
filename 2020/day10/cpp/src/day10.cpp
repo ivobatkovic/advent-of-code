@@ -20,15 +20,16 @@ input_type day10::read_input(std::string file_name) {
   return transform_input(input);
 }
 
-input_type day10::sort_input(input_type input) {
-  std::sort(input.begin(), input.end());
-  input.insert(input.begin(), 0);
-  input.push_back(input.back() + 3);
-  return input;
+input_type day10::sort_input(const input_type &input) {
+  auto sorted = input;
+  std::sort(sorted.begin(), sorted.end());
+  sorted.insert(sorted.begin(), 0);
+  sorted.push_back(sorted.back() + 3);
+  return sorted;
 }
 
 // Implement part one solution
-output_type day10::solve_part1(input_type input_) {
+output_type day10::solve_part1(const input_type &input_) {
   auto data = sort_input(input_);
   int diff1(0), diff3(0);
 
@@ -44,7 +45,7 @@ output_type day10::solve_part1(input_type input_) {
 }
 
 // Implement part two solution
-output_type day10::solve_part2(input_type input_) {
+output_type day10::solve_part2(const input_type &input_) {
   auto data = sort_input(input_);
 
   std::vector<output_type> d(data.size() - 1, 0);

@@ -20,7 +20,7 @@ input_type day1::read_input(std::string file_name) {
 }
 
 // Implement part one solution
-std::string day1::solve_part1(input_type input_) {
+std::string day1::solve_part1(const input_type& input_) {
   for (size_t i = 0; i < input_.size() - 1; i++) {
     for (size_t j = i; j < input_.size(); j++) {
       if (input_[i] + input_[j] == 2020) {
@@ -32,7 +32,7 @@ std::string day1::solve_part1(input_type input_) {
 }
 
 // Implement part two solution
-std::string day1::solve_part2(input_type input_) {
+std::string day1::solve_part2(const input_type& input_) {
   for (size_t i = 0; i < input_.size() - 2; i++) {
     for (size_t j = i; j < input_.size() - 1; j++) {
       for (size_t k = j; k < input_.size(); k++) {

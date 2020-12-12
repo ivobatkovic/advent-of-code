@@ -22,11 +22,11 @@ input_type transform_input(std::vector<std::string> &input);
 input_type read_input(std::string file_name = std::string(SOURCE_DIR) +
                                               "/data/input.txt");
 
-bool contains_bag(input_type &input_, std::string color);
-std::string solve_part1(input_type input);
+bool contains_bag(const input_type &input_, std::string color);
+std::string solve_part1(const input_type &input);
 
-int bags_in_bag(input_type &bag, std::string color, int n_bags);
-std::string solve_part2(input_type input);
+int bags_in_bag(const input_type &bag, std::string color, int n_bags);
+std::string solve_part2(const input_type &input);
 }  // namespace day7
 
 #endif
