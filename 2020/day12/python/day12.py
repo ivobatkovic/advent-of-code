@@ -5,7 +5,6 @@ from os.path import join
 import time
 import pytest
 import sys
-from math import pi, sin, cos
 
 sys.path.append(join(dirname(realpath(__file__)), *["..", ".."]))
 
@@ -25,48 +24,42 @@ def read_input(file_name="../data/input.txt"):
 
 def solve_part1(input_):
 
-    shift = {"N": [0, 1], "S": [0, -1], "W": [-1, 0], "E": [1, 0]}
-    rotate = {"R": -pi / 180, "L": pi / 180}
-    move = {"F": 1}
+    shift = {"N": 1j, "S": -1j, "W": -1, "E": 1}
+    rotate = {"L": 1j, "R": -1j}
 
-    pos, heading = [0, 0], 0
+    pos, heading = 0, 1
     for action, value in input_:
-        # Update position in direction of heading
-        if action in move:
-            dxdy = [int(round(cos(heading))), int(round(sin(heading)))]
-            pos = [p + value * d for p, d in zip(pos, dxdy)]
+
         # Shift action north/south/west/east
-        elif action in shift:
-            pos = [p + value * s for p, s in zip(pos, shift[action])]
+        if action in shift:
+            pos += shift[action] * value
         # Change direction left or right
         elif action in rotate:
-            heading += rotate[action] * value
-    return abs(pos[0]) + abs(pos[1])
+            heading *= rotate[action] ** (value // 90)
+        # Update position in direction of heading
+        else:
+            pos += heading * value
+    return int(abs(pos.real) + abs(pos.imag))
 
 
 def solve_part2(input_):
 
-    shift = {"N": [0, 1], "S": [0, -1], "W": [-1, 0], "E": [1, 0]}
-    rotate = {"R": -1 * pi / 180, "L": 1 * pi / 180}
-    move = {"F": 1}
+    shift = {"N": 1j, "S": -1j, "W": -1, "E": 1}
+    rotate = {"L": 1j, "R": -1j}
 
-    pos, wp = [0, 0], [10, 1]
+    pos, wp = 0, 10 + 1j
 
     for action, value in input_:
-        # Update position in direction of heading
-        if action in move:
-            pos = [p + value * w for p, w in zip(pos, wp)]
-        # Shift waypoint
-        elif action in shift:
-            wp = [w + value * o for w, o in zip(wp, shift[action])]
+        # Shift action north/south/west/east
+        if action in shift:
+            wp += shift[action] * value
         # Rotate waypoint
         elif action in rotate:
-            radians = value * rotate[action]
-            dx, dy = cos(radians), sin(radians)
-            wp = int(round(wp[0] * dx - wp[1] * dy)), int(
-                round(wp[0] * dy + wp[1] * dx)
-            )
-    return abs(pos[0]) + abs(pos[1])
+            wp *= rotate[action] ** (value // 90)
+        # Update position in direction of waypoint
+        else:
+            pos += wp * value
+    return int(abs(pos.real) + abs(pos.imag))
 
 
 def main():
