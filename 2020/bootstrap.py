@@ -23,11 +23,9 @@ def setup_python_source(day):
     # Rename template_day.py
     src_files = [
         join(*[f"day{day}", "python", "day.py_tmp"]),
-        join(*[f"day{day}", "python", "__init__.py_tmp"]),
     ]
     dst_files = [
         join(*[f"day{day}", "python", f"day{day}.py"]),
-        join(*[f"day{day}", "python", "__init__.py"]),
     ]
     for src, dst in zip(src_files, dst_files):
         os.rename(src, dst)
