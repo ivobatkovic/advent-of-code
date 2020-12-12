@@ -14,13 +14,13 @@ input_type day{day}::read_input(std::string file_name) {{
 }}
 
 // Implement part one solution
-output_type day{day}::solve_part1(input_type input_) {{
+output_type day{day}::solve_part1(const input_type &input_) {{
   std::cout << typeid(input_).name() << std::endl;
   return "Implement part one";
 }}
 
 // Implement part two solution
-output_type day{day}::solve_part2(input_type input_) {{
+output_type day{day}::solve_part2(const input_type &input_) {{
   std::cout << typeid(input_).name() << std::endl;
   return "Implement part two";
 }}
