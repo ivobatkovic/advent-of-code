@@ -75,7 +75,7 @@ def solve_part2(input_):
         # If we found a match, we need update the cycle of how frequently this
         # combination occurs
         cycle *= int(next_id)
-        
+
     return i * id
 
 
