@@ -29,6 +29,10 @@ jobs:
       if: matrix.os == 'macOS-11.0'
       run: |
         brew install boost clang-format
+    - name: Check if clang-format passes
+      working-directory: ./2020
+      run: sh ./utils/bash/check_clang_format.sh
+    
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build
 
@@ -39,8 +43,4 @@ jobs:
     - name: Build and run
       working-directory: ${{runner.workspace}}/build
       run: cmake --build . --target build_tests test --config $BUILD_TYPE -j$(nproc)
-
-    - name: Check if clang-format passes
-      working-directory: ./2020
-      run: sh ./utils/bash/check_clang_format.sh
     
