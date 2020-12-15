@@ -1,19 +1,19 @@
 #include <chrono>
 #include <iostream>
 
-#include "day14.hpp"
+#include "day15.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
 using std::chrono::steady_clock;
 
 int main() {
-  auto inp_ = day14::read_input();
+  auto inp_ = day15::read_input();
 
   // Part one
   auto begin = steady_clock::now();
 
-  auto part_one = day14::solve_part1(inp_);
+  auto part_one = day15::solve_part1(inp_);
   std::cout << "Solution to part one: " << part_one << " ";
 
   auto end = steady_clock::now();
@@ -23,7 +23,7 @@ int main() {
   // Part one
   begin = steady_clock::now();
 
-  auto part_two = day14::solve_part2(inp_);
+  auto part_two = day15::solve_part2(inp_);
   std::cout << "Solution to part two: " << part_two << " ";
 
   end = steady_clock::now();

@@ -7,7 +7,6 @@ import pytest
 import sys
 import re
 import math
-from collections import defaultdict
 
 sys.path.append(join(dirname(realpath(__file__)), *["..", ".."]))
 
@@ -45,7 +44,7 @@ def read_input(file_name="../data/input.txt"):
 def solve_part1(input_):
 
     # Memory dict to place values at addresses
-    memory = defaultdict(lambda: 0)
+    memory = dict()
 
     # Go through each input instruction
     for instr in input_:
@@ -89,7 +88,7 @@ def get_bits(val):
 def solve_part2(input_):
 
     # Memory dict to place values at addresses
-    memory = defaultdict(lambda: 0)
+    memory = dict()
 
     # Go through each input instruction
     for instr in input_:
