@@ -5,27 +5,25 @@
 
 /**
  * @brief Class of Intcode computer
- * 
+ *
  */
-class Intcode
-{
-public:
+class Intcode {
+ public:
   std::string m_file_name;
   std::vector<int> m_memory;
   bool m_reset;
 
-public:
-
+ public:
   /**
    * @brief Construct a new Intcode object
-   * 
+   *
    * @param reset reset variable
    */
-  Intcode(bool reset= true);
+  Intcode(bool reset = true);
 
   /**
    * @brief Construct a new Intcode object
-   * 
+   *
    * @param file_name_ file location
    * @param reset  reset variable
    */
@@ -33,11 +31,10 @@ public:
 
   /**
    * @brief Operator to run the intcode program
-   * 
-   * @return int 
+   *
+   * @return int
    */
   int operator()();
-  
 };
 
 #endif

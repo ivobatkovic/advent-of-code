@@ -1,19 +1,19 @@
 #include <gtest/gtest.h>
-#include "digits.hpp"
-#include <tuple>
+
 #include <iostream>
+#include <tuple>
 
-using std::vector;
+#include "digits.hpp"
+
 using std::string;
-
+using std::vector;
 
 typedef std::tuple<string, bool> testInput;
 
 class DigitsPartOne : public ::testing::TestWithParam<testInput> {};
 class DigitsPartTwo : public ::testing::TestWithParam<testInput> {};
 
-TEST_P(DigitsPartOne, partOne)
-{
+TEST_P(DigitsPartOne, partOne) {
   // Get parameters
   auto param = GetParam();
 
@@ -30,8 +30,7 @@ TEST_P(DigitsPartOne, partOne)
   EXPECT_EQ(std::get<1>(param), double_digits);
 }
 
-TEST_P(DigitsPartTwo, partTwo)
-{
+TEST_P(DigitsPartTwo, partTwo) {
   // Get parameters
   auto param = GetParam();
 
@@ -48,24 +47,17 @@ TEST_P(DigitsPartTwo, partTwo)
   EXPECT_EQ(std::get<1>(param), double_digits);
 }
 
-INSTANTIATE_TEST_SUITE_P(
-    partOne,
-    DigitsPartOne,
-    ::testing::Values(
-        std::make_tuple("111111", true),
-        std::make_tuple("223450", false),
-        std::make_tuple("123789", false)));
+INSTANTIATE_TEST_SUITE_P(partOne, DigitsPartOne,
+                         ::testing::Values(std::make_tuple("111111", true),
+                                           std::make_tuple("223450", false),
+                                           std::make_tuple("123789", false)));
 
-INSTANTIATE_TEST_SUITE_P(
-    partTwo,
-    DigitsPartTwo,
-    ::testing::Values(
-        std::make_tuple("112233", true),
-        std::make_tuple("123444", false),
-        std::make_tuple("111122", true)));
+INSTANTIATE_TEST_SUITE_P(partTwo, DigitsPartTwo,
+                         ::testing::Values(std::make_tuple("112233", true),
+                                           std::make_tuple("123444", false),
+                                           std::make_tuple("111122", true)));
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

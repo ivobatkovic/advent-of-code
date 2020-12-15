@@ -3,25 +3,22 @@
 typedef std::vector<std::vector<int64_t>> vecvecint64_t;
 typedef std::vector<int64_t> vecint64_t;
 
-Network::Network(std::string file_name, int num_nodes) : 
-    m_file_name(file_name), m_num_nodes(num_nodes), m_nodes() {
-
+Network::Network(std::string file_name, int num_nodes)
+    : m_file_name(file_name), m_num_nodes(num_nodes), m_nodes() {
   m_nodes = initialize_nodes();
 }
 
-std::vector<Intcode> Network::initialize_nodes()
-{
+std::vector<Intcode> Network::initialize_nodes() {
   std::vector<Intcode> nodes;
 
   for (auto i = 0; i < m_num_nodes; i++) {
-      nodes.push_back(Intcode(m_file_name,{i},false,false));
+    nodes.push_back(Intcode(m_file_name, {i}, false, false));
   }
 
   return nodes;
 }
 
-std::pair<int,int> Network::run() {
-
+std::pair<int, int> Network::run() {
   // Keep track of inputs for each node
   vecvecint64_t inputs(m_num_nodes, vecint64_t());
 
@@ -34,24 +31,21 @@ std::pair<int,int> Network::run() {
 
   // Keep going until nat signal triggers
   while (true) {
-
-    // Place holder for sent input   
+    // Place holder for sent input
     vecvecint64_t sent_input(m_num_nodes, vecint64_t());
 
     // Go through all nodes
     for (auto index = 0; index < m_num_nodes; index++) {
-      
       // If idle, but has inputs in the buffer. Start it
-      if (m_nodes[index].m_idle && inputs[index].size()>0) {
+      if (m_nodes[index].m_idle && inputs[index].size() > 0) {
         m_nodes[index].m_idle = false;
       }
-      
+
       // If node is not idle run it with the inputs
       if (!m_nodes[index].m_idle) {
-
         auto output = m_nodes[index](inputs[index]);
         inputs[index].clear();
-        
+
         if (std::get<1>(output) != -WINT_MAX) {
           m_nodes[index].m_idle = false;
 
@@ -66,8 +60,8 @@ std::pair<int,int> Network::run() {
               if (first_nat_signal == -1) {
                 first_nat_signal = NAT[1];
               }
-            // Otherwise send to node
-            } else  {
+              // Otherwise send to node
+            } else {
               sent_input[sending_to[index][0]].push_back(sending_to[index][1]);
               sent_input[sending_to[index][0]].push_back(sending_to[index][2]);
             }
@@ -80,19 +74,18 @@ std::pair<int,int> Network::run() {
     }
     // Update inputs
     inputs = sent_input;
-  
+
     // Find how many nodes are idle
     int sm(0);
     for (auto &node_ : m_nodes) {
       sm += (node_.m_idle) ? 1 : 0;
-    }  
+    }
 
     // If all nodes are idle -> kickstart NAT
     if (sm == m_num_nodes) {
       if (NAT[1] == previous_nat_signal) {
-        return std::make_pair(first_nat_signal,NAT[1]);
-      } else 
-{
+        return std::make_pair(first_nat_signal, NAT[1]);
+      } else {
         previous_nat_signal = NAT[1];
         inputs[0].push_back(NAT[0]);
         inputs[0].push_back(NAT[1]);

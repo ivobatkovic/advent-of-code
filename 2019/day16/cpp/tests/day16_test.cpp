@@ -1,18 +1,19 @@
 #include <gtest/gtest.h>
-#include "fft.hpp"
+
 #include <tuple>
 
-using std::vector;
+#include "fft.hpp"
+
 using std::string;
+using std::vector;
 
 typedef std::tuple<string, string, int> inputOne;
 typedef std::tuple<string, string> inputTwo;
 
-class FFTTest : public ::testing::TestWithParam <inputOne> {};
+class FFTTest : public ::testing::TestWithParam<inputOne> {};
 class FFTDecode : public ::testing::TestWithParam<inputTwo> {};
 
-TEST_P(FFTTest, updateTest)
-{
+TEST_P(FFTTest, updateTest) {
   // Get parameters
   auto param = GetParam();
   string file_name = string(SOURCE_DIR) + "/data/" + std::get<0>(param);
@@ -24,8 +25,7 @@ TEST_P(FFTTest, updateTest)
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    partOne,
-    FFTTest,
+    partOne, FFTTest,
     ::testing::Values(std::make_tuple("test_input0.txt", "48226158", 1),
                       std::make_tuple("test_input0.txt", "34040438", 2),
                       std::make_tuple("test_input0.txt", "03415518", 3),
@@ -34,8 +34,7 @@ INSTANTIATE_TEST_SUITE_P(
                       std::make_tuple("test_input2.txt", "73745418", 100),
                       std::make_tuple("test_input3.txt", "52432133", 100)));
 
-TEST_P(FFTDecode, decodeTest)
-{
+TEST_P(FFTDecode, decodeTest) {
   // Get parameters
   auto param = GetParam();
   string file_name = string(SOURCE_DIR) + "/data/" + std::get<0>(param);
@@ -46,14 +45,12 @@ TEST_P(FFTDecode, decodeTest)
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    partTwo,
-    FFTDecode,
+    partTwo, FFTDecode,
     ::testing::Values(std::make_tuple("test_input4.txt", "84462026"),
                       std::make_tuple("test_input5.txt", "78725270"),
                       std::make_tuple("test_input6.txt", "53553731")));
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
