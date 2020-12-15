@@ -1,12 +1,12 @@
-name: C++
+name: 2019:C++
 
 on:
   push:
     branches:
       - master
     paths:
-      - '2020/day*/cpp/**'
-      - '2020/utils/cpp/**'
+      - '2019/day*/cpp/**'
+      - '2019/utils/cpp/**'
   pull_request:
 
 env:
@@ -30,15 +30,15 @@ jobs:
       run: |
         brew install boost clang-format
     - name: Check if clang-format passes
-      working-directory: ./2020
-      run: sh ./utils/bash/check_clang_format.sh
+      working-directory: .
+      run: sh ./utils/bash/check_clang_format.sh 2019
     
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Configure CMake
       working-directory: ${{runner.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE/2020 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      run: cmake $GITHUB_WORKSPACE/2019 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
     - name: Build and run
       working-directory: ${{runner.workspace}}/build

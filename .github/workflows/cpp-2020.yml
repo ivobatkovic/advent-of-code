@@ -1,0 +1,46 @@
+name: 2020:C++
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '2020/day*/cpp/**'
+      - '2020/utils/cpp/**'
+  pull_request:
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04] # save minutes for now macOS-11.0]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Ubuntu dependencies
+      if: matrix.os == 'ubuntu-18.04'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libboost-dev clang-format      
+    - name: Install macOS dependencies
+      if: matrix.os == 'macOS-11.0'
+      run: |
+        brew install boost clang-format
+    - name: Check if clang-format passes
+      working-directory: .
+      run: sh ./utils/bash/check_clang_format.sh 2020
+    
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build
+
+    - name: Configure CMake
+      working-directory: ${{runner.workspace}}/build
+      run: cmake $GITHUB_WORKSPACE/2020 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
+    - name: Build and run
+      working-directory: ${{runner.workspace}}/build
+      run: cmake --build . --target build_tests test --config $BUILD_TYPE -j$(nproc)
+    
