@@ -3,7 +3,7 @@ if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
         -fPIC -O2 -pedantic-errors -Wall -Weffc++ -Werror -Wextra -Wshadow \
         -Wswitch-default")
     set(C_COMPILER_FLAGS "-std=c99")
-    set(CXX_COMPILER_FLAGS "-std=c++14")
+    set(CXX_COMPILER_FLAGS "-std=c++17")
     #Since CMAKE uses -isysroot flag and these paths are ignored for Mac
     link_directories(/usr/local/lib)
     include_directories(/usr/local/include)
@@ -11,7 +11,7 @@ elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
     set(COMPILER_FLAGS "-fstack-protector-all -fsanitize=undefined,address \
         -fPIC -O2 -Wall -Weffc++ -Werror -Wextra -Wshadow -pedantic-errors")
     set(C_COMPILER_FLAGS "-std=c99")
-    set(CXX_COMPILER_FLAGS "-std=c++14")
+    set(CXX_COMPILER_FLAGS "-std=c++17")
 
     set(CXX_EFFECTIVE_CXX " -Wmissing-format-attribute -Wredundant-decls \
         -Wno-error=effc++ -Weffc++")
