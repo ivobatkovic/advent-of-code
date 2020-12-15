@@ -10,7 +10,7 @@ FuelCounter::FuelCounter() : m_masses() {}
 // Constructor to read the file input
 FuelCounter::FuelCounter(std::string file_name) : m_masses() {
   auto input = utils::read_file(file_name);
-  for (auto & inp : input) {
+  for (auto &inp : input) {
     m_masses.push_back(std::stoi(inp));
   }
   // utils::read_file(file_name, m_masses);

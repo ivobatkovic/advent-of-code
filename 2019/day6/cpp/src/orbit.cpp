@@ -19,11 +19,11 @@ struct queue_data {
 Orbit::Orbit(std::string file_name) : m_parents(), m_neighbors() {
   auto input = utils::read_file(file_name);
   for (auto j = input.begin(); j < input.end(); j++) {
-      size_t idx = (*j).find(")");
-      std::string parent = (*j).substr(0, idx), child = (*j).substr(idx + 1, 3);
-      m_parents[parent].push_back(child);
-      m_neighbors[parent].push_back(child);
-      m_neighbors[child].push_back(parent);
+    size_t idx = (*j).find(")");
+    std::string parent = (*j).substr(0, idx), child = (*j).substr(idx + 1, 3);
+    m_parents[parent].push_back(child);
+    m_neighbors[parent].push_back(child);
+    m_neighbors[child].push_back(parent);
   }
 }
 

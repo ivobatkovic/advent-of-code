@@ -8,13 +8,11 @@ Intcode::Intcode(bool reset) : m_file_name(), m_memory(), m_reset(reset) {}
 
 Intcode::Intcode(std::string file_name, bool reset)
     : m_file_name(), m_memory(), m_reset(reset) {
-  
   std::vector<std::string> input;
-  utils::split_string(utils::read_file(file_name)[0],",",input);
+  utils::split_string(utils::read_file(file_name)[0], ",", input);
   for (auto &inp : input) {
     m_memory.push_back(std::stoi(inp));
   }
-  
 }
 
 // Operator () runs the program until termination

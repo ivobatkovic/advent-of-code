@@ -16,10 +16,9 @@ Wires::Wires(string file_name) : m_wire{}, m_distance{0}, m_steps{0} {
   auto input = utils::read_file(file_name);
   for (auto &inp : input) {
     std::vector<std::string> split;
-    utils::split_string(inp,",",split);
+    utils::split_string(inp, ",", split);
     m_wire.push_back(split);
   }
-  
 }
 
 void Wires::solve() {

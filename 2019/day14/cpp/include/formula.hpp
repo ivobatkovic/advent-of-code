@@ -1,10 +1,10 @@
 #ifndef _FORMULA_H_
 #define _FORMULA_H_
 
+#include <string>
 #include <tuple>
 #include <unordered_map>
 #include <vector>
-#include <string>
 
 typedef std::vector<std::tuple<int, int, std::string>> tuple_vec;
 

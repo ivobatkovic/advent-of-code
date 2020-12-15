@@ -1,17 +1,17 @@
 #include "formula.hpp"
 
-#include "utils.hpp"
 #include <math.h>
 
 #include <iostream>
 #include <regex>
+
+#include "utils.hpp"
 
 Formula::Formula(std::string file_name) : m_formula() {
   initialize_formula(file_name);
 }
 
 void Formula::initialize_formula(std::string file_name) {
-
   auto form = utils::read_file(file_name);
 
   // Regex to separeate left-hand and right-hand side with "=>"

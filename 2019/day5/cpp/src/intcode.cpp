@@ -30,7 +30,7 @@ Intcode::Intcode(std::string file_name, std::vector<int64_t> input, bool reset,
   std::vector<std::string> file_contents = utils::read_file(file_name);
   for (auto &row : file_contents) {
     std::vector<int64_t> input_file;
-    utils::split_string(row,",",input_file);
+    utils::split_string(row, ",", input_file);
     for (auto &inp : input_file) {
       m_program.push_back(inp);
     }
