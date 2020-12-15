@@ -10,7 +10,7 @@
     <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/badge/code%20style-black-000000.svg"/></a>    
     <img src="https://github.com/ivobatkovic/advent-of-code/workflows/C++/badge.svg"/>
-    <img src="https://img.shields.io/badge/standard-c++14-informational"/>
+    <img src="https://img.shields.io/badge/standard-c++17-informational"/>
     <img src="https://img.shields.io/badge/clang%20format-google-000000.svg"/>
 </p>
 
