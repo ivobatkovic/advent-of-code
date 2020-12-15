@@ -24,7 +24,7 @@ input_type day15::read_input(std::string file_name) {
 
 // Implement part one solution
 output_type day15::solve_part1(const input_type &input_, int nth_digit) {
-  // Pre-initialize a vector of size nth_digit;
+  // Pre-initialize a vector of size nth_digit
   std::vector<int> dig_spoken(nth_digit, 0);
 
   // To use less memory, we can use a map, however, this impacts runtime.

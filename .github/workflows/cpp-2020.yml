@@ -1,4 +1,4 @@
-name: C++
+name: 2020:C++
 
 on:
   push:
@@ -24,14 +24,14 @@ jobs:
       if: matrix.os == 'ubuntu-18.04'
       run: |
         sudo apt-get update
-        sudo apt-get install -y libboost-dev clang-format      
+        sudo apt-get install -y libncurses5-dev libboost-dev clang-format      
     - name: Install macOS dependencies
       if: matrix.os == 'macOS-11.0'
       run: |
         brew install boost clang-format
     - name: Check if clang-format passes
-      working-directory: ./2020
-      run: sh ./utils/bash/check_clang_format.sh
+      working-directory: .
+      run: sh ./utils/bash/check_clang_format.sh 2020
     
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build

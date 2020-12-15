@@ -19,14 +19,15 @@ def download_data(year, day, dst):
 
 
 # Initialize python source file.
-def setup_python_source(day):
+def setup_python_source(year, day):
     # Rename template_day.py
     src_files = [
-        join(*[f"day{day}", "python", "day.py_tmp"]),
+        join(*[f"{year}",f"day{day}", "python", "day.py_tmp"]),
     ]
     dst_files = [
-        join(*[f"day{day}", "python", f"day{day}.py"]),
+        join(*[f"{year}",f"day{day}", "python", f"day{day}.py"]),
     ]
+    
     for src, dst in zip(src_files, dst_files):
         os.rename(src, dst)
 
@@ -39,21 +40,21 @@ def setup_python_source(day):
 
 
 # Initialize c++ build and source files
-def setup_cpp_source(day):
+def setup_cpp_source(year, day):
     # Rename files
     src_files = [
-        join(f"day{day}", "CMakeLists.txt_tmp"),
-        join(*[f"day{day}", "cpp", "include", "day.hpp_tmp"]),
-        join(*[f"day{day}", "cpp", "src", "day.cpp_tmp"]),
-        join(*[f"day{day}", "cpp", "src", "main.cpp_tmp"]),
-        join(*[f"day{day}", "cpp", "src", "test.cpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "CMakeLists.txt_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "include", "day.hpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "src", "day.cpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "src", "main.cpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "src", "test.cpp_tmp"]),
     ]
     dst_files = [
-        join(f"day{day}", "CMakeLists.txt"),
-        join(*[f"day{day}", "cpp", "include", f"day{day}.hpp"]),
-        join(*[f"day{day}", "cpp", "src", f"day{day}.cpp"]),
-        join(*[f"day{day}", "cpp", "src", "main.cpp"]),
-        join(*[f"day{day}", "cpp", "src", "test.cpp"]),
+        join(*[f"{year}",f"day{day}", "CMakeLists.txt"]),
+        join(*[f"{year}",f"day{day}", "cpp", "include", f"day{day}.hpp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "src", f"day{day}.cpp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "src", "main.cpp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "src", "test.cpp"]),
     ]
     for src, dst in zip(src_files, dst_files):
         os.rename(src, dst)
@@ -72,38 +73,46 @@ def setup_cpp_source(day):
 def parse_args():
     parser = argparse.ArgumentParser(description="Bootstrap")
     parser.add_argument("-d", "--day", required=True, type=int, help="day")
+    parser.add_argument("-y", "--year", required=True, type=int, help="year")
+    parser.add_argument("-i", "--input", type=int, default=0, help="input")
+
     return parser.parse_args()
 
 
-def bootstrap_solution(day):
+def bootstrap_solution(year, day, download_input):
     # Try to make directories
     try:
+        
         # Copy templates folder
-        copytree("templates", f"day{day}")
-        print(f"Copied tree for day{day}")
+        copytree("templates", join(f"{year}",f"day{day}"))
+        print(f"Copied tree for {year} day{day}")
 
         # Copy python sources
-        setup_python_source(day)
-        print(f"Set up python structure for day{day}")
+        setup_python_source(year,day)
+        print(f"Set up python structure for {year} day{day}")
         # Copy c++ sources
-        setup_cpp_source(day)
-        print(f"Set up c++ structure for day{day}")
+        setup_cpp_source(year,day)
+        print(f"Set up c++ structure for {year} day{day}")
 
         # Done
-        print(f"Completed setup for day{day}")
+        print(f"Completed setup for {year} day{day}")
 
     except OSError:
-        print(f"Failed to create directory day{day}")
+        print(f"Failed to create directory {year} day{day}")
 
     # Download latest data
-    data_dst = join(*[f"day{day}", "data", "input.txt"])
-    download_data(2020, day, data_dst)
+    data_dst = join(*[f"{year}",f"day{day}", "data", "input.txt"])
+
+    if download_input:
+        download_data(year, day, data_dst)
 
 
 def main():
     args = parse_args()
     day = args.day
-    bootstrap_solution(day)
+    year = args.year
+    download_input = args.input
+    bootstrap_solution(year,day,download_input)
 
 
 if __name__ == "__main__":

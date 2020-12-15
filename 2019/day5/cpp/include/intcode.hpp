@@ -2,33 +2,31 @@
 #define _INTCODE_H
 
 #include <string>
-#include <vector>
 #include <tuple>
+#include <vector>
 
 /**
  * @brief Class of Intcode computer
- * 
+ *
  */
-class Intcode
-{
-public:
+class Intcode {
+ public:
   std::vector<int64_t> m_program, m_input;
   std::size_t m_iter;
   int64_t m_base, m_output;
   bool m_reset, m_verbose, m_idle;
 
-public:
-
+ public:
   /**
    * @brief Construct a new Intcode object
-   * 
+   *
    * @param reset reset variable
    */
-  Intcode(bool reset= true, bool verbose = true);
+  Intcode(bool reset = true, bool verbose = true);
 
   /**
    * @brief Construct a new Intcode object
-   * 
+   *
    * @param file_name_ file location
    * @param reset_  reset variable
    */
@@ -37,28 +35,28 @@ public:
 
   /**
    * @brief Operator to run the intcode program
-   * 
-   * @return int 
+   *
+   * @return int
    */
   std::tuple<bool, int64_t> operator()(int64_t input);
   std::tuple<bool, int64_t> operator()(std::vector<int64_t> input = {});
 
-private:
+ private:
   /**
    * @brief Parse opcode and return the operators
-   * 
-   * @param op 
-   * @return std::tuple<char, int64_t, int64_t, int64_t> 
+   *
+   * @param op
+   * @return std::tuple<char, int64_t, int64_t, int64_t>
    */
   std::tuple<char, int64_t, int64_t, int64_t> parse_opcode(std::string op);
 
   /**
    * @brief Apply the operations
-   * 
-   * @param oper 
-   * @param p1 
-   * @param p2 
-   * @param out 
+   *
+   * @param oper
+   * @param p1
+   * @param p2
+   * @param out
    */
   void operate(char oper, int64_t p1, int64_t p2, int64_t out);
 };

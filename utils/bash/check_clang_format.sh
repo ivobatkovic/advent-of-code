@@ -1,7 +1,11 @@
 exit_code=0
 
-cpp_files=$(find **/cpp/src/*.cpp)
-hpp_files=$(find **/cpp/include/*.hpp)
+# Append where to start looking from
+if [ $# -eq 0 ]; then start="."
+    else start=$1
+fi
+cpp_files=$(find $start -name '*.cpp')
+hpp_files=$(find $start -name '*.hpp')
 for f in $cpp_files $hpp_files; do
     output=$(clang-format --style=google -sort-includes -output-replacements-xml \
            $f | grep -c "<replacement ")
@@ -10,4 +14,5 @@ for f in $cpp_files $hpp_files; do
         exit_code=1
     fi
 done
+echo Done checking
 exit $exit_code
