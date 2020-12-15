@@ -23,17 +23,24 @@ def read_input(file_name="../data/input.txt"):
 
 
 def solve_part1(input_, end_dig=2020):
-
+    # Pre-initialize a list of size end_dig
+    # To use less memory, we can use a dict, however, this impacts runtime.
     dig_spoken = [0] * end_dig
+
+    # Add which numbers have been spoken
     for i, dig in enumerate(input_[:-1]):
         dig_spoken[dig] = i + 1
+
+    # Go through previous digits and see if they have been spoken
     prev_dig = input_[-1]
 
     for i in range(len(input_), end_dig):
 
+        # If we haven't spoken it before, update time for prev_dig
         if dig_spoken[prev_dig] == 0:
             dig_spoken[prev_dig] = i
             prev_dig = 0
+        # Otherwise, check the difference between the  latest time of prev_dig
         else:
             diff = i - dig_spoken[prev_dig]
             dig_spoken[prev_dig] = i
