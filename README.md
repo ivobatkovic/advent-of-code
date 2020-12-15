@@ -67,11 +67,13 @@ python X/dayY/python/dayY.py
 #### Ubuntu
 ```bash
 apt-get update
-apt-get install -y libboost-dev # clang-format optional)
+apt-get install -y libncurses5-dev libboost-dev
+apt-get install -y clang-format # optional - used for formatting
 ``` 
 #### MacOS
 ```bash
-brew install boost clang-format # clang-format optional)
+brew install boost
+brew install clang-format       # optional - used for formatting
 ```
 ### Installation (Ubuntu/MacOS)
 To build the solution of year X day Y, run:
