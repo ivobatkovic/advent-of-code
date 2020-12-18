@@ -40,13 +40,12 @@ void push_transform(std::string str, std::vector<T> &split) {
  */
 template <typename T>
 void split_string(std::string str, std::string delim, std::vector<T> &split) {
-  size_t start;
-  size_t end = 0;
-
-  while ((start = str.find_first_not_of(delim, end)) != std::string::npos) {
-    end = str.find(delim, start);
-    push_transform(str.substr(start, end - start), split);
+  size_t pos;
+  while ((pos = str.find(delim)) != std::string::npos) {
+    push_transform(str.substr(0, pos), split);
+    str.erase(0, pos + delim.length());
   }
+  push_transform(str, split);
 }
 template <typename T>
 void split_string(std::string str, char delim, std::vector<T> &split) {

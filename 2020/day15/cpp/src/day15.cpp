@@ -37,14 +37,12 @@ output_type day15::solve_part1(const input_type &input_, int nth_digit) {
   // Go through previous digits and see if they have been spoken
   auto prev_dig = input_.back();
   for (int i = input_.size(); i < nth_digit; i++) {
-
     int num = 0;
     if (dig_spoken[prev_dig] != 0) {
       num = i - dig_spoken[prev_dig];
     }
     dig_spoken[prev_dig] = i;
     prev_dig = num;
-    
   }
   return prev_dig;
 }
