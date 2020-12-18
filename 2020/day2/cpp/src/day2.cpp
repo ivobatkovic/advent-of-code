@@ -11,9 +11,9 @@ input_type day2::transform_input(std::vector<std::string> &input) {
 
   for (auto &inp : input) {
     std::vector<std::string> split_input;
-    std::replace(inp.begin(), inp.end(), ':', ' ');
-    utils::split_string(inp, ' ', split_input);
 
+    inp.erase(std::remove(inp.begin(), inp.end(), ':'), inp.end());
+    utils::split_string(inp, ' ', split_input);
     auto count = split_input[0], letter = split_input[1], pw = split_input[2];
 
     std::vector<std::string> split_count;
@@ -34,11 +34,7 @@ input_type day2::read_input(std::string file_name) {
 // Implement part one solution
 std::string day2::solve_part1(const input_type &input_) {
   int n_pws(0);
-  for (auto &i : input_) {
-    auto low = std::get<0>(i), high = std::get<1>(i);
-    auto letter = std::get<2>(i);
-    auto pw = std::get<3>(i);
-
+  for (auto &[low, high, letter, pw] : input_) {
     auto n_matches = std::count(pw.begin(), pw.end(), letter);
     n_pws += (low <= n_matches && n_matches <= high) ? 1 : 0;
   }

@@ -37,17 +37,12 @@ output_type day15::solve_part1(const input_type &input_, int nth_digit) {
   // Go through previous digits and see if they have been spoken
   auto prev_dig = input_.back();
   for (int i = input_.size(); i < nth_digit; i++) {
-    // If we haven't spoken it before, update time for prev_dig, and "speak" 0
-    if (dig_spoken[prev_dig] == 0) {
-      // use if (!dig_spoken.count(prev_dig)) with map approach instead
-      dig_spoken[prev_dig] = i;
-      prev_dig = 0;
-      // Otherwise, check the difference between the  latest time of prev_dig
-    } else {
-      auto diff = i - dig_spoken[prev_dig];
-      dig_spoken[prev_dig] = i;
-      prev_dig = diff;
+    int num = 0;
+    if (dig_spoken[prev_dig] != 0) {
+      num = i - dig_spoken[prev_dig];
     }
+    dig_spoken[prev_dig] = i;
+    prev_dig = num;
   }
   return prev_dig;
 }
