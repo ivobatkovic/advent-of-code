@@ -6,8 +6,9 @@ on:
       - master
     paths:
       - '2019/day*/cpp/**'
-      - '2019/utils/cpp/**'
   pull_request:
+    paths:
+      - '2019/day*/cpp/**'
 
 env:
   BUILD_TYPE: Release
