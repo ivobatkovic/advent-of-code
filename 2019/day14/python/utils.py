@@ -23,7 +23,7 @@ class IO:
 
                     LHS = data[0].split(",")
                     rhs = data[1].split()
-
+                    print(LHS, rhs)
                     # Example
                     # formula['A'] = (3, 1, 'AB' )
                     # 3 A needed to produce 1 AB.

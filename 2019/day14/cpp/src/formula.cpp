@@ -2,6 +2,7 @@
 
 #include <math.h>
 
+#include <boost/algorithm/string.hpp>
 #include <iostream>
 #include <regex>
 
@@ -16,23 +17,26 @@ void Formula::initialize_formula(std::string file_name) {
 
   // Regex to separeate left-hand and right-hand side with "=>"
   std::regex rgx("([^=>]+)");
-  for (auto f : form) {
+  for (auto &f : form) {
     std::smatch sm;
     std::vector<std::string> parts;
     while (regex_search(f, sm, rgx)) {
-      parts.push_back(sm[0]);
+      std::string part = sm[0];
+      boost::algorithm::trim(part);
+      parts.push_back(part);
       f = sm.suffix();
     }
 
     // Split the left-hand and right-hand sides into parts
     std::vector<std::string> LHS, rhs;
-    utils::split_string(parts[0], ',', LHS);
-    utils::split_string(parts[1], ' ', rhs);
+    utils::split_string(parts[0], ",", LHS);
+    utils::split_string(parts[1], " ", rhs);
 
     // Go through the left hand side assign the formula dependency
-    for (auto lhs : LHS) {
+    for (auto &lhs : LHS) {
+      boost::algorithm::trim(lhs);
       std::vector<std::string> t;
-      utils::split_string(lhs, ' ', t);
+      utils::split_string(lhs, " ", t);
       m_formula[t[1]].push_back(
           std::make_tuple(std::stoi(t[0]), std::stoi(rhs[0]), rhs[1]));
     }

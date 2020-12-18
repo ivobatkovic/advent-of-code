@@ -51,7 +51,7 @@ def compute_fuel(formula, ore=int(1e12)):
 def main():
 
     dir_path = dirname(realpath(__file__))
-    file_location = join(dir_path, "../data/input.txt")
+    file_location = join(dir_path, "../data/test_input0.txt")
 
     # Part one
     t0 = time.time()
