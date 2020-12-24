@@ -32,7 +32,6 @@ set_type day17::get_potential_pos(set_type active, set_type dirs) {
 }
 
 int day17::simulate(input_type input, int ndim) {
-
   // Create a set of directions that spans x-y-z-w-plane
   std::vector<std::vector<int>> directions(ndim, {-1, 0, 1});
   for (int i = 0; i < 4 - ndim; i++) {
@@ -51,7 +50,6 @@ int day17::simulate(input_type input, int ndim) {
   }
   // Remove origin
   dirs.erase(std::array<int, 4>({{0, 0, 0, 0}}));
-
 
   // Keep track of active positions
   set_type active;
