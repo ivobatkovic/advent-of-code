@@ -28,7 +28,7 @@ def play_game(input_, n_rounds=100, part_two=False):
     if part_two:
         numbers += [nr for nr in range(max(numbers) + 1, 1000001)]
 
-    # Make a directional structure,e.g., 1->2->3->4->1
+    # Make a directional structure,e.g., 1->2->3->...->N->1
     cups = dict()
     for index in range(len(numbers) - 1):
         cups[numbers[index]] = numbers[index + 1]
@@ -40,15 +40,15 @@ def play_game(input_, n_rounds=100, part_two=False):
     # Go through each round
     for round in range(n_rounds):
 
-        # Get first and and third cup from the current_cup one
+        # Get first, second, and third cup from the current_cup one
         first_cup = cups[current_cup]
         second_cup = cups[first_cup]
         third_cup = cups[second_cup]
 
-        # Point the current cup to after the third one
+        # Point the current cup to what the third one points to
         cups[current_cup] = cups[third_cup]
 
-        # Get the next destination to append elements
+        # Get the next cup to append elements after
         next = current_cup - 1
         while True:
             # Wrap around
@@ -60,7 +60,6 @@ def play_game(input_, n_rounds=100, part_two=False):
             # Otherwise, we have found the next destination cup
             else:
                 break
-        # print(f'current_cup {current_cup} dest {next}')
 
         # Get the cup that the destination cup is pointing to
         number_after_next = cups[next]
