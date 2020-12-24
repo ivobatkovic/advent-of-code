@@ -1,9 +1,11 @@
 import queue
 
+import copy
+
 
 class Jiggsaw:
     def __init__(self, images):
-        self.images = images
+        self.images = copy.deepcopy(images)
         self.image_sides = self.compute_image_sides()
         self.complete_image = dict()
         self.combined_image = None
@@ -83,7 +85,9 @@ class Jiggsaw:
 
         # Store the output map
         complete_images = dict()
+
         complete_images[0, 0] = [current, self.images[current]]
+
         decided = set(current)
         q = queue.Queue()
         q.put([current, 0, 0])
@@ -113,6 +117,7 @@ class Jiggsaw:
                             tile,
                             self.images[tile],
                         ]
+
                         q.put([tile, y + dy, x + dx])
                         decided.add(tile)
                         break
@@ -143,7 +148,6 @@ class Jiggsaw:
         ymax, xmax = max(self.complete_images, key=tuple)
 
         corners = [(ymin, xmin), (ymin, xmax), (ymax, xmin), (ymax, xmax)]
-        print(corners)
         return [int(self.complete_images[corner][0]) for corner in corners]
 
     def get_symmetries(self, tile):

@@ -43,11 +43,11 @@ def read_input(file_name="../data/input.txt"):
 
 def solve_part1(input_):
     # Feed the Jiggsaw class all image pieces
-    jigsaw = Jiggsaw(input_)
-    jigsaw.solve()
+    jiggsaw = Jiggsaw(input_)
+    jiggsaw.solve()
 
     prod = 1
-    for pos in jigsaw.get_corners():
+    for pos in jiggsaw.get_corners():
         prod *= int(pos)
     return prod
 
