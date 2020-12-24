@@ -14,12 +14,17 @@ using day20::output_type;
 input_type day20::transform_input(std::vector<std::string> &input) {
   input_type image;
   std::string tile_nr;
+
+  // Go through each line
   for (auto &inp : input) {
+    // Skip empty line
     if (inp.length() == 0) {
       continue;
     }
+    // Check for tile number
     if (inp[0] == 'T') {
       tile_nr = inp.substr(5, inp.length() - 6);
+      // If no tile number, append the row to the current tile
     } else {
       image[tile_nr].push_back(inp);
     }
@@ -35,6 +40,7 @@ input_type day20::read_input(std::string file_name) {
 
 // Implement part one solution
 output_type day20::solve_part1(const input_type &input_) {
+  // Feed the Jiggsaw class all image pieces
   Jiggsaw j(input_);
   j.solve();
 
@@ -47,6 +53,7 @@ output_type day20::solve_part1(const input_type &input_) {
 
 // Implement part two solution
 output_type day20::solve_part2(const input_type &input_) {
+  // Feed the Jiggsaw class all image pieces
   Jiggsaw j(input_);
   j.solve();
 

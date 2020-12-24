@@ -148,7 +148,7 @@ class Jiggsaw:
             # For each tile, go through its rows
             for row in range(1, n_rows - 1):
                 row_ = ""
-                # Go through each row-tile 
+                # Go through each row-tile
                 for x in range(xmin, xmax + 1):
                     row_ += self.complete_images[y, x][-1][row][1:-1]
                 combined_image.append(row_)
@@ -163,6 +163,16 @@ class Jiggsaw:
         corners = [(ymin, xmin), (ymin, xmax), (ymax, xmin), (ymax, xmax)]
         return [int(self.complete_images[corner][0]) for corner in corners]
 
+    def find_monster(self, monster, h_monster, w_monster, row, col):
+        for i in range(h_monster):
+            for j in range(w_monster):
+                # If monster and image don't overlap: break
+                if (
+                    monster[i][j] == "#"
+                    and self.combined_image[row + i][col + j] != "#"
+                ):
+                    return False
+        return True
 
     def find_monsters(self, monster):
 
@@ -176,22 +186,9 @@ class Jiggsaw:
             for row in range(0, h - h_monster):
                 for col in range(0, w - w_monster):
                     # Go through the monster sub-mask
-                    found = True
-                    for i in range(h_monster):
-                        braked = False
-                        for j in range(w_monster):
-                            # If monster and image don't overlap: break
-                            if (
-                                monster[i][j] == "#"
-                                and self.combined_image[row+i][col+j] != "#"
-                            ):
-                                found = False
-                                braked = True
-                                break
-
-                        if braked:
-                            break
-                    if found:
+                    if self.find_monster(
+                        monster, h_monster, w_monster, row, col
+                    ):
                         nMonsters += 1
             if nMonsters > 0:
                 return nMonsters
@@ -203,7 +200,8 @@ class Jiggsaw:
             else:
                 self.combined_image.reverse()
                 self.combined_image = [
-                "".join(rows) for rows in list(zip(*self.combined_image[::-1]))
+                    "".join(rows)
+                    for rows in list(zip(*self.combined_image[::-1]))
                 ]
             op *= -1
         return 0
@@ -211,7 +209,7 @@ class Jiggsaw:
     def get_rough_waters(self, monster):
         # Get number of monsters
         nr_monsters = self.find_monsters(monster)
-        
+
         # Check how many '#' the monster has
         size_monster = sum(
             [1 for row in monster for elem in row if elem == "#"]

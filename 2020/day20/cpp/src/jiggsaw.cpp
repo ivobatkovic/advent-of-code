@@ -31,16 +31,16 @@ std::string Jiggsaw::get_side(std::string tile, int dir) {
   // Return top side
   if (dir == 1) {
     return m_images[tile].front();
-  // Return bottom side
+    // Return bottom side
   } else if (dir == 3) {
     return m_images[tile].back();
-  // Return right side
+    // Return right side
   } else if (dir == 0) {
     for (auto &row : m_images[tile]) {
       side += row.back();
     }
     return side;
-  // Return left side
+    // Return left side
   } else {
     for (auto &row : m_images[tile]) {
       side += row.front();
@@ -78,7 +78,6 @@ void Jiggsaw::flip(image_type &tile) {
 }
 
 void Jiggsaw::organize_tile(std::string tile, int dir_to, int dir_from) {
-
   // Transform the neighboring map to match the connection
   if (dir_to == dir_from) {
     if (dir_to == 1 || dir_to == 3) {
@@ -134,7 +133,6 @@ bool Jiggsaw::find_matching_tile(std::string current, std::string tile,
 }
 
 void Jiggsaw::solve() {
-
   // Start from any (first) key in the input
   std::string start = std::begin(m_image_sides)->first;
   std::unordered_set<std::string> visited, decided;
@@ -167,7 +165,6 @@ void Jiggsaw::solve() {
       // Check all our "directions" with the other ones
       for (int dir = 0; dir < 4; dir++) {
         if (find_matching_tile(current, tile, dir)) {
-
           // Set direction to assign the tile
           int dx = (dir == 0) ? 1 : (dir == 2) ? -1 : 0;
           int dy = (dir == 1) ? 1 : (dir == 3) ? -1 : 0;
@@ -224,7 +221,6 @@ std::vector<std::pair<int, int>> Jiggsaw::get_corners() {
 }
 
 int Jiggsaw::find_monsters(image_type &monster) {
-
   // Image height and width
   int h = m_combined_image.size();
   int w = m_combined_image[0].size();
@@ -272,7 +268,7 @@ int Jiggsaw::find_monsters(image_type &monster) {
     // Reverse image
     if (op == 1) {
       reverse(m_combined_image);
-    // If no match, reverse back and rotate
+      // If no match, reverse back and rotate
     } else {
       reverse(m_combined_image);
       rotate(m_combined_image, 1);
