@@ -36,7 +36,7 @@ def transform_input(input_):
             for sub_rule in sub_rules[0].split("|"):
                 rules[rule_nr].append([s for s in sub_rule.split()])
 
-    # Rest if onput data consists of messages
+    # Rest if input data consists of messages
     messages = data[row + 1 :]
 
     return [rules, messages]
