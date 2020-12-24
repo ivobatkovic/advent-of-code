@@ -53,7 +53,7 @@ def match_allergens(input_):
         # Go through each allergen
         for allergen in allergens:
             # If we haven't seen this allergen before, we know it can only be
-            # produced by this ingredients
+            # produced by these ingredients
             if allergen not in possible_allergen:
                 possible_allergen[allergen] = set(ingredients)
             # Otherwise, only keep ingredients we've seen before
