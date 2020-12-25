@@ -1,7 +1,8 @@
 #include "day23.hpp"
 
-#include "utils.hpp"
 #include <algorithm>
+
+#include "utils.hpp"
 using day23::input_type;
 using day23::output_type;
 
