@@ -78,6 +78,7 @@ def play_game(input_, n_rounds=100, part_two=False):
 
 def solve_part1(input_, n_rounds=100):
 
+    # Find the cup that "1" is pointing to, and keep going through the cups
     cups = play_game(input_, n_rounds=n_rounds)
     cup = cups[1]
     output = ""
@@ -90,6 +91,7 @@ def solve_part1(input_, n_rounds=100):
 def solve_part2(input_, n_rounds=1e7):
 
     cups = play_game(input_, n_rounds=int(n_rounds), part_two=True)
+    print(cups[1], cups[cups[1]])
     return cups[1] * cups[cups[1]]
 
 
