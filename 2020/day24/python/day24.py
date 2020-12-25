@@ -58,8 +58,8 @@ def solve_part1(input_):
 
 
 def get_active(tile, neighbors):
-    active_tile = set()
     # Consider all black tiles and their neighbors
+    active_tile = set()
     for pos in tile:
         active_tile.add(pos)
         [
@@ -83,9 +83,11 @@ def solve_part2(input_):
         update = set()
 
         for pos in potential_tiles:
+            # Check how many black neighbors the tile has
             count = 0
             for dy, dx in neighbors:
                 count += 1 if tuple([pos[0] + dy, pos[1] + dx]) in tile else 0
+            # Decide to flip or not
             if pos not in tile and count == 2:
                 update.add(pos)
             elif pos in tile and count != 0 and count <= 2:
