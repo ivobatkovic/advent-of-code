@@ -1,8 +1,8 @@
-#include "fft.hpp"
+#include "2019/day16/cpp/include/fft.hpp"
 
 #include <math.h>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 // Read the input file and cast it into a vector of integers
 FFT::FFT(std::string file_name) : m_input(), m_digit() {

@@ -1,4 +1,4 @@
-#include "day20.hpp"
+#include "2020/day20/cpp/include/day20.hpp"
 
 #include <algorithm>
 #include <map>
@@ -6,8 +6,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "jiggsaw.hpp"
-#include "utils.hpp"
+#include "2020/day20/cpp/include/jiggsaw.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day20::input_type;
 using day20::output_type;
 

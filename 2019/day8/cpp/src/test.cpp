@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "spaceimage.hpp"
+#include "2019/day8/cpp/include/spaceimage.hpp"
 
 using std::string;
 using std::vector;

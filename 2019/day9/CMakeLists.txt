@@ -1,30 +1,34 @@
-cmake_minimum_required(VERSION 3.10) 
+cmake_minimum_required(VERSION 3.10)
 
 project(day9)
 
-# Set sources to be compiled
-set( MAIN_SOURCES "cpp/src/main.cpp" )
+# Get parent directory name
+get_filename_component(year ../ ABSOLUTE)
+get_filename_component(year "${year}" NAME)
+
+# Get root directory
+include_directories(${CMAKE_SOURCE_DIR})
 
 # Compile the sources
-add_executable (${PROJECT_NAME} ${MAIN_SOURCES} )
+set( MAIN_SOURCES "cpp/src/main.cpp")
+add_executable (${PROJECT_NAME}_${year} ${MAIN_SOURCES})
 
-# Give the relative path of the compilation as SOURCE_DIR
-target_compile_definitions(${PROJECT_NAME} 
+# Link potential libraries
+target_link_libraries(${PROJECT_NAME}_${year} intcode)
+target_compile_definitions(${PROJECT_NAME}_${year}
                            PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
-# Link intcode
-target_link_libraries(${PROJECT_NAME} intcode)
 
 # Build tests
-set( TEST_SOURCES "cpp/tests/day9_test.cpp")
-set ( TEST_TARGET ${PROJECT_NAME}_tests)
+set( TEST_SOURCES "cpp/src/test.cpp")
+set ( TEST_TARGET ${PROJECT_NAME}_${year}_tests)
 
 # Test exectuable
-add_executable (${TEST_TARGET} ${TEST_SOURCES} ${SOURCES})
+add_executable (${TEST_TARGET} ${TEST_SOURCES})
 target_link_libraries(${TEST_TARGET} gtest gtest_main intcode)
-target_compile_definitions(${TEST_TARGET} 
-                           PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 set_target_properties(${TEST_TARGET} PROPERTIES EXCLUDE_FROM_ALL TRUE)
+target_compile_definitions(${TEST_TARGET}
+                           PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Set up test
-add_test( ${PROJECT_NAME}_test ${TEST_TARGET})
+add_test( ${PROJECT_NAME}_${year}_test ${TEST_TARGET})
 add_dependencies(build_tests ${TEST_TARGET})

@@ -1,8 +1,8 @@
-#include "orbit.hpp"
+#include "2019/day6/cpp/include/orbit.hpp"
 
 #include <queue>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 // Data struct just to simplify the FIFO queue
 struct queue_data {

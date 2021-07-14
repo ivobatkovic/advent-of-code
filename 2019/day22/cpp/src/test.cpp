@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "deck.hpp"
+#include "2019/day22/cpp/include/deck.hpp"
 
 using std::string;
 using std::vector;

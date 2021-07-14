@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "fuel_counter.hpp"
+#include "2019/day1/cpp/include/fuel_counter.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

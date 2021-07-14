@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "intcode.hpp"
+#include "2019/day5/cpp/include/intcode.hpp"
 
 /**
  * @brief Droid class

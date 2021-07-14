@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "deck.hpp"
+#include "2019/day22/cpp/include/deck.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

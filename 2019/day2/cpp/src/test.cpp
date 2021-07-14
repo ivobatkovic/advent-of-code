@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "intcode.hpp"
+#include "2019/day2/cpp/include/intcode.hpp"
 
 using std::vector;
 

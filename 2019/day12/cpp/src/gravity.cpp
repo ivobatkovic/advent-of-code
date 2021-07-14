@@ -1,10 +1,10 @@
-#include "gravity.hpp"
+#include "2019/day12/cpp/include/gravity.hpp"
 
 #include <math.h>
 
 #include <regex>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 Gravity::Gravity(std::string file_name) : m_pos(), m_vel(), m_cycles() {
   auto input = utils::read_file(file_name);

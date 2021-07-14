@@ -1,8 +1,8 @@
-#include "day2.hpp"
+#include "2020/day2/cpp/include/day2.hpp"
 
 #include <algorithm>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day2::input_type;
 

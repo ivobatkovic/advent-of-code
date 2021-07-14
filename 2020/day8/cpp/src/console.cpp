@@ -1,6 +1,6 @@
-#include "console.hpp"
+#include "2020/day8/cpp/include/console.hpp"
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 Console::Console(std::string file_name)
     : program_m(),
       n_instructions_m(0),

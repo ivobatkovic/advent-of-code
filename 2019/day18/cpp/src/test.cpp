@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "maze.hpp"
+#include "2019/day18/cpp/include/maze.hpp"
 
 using std::vector;
 

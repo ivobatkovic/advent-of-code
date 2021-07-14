@@ -1,8 +1,8 @@
-#include "day21.hpp"
+#include "2020/day21/cpp/include/day21.hpp"
 
 #include <boost/algorithm/string.hpp>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day21::input_type;
 using day21::map_type;

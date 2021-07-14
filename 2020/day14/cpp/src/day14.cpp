@@ -1,11 +1,11 @@
-#include "day14.hpp"
+#include "2020/day14/cpp/include/day14.hpp"
 
 #include <math.h>
 
 #include <regex>
 #include <unordered_map>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day14::input_type;
 using day14::output_type;
 

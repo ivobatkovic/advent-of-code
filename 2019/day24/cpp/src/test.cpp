@@ -2,23 +2,21 @@
 
 #include <tuple>
 
-#include "planet.hpp"
+#include "2019/day24/cpp/include/planet.hpp"
 
+using std::string;
 using std::vector;
+using ::testing::TestWithParam;
+typedef std::tuple<std::string, int, std::vector<std::string>> input;
 
-class PlanetTestOne
-    : public ::testing::TestWithParam<
-          std::tuple<std::string, int, std::vector<std::string>>> {};
-class PlanetTestTwo
-    : public ::testing::TestWithParam<std::tuple<std::string, int>> {};
-class PlanetTestThree
-    : public ::testing::TestWithParam<std::tuple<std::string, int, int>> {};
+class PlanetTestOne : public TestWithParam<input> {};
+class PlanetTestTwo : public TestWithParam<std::tuple<string, int>> {};
+class PlanetTestThree : public TestWithParam<std::tuple<string, int, int>> {};
 
 TEST_P(PlanetTestOne, update) {
   // Get parameters
   auto param = GetParam();
-  std::string file_name =
-      std::string(SOURCE_DIR) + "/data/" + std::get<0>(param);
+  string file_name = string(SOURCE_DIR) + "/data/" + std::get<0>(param);
   auto expectedOutput = std::get<2>(param);
 
   Planet planet(file_name);
@@ -27,14 +25,13 @@ TEST_P(PlanetTestOne, update) {
     planet.update();
   }
 
-  EXPECT_EQ(expectedOutput, planet.grid[0].i);
+  EXPECT_EQ(expectedOutput, planet.m_grid[0].data);
 }
 
 TEST_P(PlanetTestTwo, partOne) {
   // Get parameters
   auto param = GetParam();
-  std::string file_name =
-      std::string(SOURCE_DIR) + "/data/" + std::get<0>(param);
+  string file_name = string(SOURCE_DIR) + "/data/" + std::get<0>(param);
   auto expectedOutput = std::get<1>(param);
 
   Planet planet(file_name);
@@ -45,8 +42,7 @@ TEST_P(PlanetTestTwo, partOne) {
 TEST_P(PlanetTestThree, partTwo) {
   // Get parameters
   auto param = GetParam();
-  std::string file_name =
-      std::string(SOURCE_DIR) + "/data/" + std::get<0>(param);
+  string file_name = string(SOURCE_DIR) + "/data/" + std::get<0>(param);
   auto nSteps = std::get<1>(param);
   auto expectedOutput = std::get<2>(param);
 
@@ -59,17 +55,17 @@ INSTANTIATE_TEST_SUITE_P(
     update, PlanetTestOne,
     ::testing::Values(
         std::make_tuple("test_input0.txt", 1,
-                        std::vector<std::string>({"#..#.", "####.", "###.#",
-                                                  "##.##", ".##.."})),
+                        std::vector<string>({"#..#.", "####.", "###.#", "##.##",
+                                             ".##.."})),
         std::make_tuple("test_input0.txt", 2,
-                        std::vector<std::string>({"#####", "....#", "....#",
-                                                  "...#.", "#.###"})),
+                        std::vector<string>({"#####", "....#", "....#", "...#.",
+                                             "#.###"})),
         std::make_tuple("test_input0.txt", 3,
-                        std::vector<std::string>({"#....", "####.", "...##",
-                                                  "#.##.", ".##.#"})),
+                        std::vector<string>({"#....", "####.", "...##", "#.##.",
+                                             ".##.#"})),
         std::make_tuple("test_input0.txt", 4,
-                        std::vector<std::string>({"####.", "....#", "##..#",
-                                                  ".....", "##..."}))));
+                        std::vector<string>({"####.", "....#", "##..#", ".....",
+                                             "##..."}))));
 
 INSTANTIATE_TEST_SUITE_P(partOne, PlanetTestTwo,
                          ::testing::Values(std::make_tuple("test_input0.txt",

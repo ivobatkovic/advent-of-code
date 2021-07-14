@@ -1,9 +1,9 @@
-#include "spaceimage.hpp"
+#include "2019/day8/cpp/include/spaceimage.hpp"
 
 #include <algorithm>
 #include <iostream>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 SpaceImage::SpaceImage() : m_input(), m_width(), m_height() {}
 

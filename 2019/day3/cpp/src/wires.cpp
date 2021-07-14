@@ -1,9 +1,9 @@
-#include "wires.hpp"
+#include "2019/day3/cpp/include/wires.hpp"
 
 #include <algorithm>
 #include <iostream>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using std::string;
 using std::vector;

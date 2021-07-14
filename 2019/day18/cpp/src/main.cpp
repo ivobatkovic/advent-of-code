@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "maze.hpp"
+#include "2019/day18/cpp/include/maze.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

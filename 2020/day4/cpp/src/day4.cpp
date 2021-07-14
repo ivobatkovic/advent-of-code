@@ -1,9 +1,9 @@
-#include "day4.hpp"
+#include "2020/day4/cpp/include/day4.hpp"
 
 #include <regex>
 #include <set>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day4::input_type;
 

@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "gravity.hpp"
+#include "2019/day12/cpp/include/gravity.hpp"
 
 using std::string;
 using std::vector;

@@ -1,4 +1,4 @@
-#include "beam.hpp"
+#include "2019/day19/cpp/include/beam.hpp"
 
 #include <vector>
 

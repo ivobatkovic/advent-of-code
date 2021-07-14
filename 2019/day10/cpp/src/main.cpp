@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "monitorstation.hpp"
+#include "2019/day10/cpp/include/monitorstation.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

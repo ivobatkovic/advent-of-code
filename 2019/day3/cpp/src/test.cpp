@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "wires.hpp"
+#include "2019/day3/cpp/include/wires.hpp"
 
 using std::vector;
 

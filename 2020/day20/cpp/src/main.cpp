@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "day20.hpp"
+#include "2020/day20/cpp/include/day20.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

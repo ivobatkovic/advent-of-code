@@ -1,9 +1,9 @@
-#include "intcode.hpp"
+#include "2019/day5/cpp/include/intcode.hpp"
 
 #include <iostream>
 #include <numeric>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using std::tuple;
 

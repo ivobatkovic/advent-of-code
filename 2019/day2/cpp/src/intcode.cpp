@@ -1,8 +1,8 @@
-#include "intcode.hpp"
+#include "2019/day2/cpp/include/intcode.hpp"
 
 #include <iostream>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 Intcode::Intcode(bool reset) : m_file_name(), m_memory(), m_reset(reset) {}
 

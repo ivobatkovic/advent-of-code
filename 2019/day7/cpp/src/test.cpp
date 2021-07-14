@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "amplifier.hpp"
+#include "2019/day7/cpp/include/amplifier.hpp"
 
 using std::string;
 using std::vector;

@@ -1,9 +1,9 @@
-#include "day9.hpp"
+#include "2020/day9/cpp/include/day9.hpp"
 
 #include <algorithm>
 #include <unordered_set>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day9::input_type;
 using day9::output_type;
 

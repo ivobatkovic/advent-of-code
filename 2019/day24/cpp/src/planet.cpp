@@ -1,10 +1,10 @@
-#include "planet.hpp"
+#include "2019/day24/cpp/include/planet.hpp"
 
 #include <math.h>
 
 #include <algorithm>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 Planet::Planet(std::string file_name, bool recursive)
     : m_empty_grid(),

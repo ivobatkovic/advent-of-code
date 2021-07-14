@@ -1,8 +1,8 @@
-#include "day23.hpp"
+#include "2020/day23/cpp/include/day23.hpp"
 
 #include <algorithm>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day23::input_type;
 using day23::output_type;
 

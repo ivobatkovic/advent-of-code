@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "day7.hpp"
+#include "2020/day7/cpp/include/day7.hpp"
 
 using std::string;
 

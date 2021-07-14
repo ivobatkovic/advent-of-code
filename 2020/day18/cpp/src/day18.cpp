@@ -1,7 +1,7 @@
-#include "day18.hpp"
+#include "2020/day18/cpp/include/day18.hpp"
 
-#include "parser.hpp"
-#include "utils.hpp"
+#include "2020/day18/cpp/include/parser.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day18::input_type;
 using day18::output_type;
 

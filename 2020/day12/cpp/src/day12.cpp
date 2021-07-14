@@ -1,9 +1,9 @@
-#include "day12.hpp"
+#include "2020/day12/cpp/include/day12.hpp"
 
 #include <complex>
 #include <unordered_map>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day12::input_type;
 using day12::output_type;
 

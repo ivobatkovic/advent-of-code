@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "formula.hpp"
+#include "2019/day14/cpp/include/formula.hpp"
 
 using std::string;
 using std::vector;

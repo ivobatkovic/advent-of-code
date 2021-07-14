@@ -1,7 +1,7 @@
-#include "day8.hpp"
+#include "2020/day8/cpp/include/day8.hpp"
 
-#include "console.hpp"
-#include "utils.hpp"
+#include "2020/day8/cpp/include/console.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day8::input_type;
 

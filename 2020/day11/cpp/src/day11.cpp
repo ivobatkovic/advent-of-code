@@ -1,9 +1,9 @@
-#include "day11.hpp"
+#include "2020/day11/cpp/include/day11.hpp"
 
 #include <algorithm>
 #include <map>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day11::input_type;
 using day11::output_type;
 

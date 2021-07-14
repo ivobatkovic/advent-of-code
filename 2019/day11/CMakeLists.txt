@@ -1,19 +1,25 @@
-cmake_minimum_required(VERSION 3.10) 
+cmake_minimum_required(VERSION 3.10)
 
 project(day11)
 
-# Include header files
-include_directories(cpp/include)
+# Get parent directory name
+get_filename_component(year ../ ABSOLUTE)
+get_filename_component(year "${year}" NAME)
+
+# Get root directory
+include_directories(${CMAKE_SOURCE_DIR})
 
 # Set sources to be compiled
 set( SOURCES "cpp/src/paint.cpp" )
-set( MAIN_SOURCES "cpp/src/main.cpp" )
+add_library(day11_${year}.objs OBJECT ${SOURCES})
+target_link_libraries(day11_${year}.objs intcode)
+# Give the relative path of the compilation as SOURCE_DIR
+target_compile_definitions(day11_${year}.objs
+                           PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Compile the sources
-add_executable (${PROJECT_NAME} ${MAIN_SOURCES} ${SOURCES})
+set( MAIN_SOURCES "cpp/src/main.cpp")
+add_executable (${PROJECT_NAME}_${year} ${MAIN_SOURCES})
 
-# Give the relative path of the compilation as SOURCE_DIR
-target_compile_definitions(${PROJECT_NAME} 
-                           PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
-# Link intcode
-target_link_libraries(${PROJECT_NAME} intcode)
+# Link potential libraries
+target_link_libraries(${PROJECT_NAME}_${year} day11_${year}.objs)

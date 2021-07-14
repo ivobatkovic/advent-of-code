@@ -1,8 +1,8 @@
-#include "day5.hpp"
+#include "2020/day5/cpp/include/day5.hpp"
 
 #include <algorithm>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day5::input_type;
 
 input_type day5::transform_input(std::vector<std::string> &input) {

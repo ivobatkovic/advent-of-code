@@ -1,8 +1,8 @@
-#include "day15.hpp"
+#include "2020/day15/cpp/include/day15.hpp"
 
 #include <unordered_map>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day15::input_type;
 using day15::output_type;

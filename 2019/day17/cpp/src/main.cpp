@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "asci.hpp"
+#include "2019/day17/cpp/include/asci.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

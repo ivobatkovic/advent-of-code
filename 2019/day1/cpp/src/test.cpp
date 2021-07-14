@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include "fuel_counter.hpp"
+#include "2019/day1/cpp/include/fuel_counter.hpp"
 
 class Test : public ::testing::TestWithParam<std::tuple<int, int>> {
  protected:

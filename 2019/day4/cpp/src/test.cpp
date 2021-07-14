@@ -3,7 +3,7 @@
 #include <iostream>
 #include <tuple>
 
-#include "digits.hpp"
+#include "2019/day4/cpp/include/digits.hpp"
 
 using std::string;
 using std::vector;

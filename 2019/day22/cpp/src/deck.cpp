@@ -1,8 +1,8 @@
-#include "deck.hpp"
+#include "2019/day22/cpp/include/deck.hpp"
 
 #include <cassert>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 Deck::Deck(std::string file_name, int64_t num_cards)
     : m_file_name(file_name), m_num_cards(num_cards), m_a(), m_b() {
