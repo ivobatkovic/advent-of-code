@@ -1,4 +1,4 @@
-#include "day{day}.hpp"
+#include "{year}/day{day}/cpp/include/day{day}.hpp"
 #include <iostream>
 #include <chrono>
 
