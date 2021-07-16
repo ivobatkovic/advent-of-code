@@ -74,6 +74,7 @@ apt-get install -y clang-format # optional - used for formatting
 ```bash
 brew install boost
 brew install clang-format       # optional - used for formatting
+brew install ncurses
 ```
 ### Installation (Ubuntu/MacOS)
 To build the solution of year X day Y, run:
