@@ -7,7 +7,7 @@
 #include <iostream>
 #include <tuple>
 
-#include "ncurses.h"
+#include <ncurses.h>
 
 // Initialize the intcode
 Pong::Pong(std::string file_name, bool play)
