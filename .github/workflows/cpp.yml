@@ -1,0 +1,50 @@
+name: C++
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '20*/day*/cpp/**'
+  pull_request:
+    paths:
+      - '20*/day*/cpp/**'
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04] # save minutes for now macOS-11.0]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Ubuntu dependencies
+      if: matrix.os == 'ubuntu-18.04'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libncurses5-dev libboost-dev libboost-regex-dev clang-format      
+    - name: Install macOS dependencies
+      if: matrix.os == 'macOS-11.0'
+      run: |
+        brew install boost clang-format ncurses
+    - name: Check if clang-format passes
+      working-directory: .
+      run: sh ./utils/bash/check_clang_format.sh 20*
+    - name: Bazel build
+      working-directory: .
+      run: bazel test //...
+    
+    # - name: Create Build Environment
+    #   run: cmake -E make_directory ${{runner.workspace}}/build
+
+    # - name: Configure CMake
+    #   working-directory: ${{runner.workspace}}/build
+    #   run: cmake $GITHUB_WORKSPACE/2019 -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
+    # - name: Build and run
+    #   working-directory: ${{runner.workspace}}/build
+    #   run: cmake --build . --target build_tests test --config $BUILD_TYPE -j$(nproc)
+    

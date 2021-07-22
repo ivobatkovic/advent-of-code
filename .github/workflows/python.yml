@@ -1,11 +1,11 @@
-name: 2019:Python
+name: Python
 
 on:
   push:
     branches:
       - master
     paths:
-      - '2019/day*/python/**'
+      - '2020/day*/python/**'
   pull_request:
 
 jobs:
@@ -22,11 +22,11 @@ jobs:
         pip3 install -r requirements.txt
     - name: Flake8 linting
       run: |
-        python3 -m flake8 2019/. --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
-        python3 -m flake8 2019/. --count --exit-zero --max-complexity=10 --ignore=E203,E402,W503 --statistics
+        python3 -m flake8 20*/. --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
+        python3 -m flake8 20*/. --count --exit-zero --max-complexity=10 --ignore=E203,E402,W503 --statistics
     - name: Black code format
       run: |
-        python3 -m black 2019/. --check --line-length 79
+        python3 -m black 20*/. --check --line-length 79
     - name: Python unit tests
       run: |
-        python3 -m pytest 2019/day*/python/test_*.py
+        python3 -m pytest 2019/day*/python/test_*.py 2020/day*/python/day*.py
