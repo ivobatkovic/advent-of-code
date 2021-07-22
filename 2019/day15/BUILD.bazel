@@ -1,0 +1,25 @@
+load("//bazel:compile_flags.bzl","get_compiler_flags","get_linker_flags")
+
+cc_library(
+    name = "droid",
+    srcs = ["cpp/src/droid.cpp"],
+    hdrs = ["cpp/include/droid.hpp"],
+    deps = [
+        "//utils/cpp:utils_lib",
+        "//2019/day5:intcode",
+        "@ncurses//:ncurses-lib",
+    ],
+    defines = ["SOURCE_DIR=\\\"./2019/day15\\\""],
+    copts = get_compiler_flags(),
+    linkopts = get_linker_flags(),
+)
+
+cc_binary(
+    name = "main",
+    srcs = ["cpp/src/main.cpp"],
+    deps = [
+        ":droid",
+    ],
+    copts = get_compiler_flags(),
+    linkopts = get_linker_flags(),
+)
