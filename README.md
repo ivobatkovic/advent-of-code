@@ -77,17 +77,30 @@ brew install clang-format       # optional - used for formatting
 brew install ncurses
 ```
 ### Installation (Ubuntu/MacOS)
+**Cmake**
+
 To build the solution of year X day Y, run:
 ```bash
-cd X                    # Move into directory of year X
 mkdir build && cd build # Make a build directory
 cmake ..                # Setup the cmake project
-make dayY               # Build dayX
-./dayY/day/             # Run dayY
+make dayY_X             # Build day Y of year X
+./X/dayY/dayY_X         # Run day Y of year X
 ```
 To build all days, all tests, and running all tests in parallel, run:
 ```bash
 make all build_tests test -j$(nproc)
+```
+
+**Bazel** 
+
+To build the solution of year X day Y, run:
+```bash
+bazel build //X/dayY/... # Build all targets of day Y in year X
+./bazel-bin/X/dayY/main  # Run day Y of year X
+```
+To build and run all tests, run:
+```bash
+bazel test //...
 ```
 
 ## Using Docker to run the examples
