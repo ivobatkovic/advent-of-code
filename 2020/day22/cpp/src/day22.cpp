@@ -1,8 +1,8 @@
-#include "day22.hpp"
+#include "2020/day22/cpp/include/day22.hpp"
 
 #include <set>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day22::input_type;
 using day22::output_type;
 

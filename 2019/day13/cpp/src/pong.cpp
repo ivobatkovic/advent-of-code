@@ -1,13 +1,12 @@
-#include "pong.hpp"
+#include "2019/day13/cpp/include/pong.hpp"
 
+#include <ncurses.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include <iostream>
 #include <tuple>
-
-#include "ncurses.h"
 
 // Initialize the intcode
 Pong::Pong(std::string file_name, bool play)

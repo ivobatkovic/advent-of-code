@@ -13,14 +13,14 @@ from day5.python.intcode import Intcode
 
 
 class Droid:
-    """ Class that controls the droid. """
+    """Class that controls the droid."""
 
     def __init__(self, fileName):
-        """ Initialize class and intcode computer. """
+        """Initialize class and intcode computer."""
         self.ic = Intcode(fileName, verbose=False, reset=False)
 
     def one_step(self, y, x, inp):
-        """ Returns next (y,x) pair given input. """
+        """Returns next (y,x) pair given input."""
         y -= 1 if inp == 1 else -1 if inp == 2 else 0
         x += 1 if inp == 3 else -1 if inp == 4 else 0
         return y, x
@@ -75,7 +75,7 @@ class Droid:
             return map, output
 
     def render(self, screen, mp):
-        """ Go through the game map and print the walls/obstacles/pad/ball. """
+        """Go through the game map and print the walls/obstacles/pad/ball."""
         try:
             height, width = screen.getmaxyx()
 

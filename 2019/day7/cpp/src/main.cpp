@@ -2,7 +2,7 @@
 #include <iostream>
 #include <unordered_set>
 
-#include "amplifier.hpp"
+#include "2019/day7/cpp/include/amplifier.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

@@ -11,7 +11,7 @@ from day5.python.intcode import Intcode
 
 
 def get_maximum_thrust(file_location):
-    """ Goes through all permutations and checks the maximum thrust value. """
+    """Goes through all permutations and checks the maximum thrust value."""
 
     max = -sys.maxsize
     for phase in itertools.permutations([0, 1, 2, 3, 4]):
@@ -25,7 +25,7 @@ def get_maximum_thrust(file_location):
 
 
 def feedback_thrust(file_location):
-    """ Goes through permutations and returns the maximum feedback thrust. """
+    """Goes through permutations and returns the maximum feedback thrust."""
 
     max = -sys.maxsize
 

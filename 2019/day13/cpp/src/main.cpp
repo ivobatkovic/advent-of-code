@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "pong.hpp"
+#include "2019/day13/cpp/include/pong.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

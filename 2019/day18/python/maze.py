@@ -4,7 +4,7 @@ import heapq
 
 
 class Maze:
-    """ Class finding its way through the maze. """
+    """Class finding its way through the maze."""
 
     def __init__(self, fileName, multi_robots=False):
         self.grid = self.read_map(fileName)
@@ -53,7 +53,7 @@ class Maze:
                     )
 
     def reachable_keys(self, y_, x_, keys):
-        """ Given start position y_,x_, and keys find other reachable keys """
+        """Given start position y_,x_, and keys find other reachable keys"""
 
         # Initialize node to go through
         q = collections.deque([(y_, x_, 0)])
@@ -93,7 +93,7 @@ class Maze:
                     q.append((y_new, x_new, depth + 1))
 
     def initialize_position(self, multi_robots):
-        """ Set the initial position depending on part one or part two """
+        """Set the initial position depending on part one or part two"""
         if multi_robots:
             y, x = self.y, self.x
             self.grid[y - 1] = (
@@ -115,7 +115,7 @@ class Maze:
             return ((self.y, self.x),)
 
     def find_start_and_keys(self):
-        """ Figure out middle of the map and how many keys are present """
+        """Figure out middle of the map and how many keys are present"""
         # Flatten grid
         linear_grid = list(itertools.chain.from_iterable(self.grid))
 
@@ -132,11 +132,11 @@ class Maze:
         return y, x, total_keys
 
     def read_map(self, fileName):
-        """ Read the map """
+        """Read the map"""
         with open(fileName) as f:
             return f.read().splitlines()
 
     def print_map(self):
-        """ Print the map """
+        """Print the map"""
         for row in self.grid:
             print("".join(row))

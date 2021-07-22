@@ -1,6 +1,6 @@
-#include "day3.hpp"
+#include "2020/day3/cpp/include/day3.hpp"
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day3::input_type;
 

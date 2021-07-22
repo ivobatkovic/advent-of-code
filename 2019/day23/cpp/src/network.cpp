@@ -1,4 +1,4 @@
-#include "network.hpp"
+#include "2019/day23/cpp/include/network.hpp"
 
 typedef std::vector<std::vector<int64_t>> vecvecint64_t;
 typedef std::vector<int64_t> vecint64_t;

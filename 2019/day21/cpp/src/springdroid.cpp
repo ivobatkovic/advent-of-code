@@ -1,8 +1,8 @@
-#include "springdroid.hpp"
+#include "2019/day21/cpp/include/springdroid.hpp"
 
 #include <iostream>
 
-#include "intcode.hpp"
+#include "2019/day5/cpp/include/intcode.hpp"
 
 Springdroid::Springdroid(std::string file_name) : m_file_name(file_name) {}
 

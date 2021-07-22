@@ -5,7 +5,7 @@ import time
 
 
 def solve_part_one(input_string):
-    """Function that applies the filter along the digits. """
+    """Function that applies the filter along the digits."""
 
     # Make a list of the integers
     d = [int(x) for x in input_string]

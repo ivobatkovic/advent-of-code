@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "network.hpp"
+#include "2019/day23/cpp/include/network.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

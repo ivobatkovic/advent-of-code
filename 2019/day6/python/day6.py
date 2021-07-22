@@ -16,7 +16,7 @@ class Orbit:
     https://github.com/hoxovic/adventofcode2019."""
 
     def __init__(self, file_location):
-        """ Initialize with a file location. """
+        """Initialize with a file location."""
         self.parents, self.neighbors = get_parents_and_neighbors(file_location)
 
     def get_n_orbits(self):

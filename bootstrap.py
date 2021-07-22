@@ -44,6 +44,7 @@ def setup_cpp_source(year, day):
     # Rename files
     src_files = [
         join(*[f"{year}",f"day{day}", "CMakeLists.txt_tmp"]),
+        join(*[f"{year}",f"day{day}", "BUILD.bazel_tmp"]),
         join(*[f"{year}",f"day{day}", "cpp", "include", "day.hpp_tmp"]),
         join(*[f"{year}",f"day{day}", "cpp", "src", "day.cpp_tmp"]),
         join(*[f"{year}",f"day{day}", "cpp", "src", "main.cpp_tmp"]),
@@ -51,6 +52,7 @@ def setup_cpp_source(year, day):
     ]
     dst_files = [
         join(*[f"{year}",f"day{day}", "CMakeLists.txt"]),
+        join(*[f"{year}",f"day{day}", "BUILD.bazel"]),
         join(*[f"{year}",f"day{day}", "cpp", "include", f"day{day}.hpp"]),
         join(*[f"{year}",f"day{day}", "cpp", "src", f"day{day}.cpp"]),
         join(*[f"{year}",f"day{day}", "cpp", "src", "main.cpp"]),

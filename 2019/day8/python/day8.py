@@ -8,10 +8,10 @@ import time
 
 
 class SpaceImage:
-    """ Class that reads Space images. """
+    """Class that reads Space images."""
 
     def __init__(self, file_location, image_width, image_height):
-        """ Constructor: read image and specify dimensinons."""
+        """Constructor: read image and specify dimensinons."""
         self.img = IO.read_image(file_location, image_width, image_height)
         self.wide, self.tall = image_width, image_height
 
@@ -24,7 +24,7 @@ class SpaceImage:
         return np.sum(self.img[layer] == 1) * np.sum(self.img[layer] == 2)
 
     def reconstruct_image(self):
-        """ Decodes and prints the image. """
+        """Decodes and prints the image."""
 
         out = 2 * np.ones((self.tall, self.wide))
         for img in self.img:

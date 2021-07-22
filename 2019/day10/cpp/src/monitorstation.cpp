@@ -1,4 +1,4 @@
-#include "monitorstation.hpp"
+#include "2019/day10/cpp/include/monitorstation.hpp"
 
 #include <math.h>
 
@@ -7,7 +7,7 @@
 #include <map>
 #include <unordered_set>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using std::string;
 using std::vector;

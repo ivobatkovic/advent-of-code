@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "planet.hpp"
+#include "2019/day24/cpp/include/planet.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

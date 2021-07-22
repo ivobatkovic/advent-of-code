@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "cryo.hpp"
+#include "2019/day25/cpp/include/cryo.hpp"
 
 int main() {
   Cryo cryo(std::string(SOURCE_DIR) + "/data/input.txt");

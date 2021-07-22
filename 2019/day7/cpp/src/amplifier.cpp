@@ -1,9 +1,9 @@
-#include "amplifier.hpp"
+#include "2019/day7/cpp/include/amplifier.hpp"
 
 #include <algorithm>
 #include <vector>
 
-#include "intcode.hpp"
+#include "2019/day5/cpp/include/intcode.hpp"
 
 Amplifier::Amplifier() {}
 

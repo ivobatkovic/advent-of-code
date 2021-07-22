@@ -4,7 +4,7 @@ import numpy as np
 class IO:
     @staticmethod
     def read_image(file_location):
-        """ Read data and shape it into and array [layers x width x height]."""
+        """Read data and shape it into and array [layers x width x height]."""
         try:
             with open(file_location) as f:
                 x = []

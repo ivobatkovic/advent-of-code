@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "day{day}.hpp"
+#include "{year}/day{day}/cpp/include/day{day}.hpp"
 #include <tuple>
 
 using std::string;

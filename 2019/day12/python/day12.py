@@ -11,14 +11,14 @@ sys.path.append(join(dirname(realpath(__file__)), *["..", ".."]))
 
 
 def gcd(a, b):
-    """ Find greatest common divisor. """
+    """Find greatest common divisor."""
     while b > 0:
         a, b = b, a % b
     return a
 
 
 def lcm(a, b):
-    """ Find least common multiple between a and b. """
+    """Find least common multiple between a and b."""
     return a * b // gcd(a, b)
 
 

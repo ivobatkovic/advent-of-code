@@ -1,9 +1,9 @@
-#include "day24.hpp"
+#include "2020/day24/cpp/include/day24.hpp"
 
 #include <regex>
 #include <unordered_map>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day24::input_type;
 using day24::output_type;
 using day24::set_type;

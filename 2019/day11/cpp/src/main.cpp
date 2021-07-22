@@ -1,8 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "intcode.hpp"
-#include "paint.hpp"
+#include "2019/day11/cpp/include/paint.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

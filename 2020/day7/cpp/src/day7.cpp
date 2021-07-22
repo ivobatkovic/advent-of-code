@@ -1,9 +1,9 @@
-#include "day7.hpp"
+#include "2020/day7/cpp/include/day7.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <regex>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day7::bag_contents;
 using day7::input_type;

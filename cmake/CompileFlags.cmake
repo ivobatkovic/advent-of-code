@@ -33,9 +33,8 @@ elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
         -Wno-error=stack-protector -Wstrict-aliasing -Wstrict-aliasing=2 \
         -Wsync-nand -Warray-bounds -Wtrampolines -Wlogical-op -Wnormalized=nfc \
         -Wvarargs -Wvector-operation-performance -Wno-error=vla -Wtype-limits \
-        -Wc++11-compat -Woverloaded-virtual -pedantic -Wcast-qual \
-        -Wctor-dtor-privacy -Wpacked -Wswitch-enum -Wdouble-promotion \
-        -Wmissing-declarations")
+        -Woverloaded-virtual -pedantic -Wcast-qual -Wctor-dtor-privacy \
+        -Wpacked -Wswitch-enum -Wdouble-promotion -Wmissing-declarations")
     set(CXX_WARNING_TO_FIX " -Wno-error=conversion -Wno-error=useless-cast \
     -Wno-error=old-style-cast -Wno-error=aggregate-return \
     -Wno-error=zero-as-null-pointer-constant \

@@ -1,10 +1,10 @@
-#include "donut.hpp"
+#include "2019/day20/cpp/include/donut.hpp"
 
 #include <iostream>
 #include <queue>
 #include <set>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 // Data structure for the queue
 struct queue_data {

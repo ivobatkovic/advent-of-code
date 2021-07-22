@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "formula.hpp"
+#include "2019/day14/cpp/include/formula.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

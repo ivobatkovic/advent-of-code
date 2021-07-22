@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "intcode.hpp"
+#include "2019/day5/cpp/include/intcode.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

@@ -1,8 +1,8 @@
-#include "fuel_counter.hpp"
+#include "2019/day1/cpp/include/fuel_counter.hpp"
 
 #include <math.h>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 // Default constructor
 FuelCounter::FuelCounter() : m_masses() {}

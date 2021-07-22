@@ -1,0 +1,42 @@
+load("//bazel:compile_flags.bzl","get_compiler_flags","get_linker_flags")
+
+cc_library(
+    name = "orbit",
+    srcs = ["cpp/src/orbit.cpp"],
+    hdrs = ["cpp/include/orbit.hpp"],
+    deps = [
+        "//utils/cpp:utils_lib"
+    ],
+    defines = ["SOURCE_DIR=\\\"./2019/day6\\\""],
+    copts = get_compiler_flags(),
+    linkopts = get_linker_flags(),
+)
+
+cc_binary(
+    name = "main",
+    srcs = ["cpp/src/main.cpp"],
+    deps = [
+        ":orbit",
+    ],
+    copts = get_compiler_flags(),
+    linkopts = get_linker_flags(),
+)
+
+cc_test(
+    name = "test",
+    srcs = ["cpp/src/test.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        ":orbit",
+    ],
+    copts = get_compiler_flags(),
+    linkopts = get_linker_flags(),
+    data = [
+        ":test_data"
+    ]
+)
+
+filegroup(
+    name = "test_data",
+    srcs = glob(["data/*.txt"])
+)

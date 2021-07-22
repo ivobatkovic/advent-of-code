@@ -13,16 +13,16 @@ from day5.python.intcode import Intcode
 
 
 class Asci:
-    """ Class that controls the scaffolding bot. """
+    """Class that controls the scaffolding bot."""
 
     def __init__(self, fileName):
-        """ Initialize class and intcode computer. """
+        """Initialize class and intcode computer."""
         self.fileName = fileName
         self.ic = Intcode(fileName, verbose=False, reset=False)
         self.mp = self.get_map()
 
     def get_map(self):
-        """ Call the intcode computer to generate the map """
+        """Call the intcode computer to generate the map"""
 
         self.mp = defaultdict(lambda: ord("x"))
         y, x = 0, 0
@@ -43,7 +43,7 @@ class Asci:
         return self.mp
 
     def compute_intersections(self):
-        """ Go through map and find if any section intersects """
+        """Go through map and find if any section intersects"""
 
         # Make list of elements where v ==35 (chr(v) = '#')
         list = [k for k, v in self.mp.items() if v == 35]
@@ -57,7 +57,7 @@ class Asci:
         return sum
 
     def find_start_pose(self):
-        """ Find where (<,>,^,v) is in the map """
+        """Find where (<,>,^,v) is in the map"""
 
         # Find start position
         y, x = [
@@ -80,7 +80,7 @@ class Asci:
         return y, x, theta
 
     def traverse_scaffold(self):
-        """ Compute which actions are needed to go through scaffold """
+        """Compute which actions are needed to go through scaffold"""
 
         y, x, theta = self.find_start_pose()
         dy, dx = -np.sin(theta), np.cos(theta)
@@ -138,7 +138,7 @@ class Asci:
                 dy, dx = np.int(-np.sin(theta)), np.int(np.cos(theta))
 
     def find_movement_routine(self):
-        """ Find three repeating patterns in the movement string """
+        """Find three repeating patterns in the movement string"""
 
         str0 = self.traverse_scaffold() + ","
 
@@ -184,7 +184,7 @@ class Asci:
         return output
 
     def print_video_feed(self):
-        """ Print the progress of the scaffolding robot """
+        """Print the progress of the scaffolding robot"""
 
         screen = curses.initscr()
         height, width = screen.getmaxyx()
@@ -241,7 +241,7 @@ class Asci:
         screen.refresh()
 
     def collect_dust(self, print_iterations=False):
-        """ Let the robot traverse using the compted input """
+        """Let the robot traverse using the compted input"""
 
         input = self.construct_input(print_iterations)
 

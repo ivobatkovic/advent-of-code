@@ -1,8 +1,8 @@
-#include "maze.hpp"
+#include "2019/day18/cpp/include/maze.hpp"
 
 #include <queue>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 // Data structure for the queue
 struct queue_data {

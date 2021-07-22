@@ -1,4 +1,4 @@
-#include "formula.hpp"
+#include "2019/day14/cpp/include/formula.hpp"
 
 #include <math.h>
 
@@ -6,7 +6,7 @@
 #include <iostream>
 #include <regex>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 Formula::Formula(std::string file_name) : m_formula() {
   initialize_formula(file_name);

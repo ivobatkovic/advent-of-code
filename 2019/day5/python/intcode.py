@@ -3,10 +3,10 @@ from collections import defaultdict
 
 
 class Intcode:
-    """ Class containing the intcode computer."""
+    """Class containing the intcode computer."""
 
     def __init__(self, file, input=[], verbose=True, reset=True):
-        """ Read file and give input to the intcode computer."""
+        """Read file and give input to the intcode computer."""
         self.memory = self.read_file(file)
         self.x, self.output = None, None
         self.input = input if isinstance(input, list) else [input]
@@ -31,7 +31,7 @@ class Intcode:
             return None
 
     def parse_opcode(self, op):
-        """ Opcode parsing - analyzes the opcode string. """
+        """Opcode parsing - analyzes the opcode string."""
         oper = op[-1]
         mode = "000" + op[:-2]
         # Parse position vs immediate mode for each operation
@@ -72,7 +72,7 @@ class Intcode:
             return oper, p, None, None
 
     def operate(self, oper, p1, p2, out):
-        """ Apply operation on the intcode sequence. """
+        """Apply operation on the intcode sequence."""
 
         p1 = 0 if p1 is None else p1
         p2 = 0 if p2 is None else p2
@@ -107,7 +107,7 @@ class Intcode:
             self.i = increment_op[oper]
 
     def __call__(self, input=[]):
-        """ Call to solve the intcode. """
+        """Call to solve the intcode."""
 
         self.x = copy.deepcopy(self.memory) if self.reset else self.memory
 

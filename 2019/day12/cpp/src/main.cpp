@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "gravity.hpp"
+#include "2019/day12/cpp/include/gravity.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

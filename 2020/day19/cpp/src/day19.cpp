@@ -1,9 +1,9 @@
-#include "day19.hpp"
+#include "2020/day19/cpp/include/day19.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <regex>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day19::input_type;
 using day19::message_type;

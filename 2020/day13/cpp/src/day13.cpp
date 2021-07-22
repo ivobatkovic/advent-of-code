@@ -1,8 +1,8 @@
-#include "day13.hpp"
+#include "2020/day13/cpp/include/day13.hpp"
 
 #include <math.h>
 
-#include "utils.hpp"
+#include "utils/cpp/include/utils.hpp"
 using day13::input_type;
 using day13::output_type;
 

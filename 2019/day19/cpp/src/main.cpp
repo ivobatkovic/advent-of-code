@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "beam.hpp"
+#include "2019/day19/cpp/include/beam.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

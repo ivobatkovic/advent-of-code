@@ -1,7 +1,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "wires.hpp"
+#include "2019/day3/cpp/include/wires.hpp"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;

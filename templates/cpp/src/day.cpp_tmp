@@ -1,5 +1,5 @@
-#include "day{day}.hpp"
-#include "utils.hpp"
+#include "{year}/day{day}/cpp/include/day{day}.hpp"
+#include "utils/cpp/include/utils.hpp"
 
 using day{day}::input_type;
 using day{day}::output_type;

@@ -8,16 +8,16 @@ from day5.python.intcode import Intcode
 
 
 class Beam:
-    """ Tractor beam class """
+    """Tractor beam class"""
 
     def __init__(self, fileName):
-        """ Initialize Beam with the intcode computer """
+        """Initialize Beam with the intcode computer"""
 
         self.fileName = fileName
         self.ic = Intcode(fileName, verbose=False, reset=True)
 
     def part_one(self, grid_size=50):
-        """ Loop (x,y) in a N x N grid and sum up the output """
+        """Loop (x,y) in a N x N grid and sum up the output"""
         return sum(
             [
                 self.ic([x, y])[1]

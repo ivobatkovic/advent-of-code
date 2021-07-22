@@ -1,0 +1,6 @@
+cc_library(
+    name = "utils_lib",
+    hdrs = ["include/utils.hpp"],
+    strip_include_prefix = "include",
+    visibility = ["//visibility:public"],
+)

@@ -1,4 +1,4 @@
-#include "jiggsaw.hpp"
+#include "2020/day20/cpp/include/jiggsaw.hpp"
 
 #include <algorithm>
 #include <iostream>
