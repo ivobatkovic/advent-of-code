@@ -40,7 +40,7 @@ def solve_part1(input_):
 
 
 def solve_part2(input_):
-    """ For each group, find the size of the intersection """
+    """For each group, find the size of the intersection"""
     return sum([len(set.intersection(*inp)) for inp in input_])
 
 

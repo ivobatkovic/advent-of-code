@@ -3,16 +3,16 @@ import collections
 
 
 class Donut:
-    """ Donut maze class """
+    """Donut maze class"""
 
     def __init__(self, fileName):
-        """ Initialize Donut with the map and find all portals """
+        """Initialize Donut with the map and find all portals"""
         self.fileName = fileName
         self.grid = self.read_map(fileName)
         self.portals, self.reach = self.find_portals()
 
     def shortest_path(self, level_check=False):
-        """ Find the shortest path from AA to ZZ """
+        """Find the shortest path from AA to ZZ"""
 
         # Start and goal positions
         pos = self.portals["AA"][0]
@@ -64,7 +64,7 @@ class Donut:
         return "No solution"
 
     def find_portals(self):
-        """ Go through the grid and find the portals """
+        """Go through the grid and find the portals"""
 
         # Figure out height and width of the maze
         h, w = len(self.grid), len(self.grid[0])
@@ -136,11 +136,11 @@ class Donut:
         return reach
 
     def read_map(self, fileName):
-        """ Read the map """
+        """Read the map"""
         with open(fileName) as f:
             return f.read().splitlines()
 
     def print_map(self):
-        """ Print the map """
+        """Print the map"""
         for row in self.grid:
             print("".join(row))

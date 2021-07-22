@@ -22,7 +22,7 @@ def secure_container(input):
 
 
 def main():
-    """ Print out the problem solutions. """
+    """Print out the problem solutions."""
 
     # Timing reference
     t0 = time.time()

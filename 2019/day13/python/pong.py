@@ -10,10 +10,10 @@ from day5.python.intcode import Intcode
 
 
 class Pong:
-    """ Plays pong from intcode computer instructions. """
+    """Plays pong from intcode computer instructions."""
 
     def __init__(self, fileName, play=False):
-        """ Initialize the pong class with the intcode computer. """
+        """Initialize the pong class with the intcode computer."""
 
         self.map = defaultdict(lambda: -1)
         self.ic = Intcode(fileName, verbose=False, reset=False)
@@ -38,7 +38,7 @@ class Pong:
             self.map[(y, x)] = t
 
     def bot(self):
-        """ Bot that plays the pong game with simple logic """
+        """Bot that plays the pong game with simple logic"""
         if self.ball[3] == 1 and self.pad[1] < self.ball[1]:
             return 1
         if self.ball[3] == -1 and self.pad[1] > self.ball[1]:
@@ -46,7 +46,7 @@ class Pong:
         return 0
 
     def play(self):
-        """ Play a game of pong with the bot as player. """
+        """Play a game of pong with the bot as player."""
         # Screen for rendering the game
         screen = curses.initscr()
         curses.cbreak()
@@ -85,7 +85,7 @@ class Pong:
             return self.score
 
     def render(self, screen):
-        """ Go through the game map and print the walls/obstacles/pad/ball. """
+        """Go through the game map and print the walls/obstacles/pad/ball."""
         try:
             height, width = screen.getmaxyx()
             y_max, x_max = map(max, zip(*self.map.keys()))

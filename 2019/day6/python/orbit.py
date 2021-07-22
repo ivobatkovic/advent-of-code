@@ -2,10 +2,10 @@ import time
 
 
 class Orbit:
-    """ Class containing the orbit computer."""
+    """Class containing the orbit computer."""
 
     def __init__(self, file_location):
-        """ Initialize with a file location. """
+        """Initialize with a file location."""
 
         self.val, self.con = {}, {}
         self.init_connections(file_location)
@@ -42,7 +42,7 @@ class Orbit:
         return sum(self.val.values())
 
     def orbits(self, key):
-        """ Computes the distance and sequence from key to COM """
+        """Computes the distance and sequence from key to COM"""
         if self.con.get(key):
             out = {}
             i = 0
@@ -57,7 +57,7 @@ class Orbit:
         return {}
 
     def minimum(self, x, y):
-        """ Finds shortest orbit distance between x and y. """
+        """Finds shortest orbit distance between x and y."""
 
         x_dict, y_dict = self.orbits(x), self.orbits(y)
         for key_x, val_x in sorted(x_dict.items(), key=lambda x: x[1]):

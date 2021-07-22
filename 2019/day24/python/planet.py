@@ -3,10 +3,10 @@ import math
 
 
 class Planet:
-    """ Planet class that scans the bugs """
+    """Planet class that scans the bugs"""
 
     def __init__(self, file, recursive=False):
-        """ Intialize Planet class """
+        """Intialize Planet class"""
         self.grid = self.read_map(file)
         self.h, self.w = len(self.grid[0]), len(self.grid[0][0])
         self.recursive = recursive
@@ -14,7 +14,7 @@ class Planet:
         self.map_config = dict()
 
     def get_neighbors(self):
-        """ Go through every grid position and compute its neighbors """
+        """Go through every grid position and compute its neighbors"""
 
         # Dictionary to keep track of neighbors
         neighbor_dict = collections.defaultdict(list)
@@ -81,7 +81,7 @@ class Planet:
         return neighbors
 
     def update(self, n_updates=1):
-        """ Apply the bug update step """
+        """Apply the bug update step"""
 
         # If grid is recursive, figure out how many levels are needed
         if self.recursive:
@@ -149,7 +149,7 @@ class Planet:
         return temp_grid
 
     def part_one(self):
-        """ Solve by updating the grid until finding same configuration """
+        """Solve by updating the grid until finding same configuration"""
 
         while True:
             # If configuration found
@@ -166,7 +166,7 @@ class Planet:
                 )
 
     def part_two(self):
-        """ Solve by updating the grid 200 times and counts the bugs """
+        """Solve by updating the grid 200 times and counts the bugs"""
 
         # Update
         self.update(200)
@@ -183,7 +183,7 @@ class Planet:
         return bugs
 
     def read_map(self, fileName):
-        """ Read the map """
+        """Read the map"""
         self.empty_grids = ["." * 5 for x in range(5)]
         grid = collections.defaultdict(lambda: self.empty_grids)
 
@@ -193,6 +193,6 @@ class Planet:
         return grid
 
     def print_map(self):
-        """ Print the map """
+        """Print the map"""
         for row in range(1, len(self.grid[0]) - 1):
             print("".join(self.grid[0][row][1:-1]))

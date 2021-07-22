@@ -8,14 +8,14 @@ from day5.python.intcode import Intcode
 
 
 class Springdroid:
-    """ Class for the springdroid """
+    """Class for the springdroid"""
 
     def __init__(self, file):
-        """ Assign filename """
+        """Assign filename"""
         self.file = file
 
     def part_one(self):
-        """ Solve part one by writing the program """
+        """Solve part one by writing the program"""
 
         program = [
             "NOT B T\n",
@@ -32,7 +32,7 @@ class Springdroid:
         return self.solve_program(program)
 
     def part_two(self):
-        """ Solve part one by writing the program """
+        """Solve part one by writing the program"""
 
         program = [
             "NOT B T\n",
@@ -50,7 +50,7 @@ class Springdroid:
         return self.solve_program(program)
 
     def solve_program(self, program):
-        """ Uses the program to run the springdroid """
+        """Uses the program to run the springdroid"""
 
         # Go through the program and pass it on to the intcode computer
         input = [ord(asci) for letter in program for asci in letter]

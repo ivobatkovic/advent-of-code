@@ -3,10 +3,10 @@ import copy
 
 
 class Gravity:
-    """ Class simulating the N-body problem. """
+    """Class simulating the N-body problem."""
 
     def __init__(s, fileName):
-        """ Initialize position and velocity of the n bodies. """
+        """Initialize position and velocity of the n bodies."""
         s.pos = s.readFile(fileName)
         s.vel = [[0] * 4 for pos in s.pos]
 
@@ -30,7 +30,7 @@ class Gravity:
             quit()
 
     def tick(s, d=0):
-        """ Update step for a dimension. """
+        """Update step for a dimension."""
         for i, ego in enumerate(s.pos[d]):
             for other in s.pos[d]:
                 s.vel[d][i] += 1 if ego < other else 0 if ego == other else -1
@@ -38,13 +38,13 @@ class Gravity:
             s.pos[d][i] += s.vel[d][i]
 
     def update(s, t=1):
-        """ Simulate the dynamics for all dimensions for t timesteps. """
+        """Simulate the dynamics for all dimensions for t timesteps."""
         for i in range(t):
             for k in range(3):
                 s.tick(k)
 
     def energy(s):
-        """ Compute the potential and kinematic energy. """
+        """Compute the potential and kinematic energy."""
         energy = 0
 
         # Transform to array of nBodies  * [x,y,z]

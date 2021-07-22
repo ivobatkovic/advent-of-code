@@ -8,10 +8,10 @@ from day5.python.intcode import Intcode
 
 
 class Network:
-    """ Network class handling 50 intcode computers  """
+    """Network class handling 50 intcode computers"""
 
     def __init__(self, file):
-        """ Initialize the intcode computers """
+        """Initialize the intcode computers"""
         self.file = file
         self.nodes = self.initialize_nodes()
         self.NAT = [None, None]
@@ -19,7 +19,7 @@ class Network:
         self.first_nat_signal = None
 
     def initialize_nodes(self):
-        """ Create 50 intcode computers """
+        """Create 50 intcode computers"""
         return [
             Intcode(self.file, input=input, verbose=False, reset=False)
             for input in range(50)

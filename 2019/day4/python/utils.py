@@ -1,7 +1,7 @@
 class Digits:
     @staticmethod
     def double_digit(num):
-        """ Checks if there exist two adjacent matching digits. """
+        """Checks if there exist two adjacent matching digits."""
 
         for i in range(0, len(num) - 1):
             if num[i] == num[i + 1]:
@@ -40,7 +40,7 @@ class Digits:
 
     @staticmethod
     def next_monotonic(num):
-        """ Returns the next monotonic number."""
+        """Returns the next monotonic number."""
         for i in range(len(num) - 1, -1, -1):
             if num[i] < 9:
                 num[i] += 1

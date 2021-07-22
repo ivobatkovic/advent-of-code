@@ -6,7 +6,7 @@ import time
 
 
 def intcode(x):
-    """ Function that computes the intcode for the list x."""
+    """Function that computes the intcode for the list x."""
 
     # Traverse x with a stride of 4
     for i in range(0, len(x), 4):

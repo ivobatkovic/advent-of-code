@@ -8,14 +8,14 @@ from day5.python.intcode import Intcode
 
 
 class Cryo:
-    """ Class playing the game of navigating through the rooms """
+    """Class playing the game of navigating through the rooms"""
 
     def __init__(self, file):
-        """ Initialize the intcode """
+        """Initialize the intcode"""
         self.ic = Intcode(file=file, reset=False, verbose=False)
 
     def play(self):
-        """ Use the input from the terminal to play the game """
+        """Use the input from the terminal to play the game"""
         message, row = [], ""
         while True:
             cond, output = self.ic()
