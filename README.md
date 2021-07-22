@@ -5,20 +5,11 @@
     <img src="https://img.shields.io/badge/License-MIT-informational"/></a>
 </p>
 <p align="center">
-    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/2019:Python/badge.svg"/>
+    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/Python/badge.svg"/>
     <img src="https://img.shields.io/badge/versions-3.6%20%7C%203.9-informational"/>
     <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/badge/code%20style-black-000000.svg"/></a>    
-    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/2019:C++/badge.svg"/>
-    <img src="https://img.shields.io/badge/standard-c++14-informational"/>
-    <img src="https://img.shields.io/badge/clang%20format-google-000000.svg"/>
-</p>
-<p align="center">
-    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/2020:Python/badge.svg"/>
-    <img src="https://img.shields.io/badge/versions-3.6%20%7C%203.9-informational"/>
-    <a href="https://github.com/psf/black">
-    <img src="https://img.shields.io/badge/code%20style-black-000000.svg"/></a>    
-    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/2020:C++/badge.svg"/>
+    <img src="https://github.com/ivobatkovic/advent-of-code/workflows/C++/badge.svg"/>
     <img src="https://img.shields.io/badge/standard-c++17-informational"/>
     <img src="https://img.shields.io/badge/clang%20format-google-000000.svg"/>
 </p>
@@ -32,7 +23,8 @@ year                   # Advent of code year
 │   │    └── inlclude
 │   ├── python         # Contains python source files
 │   ├── data           # Contains input data
-│   └── CMakeLists.txt # Build configuraiton
+│   ├── BUILD.bazel    # Bazel configuration
+│   └── CMakeLists.txt # Cmake configuraiton
 .
 .
 ├──day25
@@ -41,7 +33,8 @@ year                   # Advent of code year
 │   │    └── include
 │   ├── python      
 │   ├── data        
-│   └── CMakeLists.txt
+│   ├── BUILD.bazel    # Bazel configuration
+│   └── CMakeLists.txt # Cmake configuraiton
 └──CMakeLists.txt      # cmake settings for the project
 ```
 ## Python
