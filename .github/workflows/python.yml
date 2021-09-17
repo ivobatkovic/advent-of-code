@@ -29,4 +29,4 @@ jobs:
         python3 -m black 20*/. --check --line-length 79
     - name: Python unit tests
       run: |
-        python3 -m pytest 2019/day*/python/test_*.py 2020/day*/python/day*.py
+        python3 -m pytest 2019/**/*.py && python3 -m pytest 2020/**/*.py
