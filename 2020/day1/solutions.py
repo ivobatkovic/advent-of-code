@@ -8,7 +8,7 @@ sys.path.append(join(dirname(realpath(__file__)), *[".."]))
 
 
 def transform_input(input_):
-    # custom transform for the day 
+    # custom transform for the day
     return [int(inp) for inp in input_.splitlines()]
 
 
