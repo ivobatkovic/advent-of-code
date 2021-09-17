@@ -2,3 +2,4 @@ advent-of-code-data==0.8.5
 pytest
 flake8
 black
+numpy
