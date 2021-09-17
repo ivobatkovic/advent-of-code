@@ -5,7 +5,8 @@ on:
     branches:
       - master
     paths:
-      - '2020/day*/python/**'
+      - '20*/**/*.py'
+      - '20*/**/*.py'
   pull_request:
 
 jobs:
