@@ -7,7 +7,7 @@ import time
 
 def transform_input(input_):
     # Remove whitespace characters at end of each line
-    return [int(x.strip()) for x in input_]
+    return [int(x.strip()) for x in input_.splitlines()]
 
 
 def fuel_counter(masses):
@@ -50,7 +50,7 @@ def main():
     try:
         dir_path = dirname(realpath(__file__))
         with open(join(dir_path, file_location), "r") as f:
-            masses = f.readlines()
+            masses = f.read()
 
         # Part one
         t0 = time.time()
