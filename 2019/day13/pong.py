@@ -49,8 +49,8 @@ class Pong:
         """Play a game of pong with the bot as player."""
         # Screen for rendering the game
 
-        screen = curses.initscr()
-        curses.cbreak()
+        # screen = curses.initscr()
+        # curses.cbreak()
         try:
             while True:
                 cond, x = self.ic()
@@ -70,19 +70,19 @@ class Pong:
                 else:
                     self.map_rendered = True
                     self.score = t
-                    screen.addstr(0, 0, "Score: %s " % self.score)
+                    # screen.addstr(0, 0, "Score: %s " % self.score)
 
                 # If map is rendered, and ball is rendered again apply input
                 if self.map_rendered and self.ball_rendered:
-                    self.render(screen)
+                    # self.render(screen)
                     self.ball_rendered = False
                     self.ic.input.append(self.bot())
 
         # Exit screen
         finally:
-            curses.echo()
-            curses.nocbreak()
-            curses.endwin()
+            # curses.echo()
+            # curses.nocbreak()
+            # curses.endwin()
             return self.score
 
     def render(self, screen):
