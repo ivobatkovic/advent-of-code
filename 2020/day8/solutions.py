@@ -10,8 +10,8 @@ sys.path.append(join(dirname(realpath(__file__)), *[".."]))
 
 
 class Console:
-    def __init__(self, file_name="data/input.txt"):
-        self.program = self.read_input(file_name)
+    def __init__(self, input_):
+        self.program = self.read_input(input_)
         self.n_instructions = len(self.program)
         self.reset()
 
@@ -27,10 +27,8 @@ class Console:
 
         return [process(inp.split()) for inp in input_.splitlines()]
 
-    def read_input(self, file_name):
-        with open(file_name, "r") as f:
-            input_ = self.transform_input(f.read())
-        return input_
+    def read_input(self, input_):
+        return self.transform_input(input_)
 
     def __call__(self):
 
@@ -55,15 +53,19 @@ class Console:
 
 
 def read_input(file_name="data/input.txt"):
-    return join(dirname(realpath(__file__)), file_name)
+    dir_path = dirname(realpath(__file__))
+    with open(join(dir_path, file_name), "r") as f:
+        input_ = f.read()
+
+    return input_
 
 
 def part1(input_):
-    return Console(file_name=input_)()[0]
+    return Console(input_)()[0]
 
 
 def part2(input_):
-    console = Console(file_name=input_)
+    console = Console(input_)
     for line in range(len(console.program)):
 
         # Modify instruction
