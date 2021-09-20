@@ -16,7 +16,7 @@ def part1(input_):
 
 def part2(input_):
     pong = Pong(input_, play=True)
-    return pong.play(vision=False)
+    return pong.play()
 
 
 def main():
