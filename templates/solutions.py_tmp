@@ -1,3 +1,4 @@
+""" Credit: code taken and modified from https://github.com/amrit110/aoc """
 #!/usr/bin/env python3
 from os.path import dirname
 from os.path import realpath
@@ -6,31 +7,28 @@ import time
 import pytest
 import sys
 
-sys.path.append(join(dirname(realpath(__file__)), *[".."]))
-from day2.solutions import solve_part1 as pt1
+sys.path.append(join(dirname(realpath(__file__)), *["..", ".."]))
+
+
 def transform_input(input_):
     # custom transform for the day
-    return [int(x) for x in input_.splitlines()]
+    return input_
 
 
-def read_input(file_name="2019/day1/data/input.txt"):
-    with open(file_name, "r") as f:
+def read_input(file_name="data/input.txt"):
+    dir_path = dirname(realpath(__file__))
+    with open(join(dir_path, file_name), "r") as f:
         return f.read()
 
 
 def solve_part1(input_):
     inp = transform_input(input_)
-    return sum([int(x / 3.0) - 2 for x in inp])
-
-
-def compute_fuel(mass):
-    fuel_needed = int(mass / 3.0) - 2
-    return fuel_needed + compute_fuel(fuel_needed) if fuel_needed > 0 else 0
+    pass
 
 
 def solve_part2(input_):
     inp = transform_input(input_)
-    return sum([compute_fuel(x) for x in inp])
+    pass
 
 
 def main():
@@ -51,11 +49,12 @@ if __name__ == "__main__":
     main()
 
 
-@pytest.mark.parametrize("input1, output1", [("data/test_input0.txt", 33583)])
+@pytest.mark.parametrize("input1, output1", [("data/test_input0.txt", 1)])
 def test1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
 
-@pytest.mark.parametrize("input2, output2", [("data/test_input0.txt", 50346)])
+@pytest.mark.parametrize("input2, output2", [("data/test_input0.txt", 1)])
 def test2(input2, output2):
     assert solve_part2(read_input(input2)) == output2
+    

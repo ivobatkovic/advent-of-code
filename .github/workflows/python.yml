@@ -6,7 +6,6 @@ on:
       - master
     paths:
       - '20*/**/*.py'
-      - '20*/**/*.py'
   pull_request:
 
 jobs:

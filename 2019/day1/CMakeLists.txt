@@ -6,33 +6,23 @@ project(day1)
 get_filename_component(year ../ ABSOLUTE)
 get_filename_component(year "${year}" NAME)
 
-# Get root directory
-include_directories(${CMAKE_SOURCE_DIR})
+# Prepare copying of test data
+add_custom_target( ${year}-${PROJECT_NAME}-data
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_CURRENT_BINARY_DIR}/data
+)
 
-# Set sources to be compiled
-set( SOURCES "cpp/src/fuel_counter.cpp" )
-add_library(day1_${year}.objs OBJECT ${SOURCES})
 
-# Give the relative path of the compilation as SOURCE_DIR
-target_compile_definitions(day1_${year}.objs
-                           PUBLIC SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+##### C++ Solutions Start #####
 
-# Compile the sources
-set( MAIN_SOURCES "cpp/src/main.cpp")
-add_executable (${PROJECT_NAME}_${year} ${MAIN_SOURCES})
+#############################
 
-# Link potential libraries
-target_link_libraries(${PROJECT_NAME}_${year} day1_${year}.objs)
+##### C Solutions Start #####
+# Solution library
+set( CSOURCES "c/solutions.c" )
+add_library(csol OBJECT "c/solutions.c")
+target_link_libraries(csol cutilslib)
 
-# Build tests
-set( TEST_SOURCES "cpp/src/test.cpp")
-set ( TEST_TARGET ${PROJECT_NAME}_${year}_tests)
-
-# Test exectuable
-add_executable (${TEST_TARGET} ${TEST_SOURCES})
-target_link_libraries(${TEST_TARGET} gtest gtest_main day1_${year}.objs)
-set_target_properties(${TEST_TARGET} PROPERTIES EXCLUDE_FROM_ALL TRUE)
-
-# Set up test
-add_test( ${PROJECT_NAME}_${year}_test ${TEST_TARGET})
-add_dependencies(build_tests ${TEST_TARGET})
+add_executable(maint "c/main.c")
+target_link_libraries(maint csol)
+# Main file to call the solutions
+##### C Solutions End #####

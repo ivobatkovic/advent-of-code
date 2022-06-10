@@ -1,0 +1,19 @@
+#ifndef _{year}_DAY{day}_H_
+#define _{year}_DAY{day}_H_
+
+#include <string>
+#include <vector>
+
+namespace day{day} {{
+
+using output_type = std::string;
+
+std::string read_input(std::string file_name = "{year}/day{day}/data/input.txt");
+
+output_type solve_part1(const std::string &input_string);
+
+output_type solve_part2(const std::string &input_string);
+
+}}  // namespace day{day}
+
+#endif

@@ -1,0 +1,26 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["**"]),
+)
+
+cmake(
+    name = "ftxui-cmake",
+    lib_source = ":srcs",
+    out_static_libs = [
+        "libftxui-screen.a",
+        "libftxui-dom.a",
+        "libftxui-component.a",
+        ],
+    visibility = ["//visibility:public"],
+)
+
+
+cc_library(
+    name = "ftxui-lib",
+    includes = ["include"],
+    deps = [":ftxui-cmake"],
+)

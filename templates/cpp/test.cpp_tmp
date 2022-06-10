@@ -1,0 +1,40 @@
+#include <gtest/gtest.h>
+
+#include <tuple>
+
+#include "{year}/day{day}/cpp/include/solutions.hpp"
+
+using std::string;
+
+class TestDay{day}PartOne
+    : public ::testing::TestWithParam<std::tuple<string, string>> {{}};
+
+TEST_P(TestDay{day}PartOne, PartOne) {{
+  auto param = GetParam();
+  auto file_name = "{year}/day{day}/data/" + std::get<0>(param);
+  auto output = std::get<1>(param);
+  EXPECT_EQ(output, day{day}::solve_part1(day{day}::read_input(file_name)));
+}}
+
+INSTANTIATE_TEST_SUITE_P(PartOne, TestDay{day}PartOne,
+                         ::testing::Values(std::make_tuple("test_input0.txt",
+                                                           "1")));
+
+class TestDay{day}PartTwo
+    : public ::testing::TestWithParam<std::tuple<string, string>> {{}};
+
+TEST_P(TestDay{day}PartTwo, PartTwo) {{
+  auto param = GetParam();
+  auto file_name = "{year}/day{day}/data/" + std::get<0>(param);
+  auto output = std::get<1>(param);
+  EXPECT_EQ(output, day{day}::solve_part2(day{day}::read_input(file_name)));
+}}
+
+INSTANTIATE_TEST_SUITE_P(PartTwo, TestDay{day}PartTwo,
+                         ::testing::Values(std::make_tuple("test_input0.txt",
+                                                           "1")));
+
+int main(int argc, char **argv) {{
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}}

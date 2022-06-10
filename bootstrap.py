@@ -22,10 +22,12 @@ def download_data(year, day, dst):
 def setup_python_source(year, day):
     # Rename template_day.py
     src_files = [
-        join(*[f"{year}",f"day{day}", "python", "day.py_tmp"]),
+        join(*[f"{year}",f"day{day}", "solutions.py_tmp"]),
+        join(*[f"{year}",f"day{day}", "__init__.py_tmp"]),
     ]
     dst_files = [
-        join(*[f"{year}",f"day{day}", "python", f"day{day}.py"]),
+        join(*[f"{year}",f"day{day}", f"solutions.py"]),
+         join(*[f"{year}",f"day{day}", f"__init__.py"]),
     ]
     
     for src, dst in zip(src_files, dst_files):
@@ -45,18 +47,18 @@ def setup_cpp_source(year, day):
     src_files = [
         join(*[f"{year}",f"day{day}", "CMakeLists.txt_tmp"]),
         join(*[f"{year}",f"day{day}", "BUILD.bazel_tmp"]),
-        join(*[f"{year}",f"day{day}", "cpp", "include", "day.hpp_tmp"]),
-        join(*[f"{year}",f"day{day}", "cpp", "src", "day.cpp_tmp"]),
-        join(*[f"{year}",f"day{day}", "cpp", "src", "main.cpp_tmp"]),
-        join(*[f"{year}",f"day{day}", "cpp", "src", "test.cpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "include", "solutions.hpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "solutions.cpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "main.cpp_tmp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "test.cpp_tmp"]),
     ]
     dst_files = [
         join(*[f"{year}",f"day{day}", "CMakeLists.txt"]),
         join(*[f"{year}",f"day{day}", "BUILD.bazel"]),
-        join(*[f"{year}",f"day{day}", "cpp", "include", f"day{day}.hpp"]),
-        join(*[f"{year}",f"day{day}", "cpp", "src", f"day{day}.cpp"]),
-        join(*[f"{year}",f"day{day}", "cpp", "src", "main.cpp"]),
-        join(*[f"{year}",f"day{day}", "cpp", "src", "test.cpp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "include", "solutions.hpp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "solutions.cpp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "main.cpp"]),
+        join(*[f"{year}",f"day{day}", "cpp", "test.cpp"]),
     ]
     for src, dst in zip(src_files, dst_files):
         os.rename(src, dst)

@@ -1,7 +1,7 @@
 load("//bazel:compile_flags.bzl","get_compiler_flags","get_linker_flags")
 
 cc_library(
-    name = "day1",
+    name = "day{day}",
     srcs = ["cpp/solutions.cpp"],
     hdrs = ["cpp/include/solutions.hpp"],
     deps = [
@@ -16,7 +16,7 @@ cc_binary(
     name = "main",
     srcs = ["cpp/main.cpp"],
     deps = [
-        ":day1",
+        ":day{day}",
     ],
     data = [
         ":input_data",
@@ -30,7 +30,7 @@ cc_test(
     srcs = ["cpp/test.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        ":day1",
+        ":day{day}",
     ],
     copts = get_compiler_flags(),
     linkopts = get_linker_flags(),
