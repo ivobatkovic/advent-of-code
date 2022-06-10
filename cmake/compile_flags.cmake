@@ -9,7 +9,7 @@ if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
     include_directories(/usr/local/include)
 elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
     set(COMPILER_FLAGS "-fstack-protector-all -fsanitize=undefined,address \
-        -fPIC -O2 -Wall -Werror -Wextra -Wshadow -pedantic-errors")
+        -fPIC -O2 -Wall -Werror -Wextra -pedantic-errors -Wshadow")
     set(C_COMPILER_FLAGS "-std=c17")
     set(CXX_COMPILER_FLAGS "-std=c++17 -Weffc++")
 

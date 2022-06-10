@@ -9,8 +9,8 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake" ${CMAKE_MODULE_PATH
 
 # Configure third-party dependencies
 include(cmake/gtest_build.cmake)
-include(cmake/ftxui_build.cmake)
-include(cmake/boost_build.cmake)
+#include(cmake/ftxui_build.cmake)
+#include(cmake/boost_build.cmake)
 
 
 # Compilation flags to be used on the projects

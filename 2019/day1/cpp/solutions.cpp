@@ -1,5 +1,5 @@
-#include "include/solutions.hpp"
-#include "utils/cpp/include/cpp_utils.hpp"
+#include "solutions.hpp"
+#include "cpp_utils.hpp"
 #include <iostream>
 
 namespace day1 {
