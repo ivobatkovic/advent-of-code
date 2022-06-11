@@ -29,7 +29,7 @@ struct string_array split_string(const char * const string, const char *delim);
 ///
 /// @param string File name
 /// @return String containing the file contents
-char * read_file_contents(char * file_name);
+char * read_file_contents(const char * const file_name);
 
 
 

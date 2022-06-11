@@ -72,19 +72,19 @@ target_link_libraries(${C_MAIN} ${C_SOL})
 target_include_directories(${C_MAIN} PRIVATE "c/include")
 
 # Test class for the c++ solution
-#set( CPP_TEST_SOURCES "c/test.cpp" )
-#set( CPP_TEST "${YEAR}-${PROJECT_NAME}-cpp-test" )
+set( C_TEST_SOURCES "c/test.cpp" )
+set( C_TEST "${YEAR}-${PROJECT_NAME}-c-test" )
 
-#add_executable (${CPP_TEST} ${CPP_TEST_SOURCES})
-#add_dependencies( ${CPP_TEST} ${DATA_FILES})
-#target_link_libraries(${CPP_TEST} gtest gtest_main ${CPP_SOL})
-#set_target_properties(${CPP_TEST_TARGET} PROPERTIES EXCLUDE_FROM_ALL TRUE)
-#target_include_directories(${CPP_TEST} PRIVATE "cpp/include")
+add_executable (${C_TEST} ${C_TEST_SOURCES})
+add_dependencies( ${C_TEST} ${DATA_FILES})
+target_link_libraries(${C_TEST} gtest gtest_main ${C_SOL})
+set_target_properties(${C_TEST_TARGET} PROPERTIES EXCLUDE_FROM_ALL TRUE)
+target_include_directories(${C_TEST} PRIVATE "c/include")
 
 # Set up test
-#set ( CPP_TEST_TARGET "${YEAR}-${PROJECT_NAME}-tests" )
-#add_test( ${CPP_TEST_TARGET} 2019/day1/${CPP_TEST})
-#set_property( TEST ${CPP_TEST_TARGET} PROPERTY WORKING_DIRECTORY ${CMAKE_BINARY_DIR} )
-#add_dependencies(build_tests ${CPP_TEST} )
+set ( C_TEST_TARGET "${YEAR}-${PROJECT_NAME}-c-tests" )
+add_test( ${C_TEST_TARGET} 2019/day1/${C_TEST})
+set_property( TEST ${C_TEST_TARGET} PROPERTY WORKING_DIRECTORY ${CMAKE_BINARY_DIR} )
+add_dependencies(build_tests ${C_TEST} )
 
 ##### C setup stop ########

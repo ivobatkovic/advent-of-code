@@ -3,30 +3,24 @@
 
 #include "solutions.hpp"
 
-using std::chrono::duration_cast;
-using std::chrono::milliseconds;
-using std::chrono::steady_clock;
+using chrono_clock = std::chrono::high_resolution_clock;
 
 int main() {
-  const std::string input = day1::read_input();
+    const std::string input = day1::read_input();
 
-  auto begin = steady_clock::now();
+    auto begin = chrono_clock::now();
+    const auto part_one = day1::solve_part1(input);
+    auto end = chrono_clock::now();
+    auto duration = std::chrono::duration<double>(end - begin).count() * 1e3;
+    printf("Solution to part one: %s (time taken %.2f [ms])\n",
+           part_one.c_str(), duration);
 
-  const auto part_one = day1::solve_part1(input);
-  std::cout << "Solution to part one: " << part_one << " ";
+    begin = chrono_clock::now();
+    const auto part_two = day1::solve_part2(input);
+    end = chrono_clock::now();
+    duration = std::chrono::duration<double>(end - begin).count() * 1e3;
+    printf("Solution to part two: %s (time taken %.2f [ms])\n",
+           part_two.c_str(), duration);
 
-  auto end = steady_clock::now();
-  std::cout << "(time taken "
-            << duration_cast<milliseconds>(end - begin).count() << "[ms])\n";
-
-  begin = steady_clock::now();
-
-  const auto part_two = day1::solve_part2(input);
-  std::cout << "Solution to part two: " << part_two << " ";
-
-  end = steady_clock::now();
-  std::cout << "(time taken "
-            << duration_cast<milliseconds>(end - begin).count() << "[ms])\n";
-
-  return 0;
+    return 0;
 }

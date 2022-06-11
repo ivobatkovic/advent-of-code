@@ -7,9 +7,8 @@ import pytest
 import sys
 
 sys.path.append(join(dirname(realpath(__file__)), *[".."]))
-from day2.solutions import solve_part1 as pt1
+
 def transform_input(input_):
-    # custom transform for the day
     return [int(x) for x in input_.splitlines()]
 
 
@@ -51,11 +50,11 @@ if __name__ == "__main__":
     main()
 
 
-@pytest.mark.parametrize("input1, output1", [("data/test_input0.txt", 33583)])
+@pytest.mark.parametrize("input1, output1", [("2019/day1/data/test_input0.txt", 33583)])
 def test1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
 
-@pytest.mark.parametrize("input2, output2", [("data/test_input0.txt", 50346)])
+@pytest.mark.parametrize("input2, output2", [("2019/day1/data/test_input0.txt", 50346)])
 def test2(input2, output2):
     assert solve_part2(read_input(input2)) == output2

@@ -62,7 +62,7 @@ struct string_array split_string(const char * const string, const char *delim) {
 }
 
 
-char *read_file_contents(char * file_name) {
+char *read_file_contents(const char * const file_name) {
 
     FILE *f = fopen(file_name,"r");
     if (!f) {

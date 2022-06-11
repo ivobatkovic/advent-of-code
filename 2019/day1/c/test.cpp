@@ -1,8 +1,11 @@
 #include <gtest/gtest.h>
 
+#include <string>
 #include <tuple>
 
-#include "solutions.hpp"
+extern "C" {
+#include "solutions.h"
+}
 
 using std::string;
 
@@ -13,7 +16,12 @@ TEST_P(TestDay1PartOne, PartOne) {
     auto param = GetParam();
     auto file_name = "2019/day1/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
-    EXPECT_EQ(output, day1::solve_part1(day1::read_input(file_name)));
+
+    char *input = Day1.read_file(file_name.c_str());
+    char *result = Day1.solve_part1(input);
+    EXPECT_EQ(output.c_str(), std::string(result));
+    free(input);
+    free(result);
 }
 
 INSTANTIATE_TEST_SUITE_P(PartOne, TestDay1PartOne,
@@ -27,7 +35,13 @@ TEST_P(TestDay1PartTwo, PartTwo) {
     auto param = GetParam();
     auto file_name = "2019/day1/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
-    EXPECT_EQ(output, day1::solve_part2(day1::read_input(file_name)));
+
+    char *input = Day1.read_file(file_name.c_str());
+    char *result = Day1.solve_part2(input);
+
+    EXPECT_EQ(output, std::string(result));
+    free(input);
+    free(result);
 }
 
 INSTANTIATE_TEST_SUITE_P(PartTwo, TestDay1PartTwo,
