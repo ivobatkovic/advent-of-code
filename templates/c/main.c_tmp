@@ -5,25 +5,25 @@
 #include "c_utils.h"
 #include "solutions.h"
 
-int main() {
-    char* input = read_file_contents("2019/day1/data/input.txt");
+int main() {{
+    char* input = read_file_contents("{year}/day{day}/data/input.txt");
 
     clock_t time = clock();
-    char* part_one = Day1.solve_part1(input);
+    char* part_one = Day{day}.solve_part1(input);
     time = clock() - time;
     double time_taken = ((double)time) / CLOCKS_PER_SEC * 1000;
-    printf("Solution to part one: %s (time taken %.2f [ms])\n", part_one,
+    printf("Solution to part one: %s (time taken %.2f [ms])\\n", part_one,
            time_taken);
 
     time = clock();
-    char* part_two = Day1.solve_part2(input);
+    char* part_two = Day{day}.solve_part2(input);
     time = clock() - time;
     time_taken = ((double)time) / CLOCKS_PER_SEC * 1000;
-    printf("Solution to part two: %s (time taken %.2f [ms])\n", part_two,
+    printf("Solution to part two: %s (time taken %.2f [ms])\\n", part_two,
            time_taken);
 
     free(part_one);
     free(part_two);
     free(input);
     return 0;
-}
+}}

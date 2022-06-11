@@ -1,12 +1,14 @@
 #include <chrono>
 #include <iostream>
 
+#include "cpp_utils.hpp"
 #include "solutions.hpp"
 
 using chrono_clock = std::chrono::high_resolution_clock;
 
 int main() {
-    const std::string input = day1::read_input();
+    const std::string input =
+        utils::read_file_to_string("2019/day1/data/input.txt");
 
     auto begin = chrono_clock::now();
     const auto part_one = day1::solve_part1(input);

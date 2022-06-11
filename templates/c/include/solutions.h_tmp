@@ -1,0 +1,11 @@
+#ifndef _YEAR{year}_DAY{day}_C_H
+#define _YEAR{year}_DAY{day}_C_H
+
+struct day{day} {{
+    char* (*solve_part1)(const char* const);
+    char* (*solve_part2)(const char* const);
+}};
+
+extern const struct day{day} Day{day};
+
+#endif

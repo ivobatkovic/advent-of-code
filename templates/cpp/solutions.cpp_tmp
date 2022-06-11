@@ -1,31 +1,26 @@
-#include "{year}/day{day}/cpp/include/solutions.hpp"
+#include "solutions.hpp"
 
-#include "utils/cpp/include/utils.hpp"
+#include <iostream>
+
+#include "cpp_utils.hpp"
 
 namespace day{day} {{
 
 using input_type = std::vector<std::string>;
 
 static input_type transform_input(const std::string &input_string) {{
-  input_type transformed{{}};
-  (void)input_string;
-  return transformed;
+    static_cast<void>(input_string);
+    return input_type{{}};
 }}
 
-std::string read_input(std::string file_name) {{
-  return utils::read_file_to_string(file_name);
+std::string solve_part1(const std::string &input_string) {{
+    auto input = transform_input(input_string);
+    return "Implement part one";
 }}
 
-// Implement part one solution
-output_type solve_part1(const std::string &input_string) {{
-  auto input = transform_input(input_string);
-  return "Implement part one";
+std::string solve_part2(const std::string &input_string) {{
+    auto input = transform_input(input_string);
+    return "Implement part one";
 }}
 
-// Implement part two solution
-output_type solve_part2(const std::string &input_string) {{
-  auto input = transform_input(input_string);
-  return "Implement part two";
-}}
-
-}}  // namespace day{day}
+}}  // namespace day1
