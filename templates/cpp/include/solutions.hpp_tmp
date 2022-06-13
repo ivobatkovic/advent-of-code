@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace year{year} {{
+
 namespace day{day} {{
 
 std::string solve_part1(const std::string &input_string);
@@ -11,5 +13,7 @@ std::string solve_part1(const std::string &input_string);
 std::string solve_part2(const std::string &input_string);
 
 }}  // namespace day{day}
+
+}}  // namespace year{year}
 
 #endif

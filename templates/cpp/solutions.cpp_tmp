@@ -4,6 +4,8 @@
 
 #include "cpp_utils.hpp"
 
+namespace year{year} {{
+
 namespace day{day} {{
 
 using input_type = std::vector<std::string>;
@@ -23,4 +25,7 @@ std::string solve_part2(const std::string &input_string) {{
     return "Implement part one";
 }}
 
-}}  // namespace day1
+}}  // namespace day{day}
+
+}}  // namespace day{day}
+

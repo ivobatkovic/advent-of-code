@@ -15,11 +15,11 @@ class TestDay1PartOne
 
 TEST_P(TestDay1PartOne, PartOne) {{
     auto param = GetParam();
-    auto file_name = "{year}/day{day}/data/" + std::get<0>(param);
+    auto file_name = "year{year}/day{day}/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
 
     char *input = read_file_contents(file_name.c_str());
-    char *result = Day{day}.solve_part1(input);
+    char *result = year{year}day{day}.solve_part1(input);
     EXPECT_EQ(output.c_str(), std::string(result));
     free(input);
     free(result);
@@ -34,11 +34,11 @@ class TestDay1PartTwo
 
 TEST_P(TestDay1PartTwo, PartTwo) {{
     auto param = GetParam();
-    auto file_name = "{year}/day{day}/data/" + std::get<0>(param);
+    auto file_name = "year{year}/day{day}/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
 
     char *input = read_file_contents(file_name.c_str());
-    char *result = Day{day}.solve_part2(input);
+    char *result = year{year}day{day}.solve_part2(input);
 
     EXPECT_EQ(output, std::string(result));
     free(input);

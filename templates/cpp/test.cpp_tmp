@@ -7,12 +7,16 @@
 
 using std::string;
 
+namespace year{year} {{
+
+namespace day{day} {{
+
 class TestDay1PartOne
     : public ::testing::TestWithParam<std::tuple<string, string>> {{}};
 
 TEST_P(TestDay1PartOne, PartOne) {{
     auto param = GetParam();
-    auto file_name = "{year}/day{day}/data/" + std::get<0>(param);
+    auto file_name = "year{year}/day{day}/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
     EXPECT_EQ(output, day{day}::solve_part1(utils::read_file_to_string(file_name)));
 }}
@@ -26,7 +30,7 @@ class TestDay1PartTwo
 
 TEST_P(TestDay1PartTwo, PartTwo) {{
     auto param = GetParam();
-    auto file_name = "{year}/day{day}/data/" + std::get<0>(param);
+    auto file_name = "year{year}/day{day}/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
     EXPECT_EQ(output, day{day}::solve_part2(utils::read_file_to_string(file_name)));
 }}
@@ -39,3 +43,7 @@ int main(int argc, char **argv) {{
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }}
+
+}}  // namespace day{day}
+
+}}  // namespace year{year}

@@ -13,20 +13,20 @@ namespace utils {
 /// @tparam[out] split Template vector holding the values
 template <typename T>
 void push_transform(std::string str, std::vector<T> &split) {
-  // If the template is a string, we need to preserve the whitespaces
-  if (std::is_same<T, std::string>::value) {
-    T value;
-    for (auto &x_ : str) {
-      value += x_;
+    // If the template is a string, we need to preserve the whitespaces
+    if (std::is_same<T, std::string>::value) {
+        T value;
+        for (auto &x_ : str) {
+            value += x_;
+        }
+        split.push_back(value);
+        // Otherwise, convert to a value
+    } else {
+        std::istringstream iss(str);
+        T value;
+        iss >> value;
+        split.push_back(value);
     }
-    split.push_back(value);
-    // Otherwise, convert to a value
-  } else {
-    std::istringstream iss(str);
-    T value;
-    iss >> value;
-    split.push_back(value);
-  }
 }
 
 /// Split a string using a string delimiter
@@ -36,14 +36,14 @@ void push_transform(std::string str, std::vector<T> &split) {
 /// @tparam[out] split Template vector containing all sub-strings
 template <typename T>
 std::vector<T> split_string(std::string str, std::string delim) {
-  std::vector<T> split;
-  size_t pos;
-  while ((pos = str.find(delim)) != std::string::npos) {
-    push_transform(str.substr(0, pos), split);
-    str.erase(0, pos + delim.length());
-  }
-  push_transform(str, split);
-  return split;
+    std::vector<T> split;
+    size_t pos;
+    while ((pos = str.find(delim)) != std::string::npos) {
+        push_transform(str.substr(0, pos), split);
+        str.erase(0, pos + delim.length());
+    }
+    push_transform(str, split);
+    return split;
 }
 
 /// Split a string using a character delimiter
@@ -53,7 +53,7 @@ std::vector<T> split_string(std::string str, std::string delim) {
 /// @tparam[out] split Template vector containing all sub-strings
 template <typename T>
 std::vector<T> split_string(std::string str, char delim) {
-  return split_string<T>(str, std::string(1, delim));
+    return split_string<T>(str, std::string(1, delim));
 }
 
 /// Read contents of a file
