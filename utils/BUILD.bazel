@@ -1,0 +1,15 @@
+cc_library(
+    name = "c_utils",
+    srcs = ["c/c_utils.c"],
+    hdrs = ["c/include/c_utils.h"],
+    strip_include_prefix = "c/include",
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "cpp_utils",
+    srcs = ["cpp/cpp_utils.cpp"],
+    hdrs = ["cpp/include/cpp_utils.hpp"],
+    strip_include_prefix = "cpp/include",
+    visibility = ["//visibility:public"],
+)

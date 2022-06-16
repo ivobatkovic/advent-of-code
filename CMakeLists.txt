@@ -1,20 +1,21 @@
-cmake_minimum_required(VERSION 3.10) 
+cmake_minimum_required(VERSION 3.10)
 
 project(adventofcode)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # does not produce the json file
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "") # works
+set(CMAKE_EXPORT_COMPILE_COMMANDS
+    ON
+    CACHE INTERNAL "") # works
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake"
+                      ${CMAKE_MODULE_PATH})
 
 # Configure third-party dependencies
 include(cmake/gtest_build.cmake)
-#include(cmake/ftxui_build.cmake)
-#include(cmake/boost_build.cmake)
-
+# include(cmake/ftxui_build.cmake) include(cmake/boost_build.cmake)
 
 # Compilation flags to be used on the projects
-include (cmake/compile_flags.cmake)
+include(cmake/compile_flags.cmake)
 
 # Enable testing for directories containing the solutions to day 1 through 25
 enable_testing()
@@ -24,7 +25,10 @@ add_custom_target(build_tests)
 
 # Find all sub folders containing CMakeLists.txt
 macro(SUBDIRLIST result dir)
-  file(GLOB children RELATIVE ${dir} ${dir}/*)
+  file(
+    GLOB children
+    RELATIVE ${dir}
+    ${dir}/*)
   set(dirlist "")
   foreach(child ${children})
     if(IS_DIRECTORY ${dir}/${child} AND EXISTS ${dir}/${child}/CMakeLists.txt)

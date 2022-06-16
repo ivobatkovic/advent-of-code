@@ -6,7 +6,7 @@
 #include "solutions.h"
 
 int main(int argc, char** argv) {{
-    char* file_name = (argc > 1) ? argv[1] : "year{year}/day{day}/data/input.txt";
+    const char* file_name = (argc > 1) ? argv[1] : "year{year}/day{day}/data/input.txt";
     char* input = read_file_contents(file_name);
 
     clock_t time = clock();

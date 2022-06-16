@@ -47,6 +47,7 @@ def setup_python_source(year, day):
 def setup_cpp_source(year, day):
     # Rename files
     src_files = [
+        join(*[f"year{year}",f"day{day}", "CMakeLists.txt_year_tmp"]),
         join(*[f"year{year}",f"day{day}", "CMakeLists.txt_tmp"]),
         join(*[f"year{year}",f"day{day}", "BUILD.bazel_tmp"]),
         join(*[f"year{year}",f"day{day}", "cpp", "include", "solutions.hpp_tmp"]),
@@ -59,6 +60,7 @@ def setup_cpp_source(year, day):
         join(*[f"year{year}",f"day{day}", "c", "test.cpp_tmp"]),
     ]
     dst_files = [
+        join(*[f"year{year}","CMakeLists.txt"]),
         join(*[f"year{year}",f"day{day}", "CMakeLists.txt"]),
         join(*[f"year{year}",f"day{day}", "BUILD.bazel"]),
         join(*[f"year{year}",f"day{day}", "cpp", "include", "solutions.hpp"]),
