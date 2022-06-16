@@ -1,4 +1,4 @@
-set(CXX_COMPILER_FLAGS "-std=c++17 -Weffc++ -Wold-style-cast ")
+set(CXX_COMPILER_FLAGS "-std=c++17 -Weffc++ -Wold-style-cast")
 set(C_COMPILER_FLAGS "-std=c17 -Wstrict-prototypes")
 string(
   CONCAT COMPILER_FLAGS

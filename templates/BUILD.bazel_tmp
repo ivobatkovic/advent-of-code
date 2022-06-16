@@ -1,39 +1,74 @@
-load("//bazel:compile_flags.bzl","get_compiler_flags","get_linker_flags")
+load("//bazel:compile_flags.bzl","get_c_compiler_flags","get_cxx_compiler_flags")
 
 cc_library(
-    name = "day{day}",
+    name = "day{day}-cpp",
     srcs = ["cpp/solutions.cpp"],
     hdrs = ["cpp/include/solutions.hpp"],
     deps = [
-        "//utils/cpp:utils_lib"
+        "//utils:cpp_utils"
     ],
-    copts = get_compiler_flags(),
-    linkopts = get_linker_flags(),
+    strip_include_prefix = "cpp/include",
+    copts = get_cxx_compiler_flags(),
     visibility = ["//visibility:public"],
 )
 
 cc_binary(
-    name = "main",
+    name = "main-cpp",
     srcs = ["cpp/main.cpp"],
     deps = [
-        ":day{day}",
+        ":day{day}-cpp",
     ],
     data = [
         ":input_data",
     ],
-    copts = get_compiler_flags(),
-    linkopts = get_linker_flags(),
+    copts = get_cxx_compiler_flags(),
 )
 
 cc_test(
-    name = "test",
+    name = "test-cpp",
     srcs = ["cpp/test.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        ":day{day}",
+        ":day{day}-cpp",
     ],
-    copts = get_compiler_flags(),
-    linkopts = get_linker_flags(),
+    copts = get_cxx_compiler_flags(),
+    data = [
+        ":input_data"
+    ]
+)
+
+cc_library(
+    name = "day{day}-c",
+    srcs = ["c/solutions.c"],
+    hdrs = ["c/include/solutions.h"],
+    deps = [
+        "//utils:c_utils"
+    ],
+    strip_include_prefix = "c/include",
+    copts = get_c_compiler_flags(),
+    visibility = ["//visibility:public"],
+)
+
+cc_binary(
+    name = "main-c",
+    srcs = ["c/main.c"],
+    deps = [
+        ":day{day}-c",
+    ],
+    data = [
+        ":input_data",
+    ],
+    copts = get_c_compiler_flags(),
+)
+
+cc_test(
+    name = "test-c",
+    srcs = ["c/test.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        ":day{day}-c",
+    ],
+    copts = get_c_compiler_flags(),
     data = [
         ":input_data"
     ]
