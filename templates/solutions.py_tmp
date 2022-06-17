@@ -1,18 +1,11 @@
 """ Credit: code taken and modified from https://github.com/amrit110/aoc """
 #!/usr/bin/env python3
-from os.path import dirname
-from os.path import join
-from os.path import realpath
 import argparse
 import pytest
-import sys
 import time
-
-sys.path.append(join(dirname(realpath(__file__)), *[".."]))
 
 
 def transform_input(input_):
-    # custom transform for the day
     return input_
 
 
@@ -23,12 +16,12 @@ def read_input(file_name):
 
 def solve_part1(input_):
     inp = transform_input(input_)
-    pass
+    return "Implement part one"
 
 
 def solve_part2(input_):
     inp = transform_input(input_)
-    pass
+    return "Implement part two"
 
 
 def parse_args():
