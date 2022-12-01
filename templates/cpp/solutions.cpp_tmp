@@ -1,8 +1,10 @@
-#include "solutions.hpp"
+#include "year{year}/day{day}/cpp/solutions.hpp"
 
 #include <iostream>
+#include <string>
+#include <vector>
 
-#include "cpp_utils.hpp"
+#include "utils/cpp_utils.hpp"
 
 namespace year{year} {{
 
@@ -27,5 +29,4 @@ std::string solve_part2(const std::string &input_string) {{
 
 }}  // namespace day{day}
 
-}}  // namespace day{day}
-
+}}  // namespace year{year}

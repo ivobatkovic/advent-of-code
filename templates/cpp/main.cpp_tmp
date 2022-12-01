@@ -1,8 +1,9 @@
 #include <chrono>
 #include <iostream>
+#include <string>
 
-#include "cpp_utils.hpp"
-#include "solutions.hpp"
+#include "utils/cpp_utils.hpp"
+#include "year{year}/day{day}/cpp/solutions.hpp"
 
 using chrono_clock = std::chrono::high_resolution_clock;
 

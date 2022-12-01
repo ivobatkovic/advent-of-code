@@ -4,8 +4,8 @@
 #include <tuple>
 
 extern "C" {{
-#include "c_utils.h"
-#include "solutions.h"
+#include "utils/c_utils.h"
+#include "year{year}/day{day}/c/solutions.h"
 }}
 
 using std::string;
@@ -20,14 +20,14 @@ TEST_P(TestDay1PartOne, PartOne) {{
 
     char *input = read_file_contents(file_name.c_str());
     char *result = year{year}day{day}.solve_part1(input);
-    EXPECT_EQ(output.c_str(), std::string(result));
+    EXPECT_EQ(output, std::string(result));
     free(input);
     free(result);
 }}
 
 INSTANTIATE_TEST_SUITE_P(PartOne, TestDay1PartOne,
                          ::testing::Values(std::make_tuple("test_input0.txt",
-                                                           "1")));
+                                                           "0")));
 
 class TestDay1PartTwo
     : public ::testing::TestWithParam<std::tuple<string, string>> {{}};
@@ -47,7 +47,7 @@ TEST_P(TestDay1PartTwo, PartTwo) {{
 
 INSTANTIATE_TEST_SUITE_P(PartTwo, TestDay1PartTwo,
                          ::testing::Values(std::make_tuple("test_input0.txt",
-                                                           "1")));
+                                                           "0")));
 
 int main(int argc, char **argv) {{
     testing::InitGoogleTest(&argc, argv);

@@ -38,3 +38,15 @@ http_archive(
   urls = ["https://github.com/ArthurSonzogni/FTXUI/archive/refs/tags/v3.0.0.tar.gz"],
   sha256 = "a8f2539ab95caafb21b0c534e8dfb0aeea4e658688797bb9e5539729d9258cc1",
 )
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+# Hedron's Compile Commands Extractor for Bazel
+# https://github.com/hedronvision/bazel-compile-commands-extractor
+http_archive(
+    name = "hedron_compile_commands",
+    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/ed994039a951b736091776d677f324b3903ef939.tar.gz",
+    strip_prefix = "bazel-compile-commands-extractor-ed994039a951b736091776d677f324b3903ef939",
+    sha256="085bde6c5212c8c1603595341ffe7133108034808d8c819f8978b2b303afc9e7"
+)
+load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
+hedron_compile_commands_setup()

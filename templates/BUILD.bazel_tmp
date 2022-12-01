@@ -3,11 +3,10 @@ load("//bazel:compile_flags.bzl","get_c_compiler_flags","get_cxx_compiler_flags"
 cc_library(
     name = "day{day}-cpp",
     srcs = ["cpp/solutions.cpp"],
-    hdrs = ["cpp/include/solutions.hpp"],
+    hdrs = ["cpp/solutions.hpp"],
     deps = [
         "//utils:cpp_utils"
     ],
-    strip_include_prefix = "cpp/include",
     copts = get_cxx_compiler_flags(),
     visibility = ["//visibility:public"],
 )
@@ -40,11 +39,10 @@ cc_test(
 cc_library(
     name = "day{day}-c",
     srcs = ["c/solutions.c"],
-    hdrs = ["c/include/solutions.h"],
+    hdrs = ["c/solutions.h"],
     deps = [
         "//utils:c_utils"
     ],
-    strip_include_prefix = "c/include",
     copts = get_c_compiler_flags(),
     visibility = ["//visibility:public"],
 )
@@ -68,7 +66,7 @@ cc_test(
         "@com_google_googletest//:gtest_main",
         ":day{day}-c",
     ],
-    copts = get_c_compiler_flags(),
+    copts = get_cxx_compiler_flags(),
     data = [
         ":input_data"
     ]

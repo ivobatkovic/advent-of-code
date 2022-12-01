@@ -7,7 +7,7 @@ fi
 source_files=$(find $start -type f \( -iname \*.cpp -o -iname \*.c \))
 header_files=$(find $start -type f \( -iname \*.hpp -o -iname \*.h \))
 for f in $source_files $header_files; do
-    output=$(clang-format --style=google -sort-includes -output-replacements-xml \
+    output=$(clang-format -sort-includes -output-replacements-xml \
            $f | grep -c "<replacement ")
     if [ $output -ne "0" ]; then
         echo File $f needs reformatting

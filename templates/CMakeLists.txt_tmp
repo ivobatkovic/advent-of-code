@@ -5,6 +5,7 @@ project(day{day})
 # Get parent directory name
 get_filename_component(YEAR ../ ABSOLUTE)
 get_filename_component(YEAR "${{YEAR}}" NAME)
+include_directories("${{CMAKE_SOURCE_DIR}}")
 
 set(DATA_FILES "${{YEAR}}-${{PROJECT_NAME}}-data")
 add_custom_target(

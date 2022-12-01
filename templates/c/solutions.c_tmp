@@ -1,15 +1,13 @@
-#include "solutions.h"
+#include "year{year}/day{day}/c/solutions.h"
 
 #include <stdlib.h>
 #include <string.h>
 
-#include "c_utils.h"
+#include "utils/c_utils.h"
 
 typedef struct string_array input_type;
 
-static void free_input(input_type input) {{
-    free_string_array(input);
-}}
+static void free_input(input_type input) {{ free_string_array(input); }}
 
 static input_type transform_input(const char *const input_string) {{
     (void)input_string;
@@ -38,4 +36,4 @@ static char *solve_part2(const char *const input_string) {{
 }}
 
 const struct Year{year}Day{day} year{year}day{day} = {{.solve_part1 = solve_part1,
-                          .solve_part2 = solve_part2}};
+                                          .solve_part2 = solve_part2}};

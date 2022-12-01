@@ -4,4 +4,7 @@
 **/build*
 **/.vscode
 .ccls*
-bazel-*
+/external
+/bazel-*
+/compile_commands.json
+/.cache/
