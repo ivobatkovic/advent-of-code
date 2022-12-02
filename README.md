@@ -1,12 +1,12 @@
 # Solutions to advent of code
 <p align="center">
-    <img src="https://img.shields.io/badge/Developed%20and%20tested%20for-macOS%2011.0%7C%20Ubuntu%2018.04-informational"/>
+    <img src="https://img.shields.io/badge/Developed%20and%20tested%20Ubuntu%2020.04-informational"/>
     <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-informational"/></a>
 </p>
 <p align="center">
     <img src="https://github.com/ivobatkovic/advent-of-code/workflows/Python/badge.svg"/>
-    <img src="https://img.shields.io/badge/versions-3.6%20%7C%203.9-informational"/>
+    <img src="https://img.shields.io/badge/versions-3.8-informational"/>
     <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/badge/code%20style-black-000000.svg"/></a>    
     <img src="https://github.com/ivobatkovic/advent-of-code/workflows/C++/badge.svg"/>
@@ -17,40 +17,51 @@
 Each folder contains solutions to different years of [advent of code](https://adventofcode.com), which has the following structure
 ```bash
 year                   # Advent of code year
-├──day1
-│   ├── cpp            # Containing c++ source files
-│   │    ├── src
-│   │    └── inlclude
-│   ├── python         # Contains python source files
-│   ├── data           # Contains input data
+├── day1
+│   ├── cpp            # C++ solution
+│   │    ├── main.cpp
+│   │    ├── solutions.cpp
+│   │    ├── solutions.hpp
+│   │    └── test.cpp
+│   ├── data           # Input data
+│   ├── __init__.py    # Python directory module
 │   ├── BUILD.bazel    # Bazel configuration
-│   └── CMakeLists.txt # Cmake configuraiton
+│   ├── CMakeLists.txt # Cmake configuration
+│   └── solutions.py   # Python solution
 .
 .
-├──day25
-│   ├── cpp         
-│   │    ├── src
-│   │    └── include
-│   ├── python      
-│   ├── data        
-│   ├── BUILD.bazel    # Bazel configuration
-│   └── CMakeLists.txt # Cmake configuraiton
-└──CMakeLists.txt      # cmake settings for the project
+├── day25
+│   ├── cpp            
+│   │    ├── main.cpp
+│   │    ├── solutions.cpp
+│   │    ├── solutions.hpp
+│   │    └── test.cpp
+│   ├── data           
+│   ├── __init__.py    
+│   ├── BUILD.bazel    
+│   ├── CMakeLists.txt 
+│   └── solutions.py   
+├── __init__.py
+└── CMakeLists.txt 
 ```
 ## Python
-### Dependencies (Ubuntu/MacOS)
+### Dependencies (Ubuntu)
 To install the needed dependencies, run:
 ```bash
-virtualenv venv            # (optional)
-source venv/bin/activate   # (optional)
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 ### Installation (Ubuntu/MacOS)
 To run the solution for year X day Y, run:
 ```bash
-python X/dayY/python/dayY.py 
-# E.g., python 2020/day1/python/day1.py
+python yearX/dayY/python/solutions.py 
+# E.g., python year2020/day1/python/solutions.py
+```
+
+To run the python tests:
+```bash
+python -m pytest yearX/dayY/solutions.py # Run year X day Y tests
+python -m pytest year*/**/solutions.py   # To run all test
 ```
 
 
@@ -63,54 +74,32 @@ apt-get update
 apt-get install -y libncurses5-dev libboost-dev libboost-regex-dev
 apt-get install -y clang-format # optional - used for formatting
 ``` 
-#### MacOS
-```bash
-brew install boost
-brew install clang-format       # optional - used for formatting
-brew install ncurses
-```
-### Installation (Ubuntu/MacOS)
+### Installation (Ubuntu)
 **Cmake**
 
 To build the solution of year X day Y, run:
 ```bash
-mkdir build && cd build # Make a build directory
-cmake ..                # Setup the cmake project
-make dayY_X             # Build day Y of year X
-./X/dayY/dayY_X         # Run day Y of year X
+mkdir build && cd build   # Make a build directory
+cmake ..                  # Setup the cmake project
+make yearX-dayY-cpp-main  # Build year X day Y
+./yearX/dayY/cpp-main      # Run year X day Y
 ```
-To build all days, all tests, and running all tests in parallel, run:
+To build all tests, and running them in parallel, run:
 ```bash
-make all build_tests test -j$(nproc)
+make build_tests test -j$(nproc)
 ```
 
 **Bazel** 
 
-To build the solution of year X day Y, run:
+To build the solution of day X year Y, run:
 ```bash
-bazel build //X/dayY/... # Build all targets of day Y in year X
-./bazel-bin/X/dayY/main  # Run day Y of year X
+bazel build //yearX/dayY/...     # Build all targets of year X day Y
+./bazel-bin/yearX/dayY/main-cpp  # Run year X day Y
 ```
 To build and run all tests, run:
 ```bash
 bazel test //...
 ```
-
-## Using Docker to run the examples
-You can build a [Docker](https://www.docker.com/) image with the provided ``Dockerfile``, which will make sure that all necessary libraries, dependencies, etc, are installed.
-
-### Building the docker file and running
-The following command builds a Docker image `adventofcode`
-```bash
-docker build -f Dockerfile -t adventofcode .
-```
-
-### Run the docker file and mount the advent of code repository
-You can run the built docker image with the following command:
-```bash
-docker run -v $(pwd):/adventofcode -ti adventofcode bash
-```
-This will open up a bash shell for the docker image, and mount the current folder to the running container.
 
 ### Bootstraping
 To generate a project structure for a given year and day, run the following:
@@ -125,5 +114,5 @@ export AOC_SESSION=<session_id>
 ```
 and run
 ```bash
-python bootstrap.py -y <year> -d <day> -input 1
+python bootstrap.py -y <year> -d <day> -input -i
 ```
