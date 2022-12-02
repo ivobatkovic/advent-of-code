@@ -5,16 +5,7 @@ import time
 
 
 def transform_input(input_):
-    calories_per_elf = []
-    calories = []
-    for x in input_.splitlines():
-        if x:
-            calories.append(int(x))
-        else:
-            calories_per_elf.append(calories)
-            calories = []
-    calories_per_elf.append(calories)
-    return calories_per_elf
+    return [row for row in input_.splitlines()]
 
 
 def read_input(file_name):
@@ -24,24 +15,42 @@ def read_input(file_name):
 
 def solve_part1(input_):
     inp = transform_input(input_)
-    return max(sum(x for x in calories) for calories in inp)
+    rule_book = {
+        "A X": 1 + 3,
+        "A Y": 2 + 6,
+        "A Z": 3 + 0,
+        "B X": 1 + 0,
+        "B Y": 2 + 3,
+        "B Z": 3 + 6,
+        "C X": 1 + 6,
+        "C Y": 2 + 0,
+        "C Z": 3 + 3,
+    }
+    return sum(rule_book[instruction] for instruction in inp)
 
 
 def solve_part2(input_):
     inp = transform_input(input_)
-    return sum(
-        sorted([sum(x for x in calories) for calories in inp], reverse=True)[
-            :3
-        ]
-    )
+    rule_book = {
+        "A X": 3 + 0,
+        "A Y": 1 + 3,
+        "A Z": 2 + 6,
+        "B X": 1 + 0,
+        "B Y": 2 + 3,
+        "B Z": 3 + 6,
+        "C X": 2 + 0,
+        "C Y": 3 + 3,
+        "C Z": 1 + 6,
+    }
+    return sum(rule_book[instruction] for instruction in inp)
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Solution to 2022 day 1")
+    parser = argparse.ArgumentParser(description="Solution to 2022 day 2")
     parser.add_argument(
         "file_name",
         type=str,
-        default="year2022/day1/data/input.txt",
+        default="year2022/day2/data/input.txt",
         nargs="?",
         help="Path to data file",
     )
@@ -68,14 +77,14 @@ if __name__ == "__main__":
 
 
 @pytest.mark.parametrize(
-    "input1, output1", [("year2022/day1/data/test_input0.txt", 24000)]
+    "input1, output1", [("year2022/day2/data/test_input0.txt", 15)]
 )
 def testPart1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
 
 @pytest.mark.parametrize(
-    "input2, output2", [("year2022/day1/data/test_input0.txt", 45000)]
+    "input2, output2", [("year2022/day2/data/test_input0.txt", 12)]
 )
 def testPart2(input2, output2):
     assert solve_part2(read_input(input2)) == output2
