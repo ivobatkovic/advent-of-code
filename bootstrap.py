@@ -45,7 +45,7 @@ def setup_python_source(year, day):
             f.write(eval("f'{}'".format(line)) + "\n")
 
 
-# Initialize c/c++ build and source files
+# Initialize c++ build and source files
 def setup_cpp_source(year, day):
     # Rename files
     src_files = [
@@ -56,10 +56,6 @@ def setup_cpp_source(year, day):
         join(*[f"year{year}",f"day{day}", "cpp", "solutions.cpp_tmp"]),
         join(*[f"year{year}",f"day{day}", "cpp", "main.cpp_tmp"]),
         join(*[f"year{year}",f"day{day}", "cpp", "test.cpp_tmp"]),
-        join(*[f"year{year}",f"day{day}", "c", "solutions.h_tmp"]),
-        join(*[f"year{year}",f"day{day}", "c", "solutions.c_tmp"]),
-        join(*[f"year{year}",f"day{day}", "c", "main.c_tmp"]),
-        join(*[f"year{year}",f"day{day}", "c", "test.cpp_tmp"]),
     ]
     dst_files = [
         join(*[f"year{year}","CMakeLists.txt"]),
@@ -69,10 +65,6 @@ def setup_cpp_source(year, day):
         join(*[f"year{year}",f"day{day}", "cpp", "solutions.cpp"]),
         join(*[f"year{year}",f"day{day}", "cpp", "main.cpp"]),
         join(*[f"year{year}",f"day{day}", "cpp", "test.cpp"]),
-        join(*[f"year{year}",f"day{day}", "c", "solutions.h"]),
-        join(*[f"year{year}",f"day{day}", "c", "solutions.c"]),
-        join(*[f"year{year}",f"day{day}", "c", "main.c"]),
-        join(*[f"year{year}",f"day{day}", "c", "test.cpp"]),
     ]
     for src, dst in zip(src_files, dst_files):
         os.rename(src, dst)
@@ -110,7 +102,7 @@ def bootstrap_solution(year, day, download_input):
         print(f"Set up python structure for year{year} day{day}")
         # Copy c++ sources
         setup_cpp_source(year,day)
-        print(f"Set up c/c++ structure for year{year} day{day}")
+        print(f"Set up c++ structure for year{year} day{day}")
 
         # Done
         print(f"Completed setup for year{year} day{day}")

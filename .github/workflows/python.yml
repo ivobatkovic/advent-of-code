@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'year20*/**/*.py'
+      - 'year*/**/*.py'
   pull_request:
 
 jobs:
