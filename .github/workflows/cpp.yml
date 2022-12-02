@@ -5,12 +5,12 @@ on:
     branches:
       - master
     paths:
-      - 'year20*/day*/cpp/**'
-      - 'year20*/day*/c/**'
+      - 'year*/**/.cpp'
+      - 'year*/**/.hpp'
   pull_request:
     paths:
-      - 'year20*/day*/cpp/**'
-      - 'year20*/day*/c/**'
+      - 'year*/**/.cpp'
+      - 'year*/**/.hpp'
 
 env:
   BUILD_TYPE: Release
