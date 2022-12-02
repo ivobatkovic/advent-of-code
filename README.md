@@ -60,7 +60,7 @@ python X/dayY/python/dayY.py
 #### Ubuntu
 ```bash
 apt-get update
-apt-get install -y libncurses5-dev libboost-dev
+apt-get install -y libncurses5-dev libboost-dev libboost-regex-dev
 apt-get install -y clang-format # optional - used for formatting
 ``` 
 #### MacOS

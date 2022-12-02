@@ -3,3 +3,8 @@
 *.out
 **/build*
 **/.vscode
+.ccls*
+/external
+/bazel-*
+/compile_commands.json
+/.cache/

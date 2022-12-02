@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(ftxui-download NONE)
+
+include(ExternalProject)
+ExternalProject_Add(ftxui
+  GIT_REPOSITORY    https://github.com/ArthurSonzogni/FTXUI.git
+  GIT_TAG           a6e04b4346a8808f316f3ac4353ae67f75f25beb
+  SOURCE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/ftxui-src"
+  BINARY_DIR        "${CMAKE_CURRENT_BINARY_DIR}/ftxui-build"
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND     ""
+  INSTALL_COMMAND   ""
+  TEST_COMMAND      ""
+)

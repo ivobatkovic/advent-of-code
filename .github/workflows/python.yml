@@ -5,8 +5,7 @@ on:
     branches:
       - master
     paths:
-      - '20*/**/*.py'
-      - '20*/**/*.py'
+      - 'year20*/**/*.py'
   pull_request:
 
 jobs:
@@ -23,11 +22,11 @@ jobs:
         pip3 install -r requirements.txt
     - name: Flake8 linting
       run: |
-        python3 -m flake8 20*/. --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
-        python3 -m flake8 20*/. --count --exit-zero --max-complexity=10 --ignore=E203,E402,W503 --statistics
+        python3 -m flake8 year20*/. --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
+        python3 -m flake8 year20*/. --count --exit-zero --max-complexity=10 --ignore=E203,E402,W503 --statistics
     - name: Black code format
       run: |
-        python3 -m black 20*/. --check --line-length 79
+        python3 -m black year20*/. --check --line-length 79
     - name: Python unit tests
       run: |
-        python3 -m pytest 2019/**/*.py && python3 -m pytest 2020/**/*.py
+        python3 -m pytest year2022/**/*.py

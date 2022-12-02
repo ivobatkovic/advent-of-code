@@ -1,0 +1,13 @@
+cc_library(
+    name = "c_utils",
+    srcs = ["c_utils.c"],
+    hdrs = ["c_utils.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "cpp_utils",
+    srcs = ["cpp_utils.cpp"],
+    hdrs = ["cpp_utils.hpp"],
+    visibility = ["//visibility:public"],
+)
