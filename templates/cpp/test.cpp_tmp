@@ -12,31 +12,31 @@ namespace year{year} {{
 
 namespace day{day} {{
 
-class TestDay1PartOne
+class TestYear{year}Day{day}PartOne
     : public ::testing::TestWithParam<std::tuple<string, string>> {{}};
 
-TEST_P(TestDay1PartOne, PartOne) {{
+TEST_P(TestYear{year}Day{day}PartOne, PartOne) {{
     auto param = GetParam();
     auto file_name = "year{year}/day{day}/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
     EXPECT_EQ(output, day{day}::solve_part1(utils::read_file_to_string(file_name)));
 }}
 
-INSTANTIATE_TEST_SUITE_P(PartOne, TestDay1PartOne,
+INSTANTIATE_TEST_SUITE_P(PartOne, TestYear{year}Day{day}PartOne,
                          ::testing::Values(std::make_tuple("test_input0.txt",
                                                            "0")));
 
-class TestDay1PartTwo
+class TestYear{year}Day{day}PartTwo
     : public ::testing::TestWithParam<std::tuple<string, string>> {{}};
 
-TEST_P(TestDay1PartTwo, PartTwo) {{
+TEST_P(TestYear{year}Day{day}PartTwo, PartTwo) {{
     auto param = GetParam();
     auto file_name = "year{year}/day{day}/data/" + std::get<0>(param);
     auto output = std::get<1>(param);
     EXPECT_EQ(output, day{day}::solve_part2(utils::read_file_to_string(file_name)));
 }}
 
-INSTANTIATE_TEST_SUITE_P(PartTwo, TestDay1PartTwo,
+INSTANTIATE_TEST_SUITE_P(PartTwo, TestYear{year}Day{day}PartTwo,
                          ::testing::Values(std::make_tuple("test_input0.txt",
                                                            "0")));
 
