@@ -82,7 +82,7 @@ To build the solution of year X day Y, run:
 mkdir build && cd build   # Make a build directory
 cmake ..                  # Setup the cmake project
 make yearX-dayY-cpp-main  # Build year X day Y
-./yearX/dayY/cpp-main      # Run year X day Y
+./yearX/dayY/cpp-main     # Run year X day Y
 ```
 To build all tests, and running them in parallel, run:
 ```bash
