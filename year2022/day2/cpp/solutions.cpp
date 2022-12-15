@@ -34,6 +34,7 @@ std::string solve_part1(const std::string &input_string) {
 
 std::string solve_part2(const std::string &input_string) {
     auto input = transform_input(input_string);
+
     const std::unordered_map<std::string, std::size_t> rule_book{
         {"A X", 3U + 0U}, {"A Y", 1U + 3U}, {"A Z", 2U + 6U},
         {"B X", 1U + 0U}, {"B Y", 2U + 3U}, {"B Z", 3U + 6U},

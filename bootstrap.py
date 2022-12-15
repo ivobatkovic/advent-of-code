@@ -15,7 +15,7 @@ def download_data(year, day, dst):
         data = ""
         print(f"Failed fetching input year year{year}, day {day}")
     with open(dst, "r+") as f:
-        f.write(data)
+        f.write("{}\n".format(data))
 
 
 # Initialize python source file.
