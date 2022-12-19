@@ -32,7 +32,6 @@ static input_type transform_input(const std::string &input_string) {
                 : std::array<size_t, 4U>{nrs[2], nrs[3], nrs[0], nrs[1]});
     }
     return output;
-    asda
 }
 
 std::string solve_part1(const std::string &input_string) {
