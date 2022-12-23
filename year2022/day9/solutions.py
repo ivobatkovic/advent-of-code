@@ -31,14 +31,13 @@ class Rope:
         self.col += dx
 
         if self.tail:
-            if (
-                abs(self.row - self.tail.row) > 1
-                or abs(self.col - self.tail.col) > 1
-            ):
-                if abs(self.row - self.tail.row) > 1:
+            cond1 = abs(self.row - self.tail.row) > 1
+            cond2 = abs(self.col - self.tail.col) > 1
+            if cond1 or cond2:
+                if cond1:
                     dy = 1 if self.row > self.tail.row else -1
                     dx = min(max(self.col - self.tail.col, -1), 1)
-                if abs(self.col - self.tail.col) > 1:
+                elif cond2:
                     dx = 1 if self.col > self.tail.col else -1
                     dy = min(max(self.row - self.tail.row, -1), 1)
                 self.tail.update(dx, dy, mp)
