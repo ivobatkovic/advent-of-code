@@ -17,14 +17,10 @@ env:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04]
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Install Ubuntu dependencies
-      if: matrix.os == 'ubuntu-18.04'
       run: |
         sudo apt-get update
         sudo apt-get install -y libncurses5-dev libboost-dev libboost-regex-dev clang-format
