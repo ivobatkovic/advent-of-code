@@ -10,14 +10,15 @@ namespace year2022 {
 
 namespace day6 {
 
-using input_type = std::string;
+using namespace std;
+using input_type = string;
 
-static input_type transform_input(const std::string &input_string) {
+static input_type transform_input(const string &input_string) {
     return input_string;
 }
 
-size_t find_marker(std::string const &message, size_t length = 4) {
-    std::unordered_map<char, size_t> d;
+size_t find_marker(string const &message, size_t length = 4) {
+    unordered_map<char, size_t> d;
     size_t left{0U};
     for (size_t right{0U}; right < message.length(); ++right) {
         d[message[right]]++;
@@ -37,14 +38,14 @@ size_t find_marker(std::string const &message, size_t length = 4) {
     return message.length();
 }
 
-std::string solve_part1(const std::string &input_string) {
+string solve_part1(const string &input_string) {
     auto input = transform_input(input_string);
-    return std::to_string(find_marker(input));
+    return to_string(find_marker(input));
 }
 
-std::string solve_part2(const std::string &input_string) {
+string solve_part2(const string &input_string) {
     auto input = transform_input(input_string);
-    return std::to_string(find_marker(input, 14));
+    return to_string(find_marker(input, 14));
 }
 
 }  // namespace day6

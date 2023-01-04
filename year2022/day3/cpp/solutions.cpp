@@ -13,13 +13,14 @@ namespace year2022 {
 
 namespace day3 {
 
-using input_type = std::vector<std::string>;
+using namespace std;
+using input_type = vector<string>;
 
-static input_type transform_input(const std::string &input_string) {
-    return utils::split_string<std::string>(input_string, "\n");
+static input_type transform_input(const string &input_string) {
+    return utils::split_string<string>(input_string, "\n");
 }
 
-int priority(std::set<char> const &characters) {
+int priority(set<char> const &characters) {
     int total{0U};
     for (auto character : characters) {
         total +=
@@ -28,26 +29,26 @@ int priority(std::set<char> const &characters) {
     return total;
 }
 
-std::set<char> intersect(std::vector<std::string> const &rucksacks) {
+set<char> intersect(vector<string> const &rucksacks) {
     if (rucksacks.size() == 0) {
-        return std::set<char>{};
+        return set<char>{};
     }
 
-    std::set<char> output(rucksacks.at(0).begin(), rucksacks.at(0).end());
-    for (std::size_t i{1U}; i < rucksacks.size(); ++i) {
-        std::set<char> intersection;
-        std::set<char> rucksack(rucksacks.at(i).begin(), rucksacks.at(i).end());
+    set<char> output(rucksacks.at(0).begin(), rucksacks.at(0).end());
+    for (size_t i{1U}; i < rucksacks.size(); ++i) {
+        set<char> intersection;
+        set<char> rucksack(rucksacks.at(i).begin(), rucksacks.at(i).end());
 
-        std::set_intersection(
-            output.begin(), output.end(), rucksack.begin(), rucksack.end(),
-            std::inserter(intersection, intersection.begin()));
+        set_intersection(output.begin(), output.end(), rucksack.begin(),
+                         rucksack.end(),
+                         inserter(intersection, intersection.begin()));
 
         output = intersection;
     }
     return output;
 }
 
-std::string solve_part1(const std::string &input_string) {
+string solve_part1(const string &input_string) {
     auto input = transform_input(input_string);
     int total{0};
     for (auto &rucksack : input) {
@@ -55,16 +56,16 @@ std::string solve_part1(const std::string &input_string) {
             {rucksack.substr(0, rucksack.size() / 2),
              rucksack.substr(rucksack.size() / 2, rucksack.size() / 2)}));
     }
-    return std::to_string(total);
+    return to_string(total);
 }
 
-std::string solve_part2(const std::string &input_string) {
+string solve_part2(const string &input_string) {
     auto input = transform_input(input_string);
     int total{0};
-    for (std::size_t i{0U}; i < input.size(); i += 3) {
+    for (size_t i{0U}; i < input.size(); i += 3) {
         total += priority(intersect({input[i], input[i + 1], input[i + 2]}));
     }
-    return std::to_string(total);
+    return to_string(total);
 }
 
 }  // namespace day3

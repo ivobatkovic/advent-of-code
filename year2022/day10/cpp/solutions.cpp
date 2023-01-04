@@ -10,10 +10,11 @@ namespace year2022 {
 
 namespace day10 {
 
-using input_type = std::vector<std::string>;
+using namespace std;
+using input_type = vector<string>;
 
-static input_type transform_input(const std::string &input_string) {
-    return utils::split_string<std::string>(input_string, "\n");
+static input_type transform_input(const string &input_string) {
+    return utils::split_string<string>(input_string, "\n");
 }
 
 class CRT {
@@ -24,13 +25,13 @@ class CRT {
                 update();
             } else {
                 update(2);
-                add(std::stoi(row.substr(5, row.length() - 5)));
+                add(stoi(row.substr(5, row.length() - 5)));
             }
         }
     }
 
     int get_signal() { return signal_; }
-    std::string get_output() { return output_; }
+    string get_output() { return output_; }
 
    private:
     void update(size_t n_updates = 1) {
@@ -57,16 +58,16 @@ class CRT {
     int x_{1};
     int cycle_{};
     int signal_{};
-    std::string output_{};
+    string output_{};
 };
 
-std::string solve_part1(const std::string &input_string) {
+string solve_part1(const string &input_string) {
     auto input = transform_input(input_string);
     CRT crt(input);
-    return std::to_string(crt.get_signal());
+    return to_string(crt.get_signal());
 }
 
-std::string solve_part2(const std::string &input_string) {
+string solve_part2(const string &input_string) {
     auto input = transform_input(input_string);
     CRT crt(input);
     return crt.get_output();

@@ -10,12 +10,13 @@ namespace year2022 {
 
 namespace day13 {
 
-using input_type = std::vector<std::string>;
+using namespace std;
+using input_type = vector<string>;
 
-std::vector<std::string> split_packet(std::string const &packet) {
-    std::vector<std::string> output;
+vector<string> split_packet(string const &packet) {
+    vector<string> output;
     size_t depth{};
-    std::string tmp;
+    string tmp;
     for (auto &x : packet.substr(1, packet.size() - 2)) {
         if (x == '[') {
             depth++;
@@ -36,21 +37,20 @@ std::vector<std::string> split_packet(std::string const &packet) {
     return output;
 }
 
-static input_type transform_input(const std::string &input_string) {
+static input_type transform_input(const string &input_string) {
     input_type pairs{};
-    for (auto pair : utils::split_string<std::string>(input_string, "\n\n")) {
-        for (auto packet : utils::split_string<std::string>(pair, "\n")) {
+    for (auto pair : utils::split_string<string>(input_string, "\n\n")) {
+        for (auto packet : utils::split_string<string>(pair, "\n")) {
             pairs.push_back(packet);
         }
     }
     return pairs;
 }
 
-int compare(std::vector<std::string> const &left,
-            std::vector<std::string> const &right) {
-    for (size_t i{0U}; i < std::min(left.size(), right.size()); ++i) {
+int compare(vector<string> const &left, vector<string> const &right) {
+    for (size_t i{0U}; i < min(left.size(), right.size()); ++i) {
         if (left[i][0] != '[' && right[i][0] != '[') {
-            int diff = std::stoi(left[i]) - std::stoi(right[i]);
+            int diff = stoi(left[i]) - stoi(right[i]);
             if (diff != 0) {
                 return diff;
             }
@@ -73,7 +73,7 @@ int compare(std::vector<std::string> const &left,
     return static_cast<int>(left.size() - right.size());
 }
 
-std::string solve_part1(const std::string &input_string) {
+string solve_part1(const string &input_string) {
     auto input = transform_input(input_string);
     int tot = 0;
     for (size_t i = 0; i < input.size() / 2; ++i) {
@@ -82,19 +82,18 @@ std::string solve_part1(const std::string &input_string) {
             tot += (static_cast<int>(i) + 1);
         }
     }
-    return std::to_string(tot);
+    return to_string(tot);
 }
 
-std::string solve_part2(const std::string &input_string) {
+string solve_part2(const string &input_string) {
     auto input = transform_input(input_string + "\n[[2]]\n[[6]]");
-    std::sort(input.begin(), input.end(), [](std::string s1, std::string s2) {
+    sort(input.begin(), input.end(), [](string s1, string s2) {
         return compare(split_packet(s1), split_packet(s2)) < 0;
     });
-    auto find_index = [](std::vector<std::string> s, std::string match) {
-        return std::find(s.begin(), s.end(), match) - s.begin() + 1;
+    auto find_index = [](vector<string> s, string match) {
+        return find(s.begin(), s.end(), match) - s.begin() + 1;
     };
-    return std::to_string(find_index(input, "[[2]]") *
-                          find_index(input, "[[6]]"));
+    return to_string(find_index(input, "[[2]]") * find_index(input, "[[6]]"));
 }
 
 }  // namespace day13

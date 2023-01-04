@@ -10,6 +10,7 @@ namespace year{year} {{
 
 namespace day{day} {{
 
+using namespace std;
 using input_type = std::vector<std::string>;
 
 static input_type transform_input(const std::string &input_string) {{

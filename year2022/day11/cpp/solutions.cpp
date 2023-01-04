@@ -12,21 +12,22 @@ namespace year2022 {
 
 namespace day11 {
 
-using input_type = std::vector<std::string>;
+using namespace std;
+using input_type = vector<string>;
 
 class Monkey {
    public:
-    Monkey(std::string const &input) {
-        auto rows = utils::split_string<std::string>(input, "\n");
-        items_ = utils::regex_find_all<size_t>(rows[1], std::regex("\\d+"));
+    Monkey(string const &input) {
+        auto rows = utils::split_string<string>(input, "\n");
+        items_ = utils::regex_find_all<size_t>(rows[1], regex("\\d+"));
 
-        auto regexp = std::regex("\\d+");
+        auto regexp = regex("\\d+");
         operand_ = utils::regex_find_all<size_t>(rows[2], regexp);
-        if (rows[2].find('+') != std::string::npos) {
+        if (rows[2].find('+') != string::npos) {
             operation_ = '+';
-        } else if (rows[2].find('-') != std::string::npos) {
+        } else if (rows[2].find('-') != string::npos) {
             operation_ = '-';
-        } else if (rows[2].find('*') != std::string::npos) {
+        } else if (rows[2].find('*') != string::npos) {
             operation_ = '*';
         } else {
             operation_ = '/';
@@ -54,8 +55,8 @@ class Monkey {
         return (k % divisable_ == 0) ? true_test_ : false_test_;
     }
 
-    std::vector<size_t> items_{};
-    std::vector<size_t> operand_{};
+    vector<size_t> items_{};
+    vector<size_t> operand_{};
     char operation_{};
     size_t divisable_{};
     size_t true_test_{};
@@ -63,14 +64,14 @@ class Monkey {
     size_t processed_{};
 };
 
-static input_type transform_input(const std::string &input_string) {
-    return utils::split_string<std::string>(input_string, "\n\n");
+static input_type transform_input(const string &input_string) {
+    return utils::split_string<string>(input_string, "\n\n");
 }
 
-std::string solve_part1(const std::string &input_string) {
+string solve_part1(const string &input_string) {
     auto input = transform_input(input_string);
 
-    std::vector<Monkey> monkeys;
+    vector<Monkey> monkeys;
     for (auto &row : input) {
         monkeys.push_back(Monkey(row));
     }
@@ -87,18 +88,18 @@ std::string solve_part1(const std::string &input_string) {
         }
     }
 
-    std::vector<size_t> p;
+    vector<size_t> p;
     for (auto &monkey : monkeys) {
         p.push_back(monkey.processed_);
     }
-    std::sort(p.begin(), p.end(), std::greater<size_t>());
-    return std::to_string(p[0] * p[1]);
+    sort(p.begin(), p.end(), greater<size_t>());
+    return to_string(p[0] * p[1]);
 }
 
-std::string solve_part2(const std::string &input_string) {
+string solve_part2(const string &input_string) {
     auto input = transform_input(input_string);
 
-    std::vector<Monkey> monkeys;
+    vector<Monkey> monkeys;
     size_t monkeymod{1U};
     for (auto &row : input) {
         monkeys.push_back(Monkey(row));
@@ -117,12 +118,12 @@ std::string solve_part2(const std::string &input_string) {
         }
     }
 
-    std::vector<size_t> p;
+    vector<size_t> p;
     for (auto &monkey : monkeys) {
         p.push_back(monkey.processed_);
     }
-    std::sort(p.begin(), p.end(), std::greater<size_t>());
-    return std::to_string(p[0] * p[1]);
+    sort(p.begin(), p.end(), greater<size_t>());
+    return to_string(p[0] * p[1]);
 }
 
 }  // namespace day11
