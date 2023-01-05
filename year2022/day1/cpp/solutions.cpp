@@ -12,11 +12,11 @@ namespace year2022 {
 
 namespace day1 {
 
-using input_type = std::vector<std::vector<std::size_t>>;
+using input_type = std::vector<std::vector<size_t>>;
 
 static input_type transform_input(const std::string &input_string) {
-    std::vector<std::vector<std::size_t>> calories_per_elf;
-    std::vector<std::size_t> calories;
+    std::vector<std::vector<size_t>> calories_per_elf;
+    std::vector<size_t> calories;
     for (auto x : utils::split_string<std::string>(input_string, "\n")) {
         if (x.size() > 0) {
             calories.push_back(std::stoul(x));
@@ -31,7 +31,7 @@ static input_type transform_input(const std::string &input_string) {
 
 std::string solve_part1(const std::string &input_string) {
     auto input = transform_input(input_string);
-    std::vector<std::size_t> total_calories{};
+    std::vector<size_t> total_calories{};
     for (auto &calories : input) {
         total_calories.push_back(
             std::accumulate(calories.begin(), calories.end(), 0U));
@@ -42,7 +42,7 @@ std::string solve_part1(const std::string &input_string) {
 
 std::string solve_part2(const std::string &input_string) {
     auto input = transform_input(input_string);
-    std::vector<std::size_t> total_calories{};
+    std::vector<size_t> total_calories{};
     for (auto &calories : input) {
         total_calories.push_back(
             std::accumulate(calories.begin(), calories.end(), 0U));

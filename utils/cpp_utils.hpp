@@ -1,33 +1,35 @@
 #ifndef _CPP_UTILS_H_
 #define _CPP_UTILS_H_
 
+#include <regex>
 #include <sstream>
 #include <string>
 #include <vector>
 
 namespace utils {
 
+/// Template function to offset an iterator
+///
+/// @param iter Iterator to offset
+/// @param offset How much to offset the iterator by
+template <typename T>
+T offset_iterator(T iter,
+                  typename std::iterator_traits<T>::difference_type offset) {
+    return std::next(iter, offset);
+}
+
 /// Template function to push_back a generic value
 ///
 /// @param str String value to push_back
 /// @tparam[out] split Template vector holding the values
 template <typename T>
-void push_transform(std::string str, std::vector<T> &split) {
-    // If the template is a string, we need to preserve the whitespaces
-    if (std::is_same<T, std::string>::value) {
-        T value;
-        for (auto &x_ : str) {
-            value += x_;
-        }
-        split.push_back(value);
-        // Otherwise, convert to a value
-    } else {
-        std::istringstream iss(str);
-        T value;
-        iss >> value;
-        split.push_back(value);
-    }
+void push_transform(std::string str, std::vector<T>& split) {
+    std::istringstream iss(str);
+    T value;
+    iss >> value;
+    split.push_back(value);
 }
+void push_transform(std::string str, std::vector<std::string>& split);
 
 /// Split a string using a string delimiter
 ///
@@ -44,6 +46,22 @@ std::vector<T> split_string(std::string str, std::string delim) {
     }
     push_transform(str, split);
     return split;
+}
+
+/// Find all occurences of the matching regex in a string
+///
+/// @param str The string to search
+/// @param exp The regex expression to match in string
+template <typename T>
+std::vector<T> regex_find_all(std::string const& str, std::regex const& exp) {
+    std::vector<T> output{};
+    for (std::sregex_iterator it =
+             std::sregex_iterator(str.begin(), str.end(), exp);
+         it != std::sregex_iterator(); ++it) {
+        std::smatch m = *it;
+        push_transform<T>((*it).str(), output);
+    }
+    return output;
 }
 
 /// Split a string using a character delimiter
