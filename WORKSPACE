@@ -44,6 +44,7 @@ http_archive(
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # Hedron's Compile Commands Extractor for Bazel
 # https://github.com/hedronvision/bazel-compile-commands-extractor
+# bazel run @hedron_compile_commands//:refresh_all
 http_archive(
     name = "hedron_compile_commands",
     url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/ed994039a951b736091776d677f324b3903ef939.tar.gz",
