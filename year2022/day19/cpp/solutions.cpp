@@ -29,6 +29,26 @@ static output_type transform_input(const string &input_string) {
     return blueprints;
 }
 
+queue_t limitStates(queue_t const &state, std::size_t const max_ore_cost,
+                    std::size_t const clay_cost_obs,
+                    std::size_t const obs_cost_geo) {
+    auto [o, c, ob, g, ore_r, clay_r, obs_r, geo_r, t] = state;
+
+    ore_r = (ore_r >= max_ore_cost) ? max_ore_cost : ore_r;
+    clay_r = (clay_r >= clay_cost_obs) ? clay_cost_obs : clay_r;
+    obs_r = (obs_r >= obs_cost_geo) ? obs_cost_geo : obs_r;
+    if (o >= t * max_ore_cost - ore_r * (t - 1)) {
+        o = t * max_ore_cost - ore_r * (t - 1);
+    }
+    if (c >= t * clay_cost_obs - clay_r * (t - 1)) {
+        c = t * clay_cost_obs - clay_r * (t - 1);
+    }
+    if (ob >= t * obs_cost_geo - obs_r * (t - 1)) {
+        ob = t * obs_cost_geo - obs_r * (t - 1);
+    }
+    return {o, c, ob, g, ore_r, clay_r, obs_r, geo_r, t};
+}
+
 std::size_t solve(blueprint_t const &cost, const std::size_t minutes) {
     auto const &[ore_cost, clay_cost, ore_cost_obs, clay_cost_obs, ore_cost_geo,
                  obs_cost_geo] = cost;
@@ -47,45 +67,22 @@ std::size_t solve(blueprint_t const &cost, const std::size_t minutes) {
         *max_element(ore_costs.begin(), ore_costs.end())};
 
     while (q.size() > 0) {
-        auto [o, c, ob, g, ore_r, clay_r, obs_r, geo_r, t] = q.front();
+        state = q.front();
         q.pop();
+        max_geodes = max(max_geodes, state.at(3U));
 
-        max_geodes = max(max_geodes, g);
-
-        if (t == 0) {
+        if (state.back() == 0) {
             continue;
         }
 
-        // Can only make one robot per time instance. Having more
-        // ore/clay/obsidian robots than what it costs to make an upgrade does
-        // not help.
-        if (ore_r >= max_ore_cost) {
-            ore_r = max_ore_cost;
-        }
-        if (clay_r >= clay_cost_obs) {
-            clay_r = clay_cost_obs;
-        }
-        if (obs_r >= obs_cost_geo) {
-            obs_r = obs_cost_geo;
-        }
-        // Same with number of ores - we can ignore ores that will never be used
-        if (o >= t * max_ore_cost - ore_r * (t - 1)) {
-            o = t * max_ore_cost - ore_r * (t - 1);
-        }
-        if (c >= t * clay_cost_obs - clay_r * (t - 1)) {
-            c = t * clay_cost_obs - clay_r * (t - 1);
-        }
-        if (ob >= t * obs_cost_geo - obs_r * (t - 1)) {
-            ob = t * obs_cost_geo - obs_r * (t - 1);
-        }
+        state = limitStates(state, max_ore_cost, clay_cost_obs, obs_cost_geo);
 
-        // Limited state space - helps with caching
-        state =
-            std::array<size_t, 9U>{o, c, ob, g, ore_r, clay_r, obs_r, geo_r, t};
         if (visited.count(state)) {
             continue;
         }
         visited.insert(state);
+
+        auto &[o, c, ob, g, ore_r, clay_r, obs_r, geo_r, t] = state;
 
         // Step without buying robot
         q.push({o + ore_r, c + clay_r, ob + obs_r, g + geo_r, ore_r, clay_r,
@@ -129,7 +126,8 @@ string solve_part1(const string &input_string, const std::size_t minutes) {
 string solve_part2(const string &input_string, const std::size_t minutes) {
     auto blueprints = transform_input(input_string);
     std::size_t output = 1U;
-    for (std::size_t idx{0U}; idx < 3U; ++idx) {
+    for (std::size_t idx{0U}; idx < std::min(size_t{3U}, blueprints.size());
+         ++idx) {
         output *= solve(blueprints[idx], minutes);
     }
     return to_string(output);

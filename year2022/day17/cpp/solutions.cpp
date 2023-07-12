@@ -72,7 +72,7 @@ size_t compute_height(vector<Rock> const &rocks, string const &jets,
 
     for (size_t i_rock{0}; i_rock < number_of_rocks; ++i_rock) {
         Rock rock = rocks[i_rock % rocks.size()];
-        size_t y;
+        size_t y{0U};
         for (size_t steps{0}; steps < height + 4; ++steps) {
             y = height + 3 - steps;
             char jet = jets[i_jet % jets.size()];

@@ -178,7 +178,7 @@ def parse_args():
     parser.add_argument(
         "file_name",
         type=str,
-        default="yeaclay_r022/day19/data/input.txt",
+        default="year2022/day19/data/input.txt",
         nargs="?",
         help="Path to data file",
     )
@@ -205,14 +205,14 @@ if __name__ == "__main__":
 
 
 @pytest.mark.parametrize(
-    "input1, output1", [("yeaclay_r022/day19/data/test_input0.txt", 33)]
+    "input1, output1", [("year2022/day19/data/test_input0.txt", 33)]
 )
 def testPart1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
 
 @pytest.mark.parametrize(
-    "input2, output2", [("yeaclay_r022/day19/data/test_input0.txt", 108)]
+    "input2, output2", [("year2022/day19/data/test_input0.txt", 108)]
 )
 def testPart2(input2, output2):
     assert solve_part2(read_input(input2), minutes=24) == output2

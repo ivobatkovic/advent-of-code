@@ -64,7 +64,7 @@ std::string solve_part2(const string &input_string) {
     set<array<int, 3>> visited{};
     visited.insert({0, 0, 0});
     while (!q.empty()) {
-        auto &[x, y, z] = q.front();
+        auto [x, y, z] = q.front();
         q.pop();
         for (auto &[dx, dy, dz] : neighbors) {
             array<int, 3> coord{x + dx, y + dy, z + dz};
