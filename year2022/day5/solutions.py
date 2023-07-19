@@ -7,7 +7,6 @@ from collections import defaultdict
 
 
 def transform_input(input_):
-
     stacks = defaultdict(list)
     header = []
     for row in input_.splitlines():

@@ -48,7 +48,6 @@ def limitStates(
 
 
 def solve(cost, minutes):
-
     (
         ore_cost,
         clay_cost,
@@ -67,7 +66,6 @@ def solve(cost, minutes):
     max_ore_cost = max([ore_cost, clay_cost, ore_cost_obs, ore_cost_geo])
 
     while q:
-
         state = q.popleft()
         max_geodes = max(max_geodes, state[3])
 

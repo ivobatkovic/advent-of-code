@@ -21,7 +21,6 @@ def read_input(file_name):
 
 
 def traverse(inp, start, elevation="z", goal="S"):
-
     visited = {}
     q = queue.Queue()
     q.put((start, elevation, 0))

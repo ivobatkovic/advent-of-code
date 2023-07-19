@@ -26,7 +26,6 @@ class Rope:
         self.tail = Rope(knots - 1) if knots > 0 else None
 
     def update(self, dx, dy, mp):
-
         self.row += dy
         self.col += dx
 

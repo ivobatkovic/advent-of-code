@@ -14,7 +14,6 @@ def read_input(file_name):
 
 
 def mix(sequence, nr_times=1, key=1):
-
     n = len(sequence)
 
     for _ in range(nr_times):
