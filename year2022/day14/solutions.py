@@ -6,12 +6,10 @@ import re
 
 
 def transform_input(input_):
-
     mp = dict()
     for row in input_.splitlines():
         coords = list(map(int, re.findall("\\d+", row)))
         for i in range(len(coords) // 2 - 1):
-
             x1, y1 = coords[2 * i], coords[2 * i + 1]
             x2, y2 = coords[2 * i + 2], coords[2 * i + 3]
 

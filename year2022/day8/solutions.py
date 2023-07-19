@@ -14,7 +14,6 @@ def read_input(file_name):
 
 
 def compute_visibility(heights, inp, dx, dy):
-
     if dx:
         for row in range(len(inp)):
             start = 0 if dx > 0 else len(inp[row]) - 1

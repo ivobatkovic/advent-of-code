@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 3.10)
 
 project(adventofcode)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # does not produce the json file
+if (NOT CMAKE_BUILD_TYPE)
+    message(STATUS "Configuring with Release mode")
+    set(CMAKE_BUILD_TYPE "Release")
+endif (NOT CMAKE_BUILD_TYPE)
+
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS
     ON
     CACHE INTERNAL "") # works
@@ -43,3 +48,9 @@ subdirlist(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR})
 foreach(subdir ${SUBDIRS})
   add_subdirectory(${subdir})
 endforeach()
+
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E create_symlink
+        ${CMAKE_BINARY_DIR}/compile_commands.json
+        ${CMAKE_SOURCE_DIR}/compile_commands.json
+)

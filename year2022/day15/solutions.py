@@ -6,7 +6,6 @@ import re
 
 
 def transform_input(input_):
-
     sensors = []
     beacons = set()
     for row in input_.splitlines():

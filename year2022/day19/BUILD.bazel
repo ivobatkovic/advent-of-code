@@ -1,0 +1,42 @@
+load("//bazel:compile_flags.bzl","get_c_compiler_flags","get_cxx_compiler_flags")
+
+cc_library(
+    name = "day19-cpp",
+    srcs = ["cpp/solutions.cpp"],
+    hdrs = ["cpp/solutions.hpp"],
+    deps = [
+        "//utils:cpp_utils"
+    ],
+    copts = get_cxx_compiler_flags(),
+    visibility = ["//visibility:public"],
+)
+
+cc_binary(
+    name = "main-cpp",
+    srcs = ["cpp/main.cpp"],
+    deps = [
+        ":day19-cpp",
+    ],
+    data = [
+        ":input_data",
+    ],
+    copts = get_cxx_compiler_flags(),
+)
+
+cc_test(
+    name = "test-cpp",
+    srcs = ["cpp/test.cpp"],
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        ":day19-cpp",
+    ],
+    copts = get_cxx_compiler_flags(),
+    data = [
+        ":input_data"
+    ]
+)
+
+filegroup(
+    name = "input_data",
+    srcs = glob(["data/*.txt"])
+)

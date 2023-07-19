@@ -38,9 +38,7 @@ def read_input(file_name):
 
 
 def compare(left, right):
-
     for i in range(min(len(left), len(right))):
-
         if left[i][0] != "[" and right[i][0] != "[":
             if int(left[i]) - int(right[i]) != 0:
                 return int(left[i]) - int(right[i])
