@@ -27,8 +27,8 @@ static input_type transform_input(const string &input_string) {
             int x2 = coordinates[2 * i + 2];
             int y2 = coordinates[2 * i + 3];
 
-            int dx = (x2 - x1 >= 0) ? 1 : -1;
-            int dy = (y2 - y1 >= 0) ? 1 : -1;
+            int dx = (x2 >= x1) ? 1 : -1;
+            int dy = (y2 >= y1) ? 1 : -1;
 
             auto xk = x1;
             mp[{y1, xk}] = 1;

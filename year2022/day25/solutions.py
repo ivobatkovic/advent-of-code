@@ -14,6 +14,8 @@ def read_input(file_name):
 
 
 offsets = {"=": 0, "-": 1, "0": 2, "1": 3, "2": 4}
+
+
 def to_decimal(snafu):
     if snafu:
         return to_decimal(snafu[:-1]) * 5 + offsets[snafu[-1]] - 2

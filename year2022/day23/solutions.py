@@ -6,7 +6,6 @@ from collections import defaultdict
 
 
 def transform_input(input_):
-
     elves = set()
     for y, row in enumerate(input_.splitlines()):
         for x, char in enumerate(row):
