@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'year*/**/*.py'
+      - '**/*.py'
   pull_request:
 
 jobs:
@@ -22,11 +22,27 @@ jobs:
         pip3 install -r requirements.txt
     - name: Flake8 linting
       run: |
-        python3 -m flake8 year20*/. --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
-        python3 -m flake8 year20*/. --count --exit-zero --max-complexity=10 --ignore=E203,E402,W503 --statistics
+        for folder in year20*/; do
+          if [ -d "$folder" ]; then
+            echo "Linting folder: $folder"
+            python3 -m flake8 "$folder" --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
+            python3 -m flake8 "$folder" --count --exit-zero --max-complexity=10 --ignore=E203,E402,W503 --statistics
+          fi
+        done
     - name: Black code format
       run: |
-        python3 -m black year20*/. --check --line-length 79
+        for folder in year20*/; do
+          if [ -d "$folder" ]; then
+            echo "Running Black on folder: $folder"
+            python3 -m black "$folder" --check --line-length 79
+          fi
+        done
     - name: Python unit tests
       run: |
-        python3 -m pytest year2022/**/*.py
+        for folder in year20*/; do
+          if [ -d "$folder" ]; then
+            echo "Running python test on folder: $folder"
+            python3 -m pytest "$folder/**/*.py"
+          fi
+        done
+

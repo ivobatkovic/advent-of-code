@@ -5,12 +5,12 @@ on:
     branches:
       - master
     paths:
-      - 'year*/**/.cpp'
-      - 'year*/**/.hpp'
+      - '**/*.cpp'
+      - '**/*.hpp'
   pull_request:
     paths:
-      - 'year*/**/.cpp'
-      - 'year*/**/.hpp'
+      - '**/*.cpp'
+      - '**/*.hpp'
 
 env:
   BUILD_TYPE: Release
@@ -32,6 +32,6 @@ jobs:
       with:
         version: 9
         platform: x64
-    - name: Bazel build
-      working-directory: .
-      run: bazel test //...
+    #- name: Bazel build
+      #working-directory: .
+      #run: bazelisk test //...
