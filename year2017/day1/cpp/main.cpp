@@ -1,5 +1,4 @@
 #include <chrono>
-#include <iostream>
 #include <string>
 
 #include "utils/cpp_utils.hpp"
