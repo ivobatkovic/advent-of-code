@@ -1,6 +1,9 @@
 #ifndef _CPP_UTILS_H_
 #define _CPP_UTILS_H_
 
+#include <stddef.h>
+
+#include <iterator>
 #include <regex>
 #include <sstream>
 #include <string>

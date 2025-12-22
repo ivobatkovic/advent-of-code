@@ -1,21 +1,21 @@
-load("//bazel:compile_flags.bzl","get_c_compiler_flags","get_cxx_compiler_flags")
+load("//bazel:compile_flags.bzl","get_cxx_compiler_flags")
 
 cc_library(
-    name = "day{day}-cpp",
+    name = "day{day}",
     srcs = ["cpp/solutions.cpp"],
     hdrs = ["cpp/solutions.hpp"],
     deps = [
-        "//utils:cpp_utils"
+        "//utils:utils"
     ],
     copts = get_cxx_compiler_flags(),
     visibility = ["//visibility:public"],
 )
 
 cc_binary(
-    name = "main-cpp",
+    name = "main",
     srcs = ["cpp/main.cpp"],
     deps = [
-        ":day{day}-cpp",
+        ":day{day}",
     ],
     data = [
         ":input_data",
@@ -24,11 +24,11 @@ cc_binary(
 )
 
 cc_test(
-    name = "test-cpp",
+    name = "test",
     srcs = ["cpp/test.cpp"],
     deps = [
         "@com_google_googletest//:gtest_main",
-        ":day{day}-cpp",
+        ":day{day}",
     ],
     copts = get_cxx_compiler_flags(),
     data = [
