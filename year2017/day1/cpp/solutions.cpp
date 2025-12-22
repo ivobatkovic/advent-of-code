@@ -1,10 +1,7 @@
 #include "year2017/day1/cpp/solutions.hpp"
 
-#include <iostream>
 #include <string>
 #include <vector>
-
-#include "utils/cpp_utils.hpp"
 
 namespace year2017 {
 
