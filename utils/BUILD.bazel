@@ -1,6 +1,19 @@
+load("//bazel:compile_flags.bzl","get_cxx_compiler_flags")
+
 cc_library(
-    name = "cpp_utils",
-    srcs = ["cpp_utils.cpp"],
-    hdrs = ["cpp_utils.hpp"],
+    name = "utils",
+    srcs = ["utils.cpp"],
+    hdrs = ["utils.hpp"],
+    copts = get_cxx_compiler_flags(),
     visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "test",
+    srcs = ["test_utils.cpp"],
+    copts = get_cxx_compiler_flags(),
+    deps = [
+        "@com_google_googletest//:gtest_main",
+        ":utils",
+    ],
 )

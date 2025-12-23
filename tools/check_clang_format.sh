@@ -1,3 +1,5 @@
+#!/bin/bash
+
 exit_code=0
 
 # Append where to start looking from

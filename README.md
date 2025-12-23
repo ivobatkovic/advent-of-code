@@ -1,16 +1,16 @@
 # Solutions to advent of code
 <p align="center">
-    <img src="https://img.shields.io/badge/Developed%20and%20tested%20Ubuntu%2020.04-informational"/>
+    <img src="https://img.shields.io/badge/Developed%20and%20tested%20Ubuntu%2024.04-informational"/>
     <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-informational"/></a>
 </p>
 <p align="center">
     <img src="https://github.com/ivobatkovic/advent-of-code/workflows/Python/badge.svg"/>
-    <img src="https://img.shields.io/badge/versions-3.8-informational"/>
+    <img src="https://img.shields.io/badge/versions-3.10-informational"/>
     <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/badge/code%20style-black-000000.svg"/></a>    
     <img src="https://github.com/ivobatkovic/advent-of-code/workflows/C++/badge.svg"/>
-    <img src="https://img.shields.io/badge/standard-c++17-informational"/>
+    <img src="https://img.shields.io/badge/standard-c++20-informational"/>
     <img src="https://img.shields.io/badge/clang%20format-google-000000.svg"/>
 </p>
 
@@ -114,5 +114,5 @@ export AOC_SESSION=<session_id>
 ```
 and run
 ```bash
-python bootstrap.py -y <year> -d <day> -input -i
+    python bootstrap.py -y <year> -d <day> -input/-i
 ```

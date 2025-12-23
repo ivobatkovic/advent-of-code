@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Append where to start looking from
 if [ $# -eq 0 ]; then start="."
     else start=$1
