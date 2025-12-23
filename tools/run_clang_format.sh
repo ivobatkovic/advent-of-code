@@ -1,13 +1,20 @@
 #!/bin/bash
 
 # Append where to start looking from
-if [ $# -eq 0 ]; then start="."
-    else start=$1
+if [ $# -eq 0 ]; then
+    folders=$(git ls-files '*.cpp' '*.h' | awk -F/ '{print $1}' | sort -u)
+else 
+    folders=$1
 fi
 
-source_files=$(find $start -type f \( -iname \*.cpp -o -iname \*.c \))
-header_files=$(find $start -type f \( -iname \*.hpp -o -iname \*.h \))
-for f in $source_files $header_files; do
-    clang-format --verbose -sort-includes -i $f
+for folder in $folders; do
+    source_files=$(find "$folder" -type f \( -iname "*.cpp" -o -iname "*.hpp" \))
+    for f in $source_files; do
+        output=$(clang-format -sort-includes -output-replacements-xml $f | grep -c "<replacement ")
+        if [ $output -ne "0" ]; then
+            clang-format --verbose -sort-includes -i $f
+        fi
+    done
 done
-echo Done formatting
+echo Done checking
+
