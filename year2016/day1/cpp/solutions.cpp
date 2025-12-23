@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-#include "utils/cpp_utils.hpp"
+#include "utils/utils.hpp"
 
 template <>
 struct std::hash<std::pair<int64_t, int64_t>> {

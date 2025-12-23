@@ -1,7 +1,7 @@
 #include <chrono>
 #include <string>
 
-#include "utils/cpp_utils.hpp"
+#include "utils/utils.hpp"
 #include "year2016/day1/cpp/solutions.hpp"
 
 using chrono_clock = std::chrono::high_resolution_clock;

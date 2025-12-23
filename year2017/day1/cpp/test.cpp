@@ -3,7 +3,7 @@
 #include <string>
 #include <tuple>
 
-#include "utils/cpp_utils.hpp"
+#include "utils/utils.hpp"
 #include "year2017/day1/cpp/solutions.hpp"
 
 using std::string;
