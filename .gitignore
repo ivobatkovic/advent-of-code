@@ -4,6 +4,7 @@
 **/build*
 **/.vscode
 .ccls*
+.venv
 /external
 /bazel-*
 /compile_commands.json

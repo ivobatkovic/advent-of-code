@@ -47,5 +47,3 @@ add_test(NAME ${{CPP_TEST}} COMMAND $<TARGET_FILE:${{CPP_TEST}}>)
 set_property(TEST ${{CPP_TEST}} PROPERTY WORKING_DIRECTORY
                                               ${{CMAKE_BINARY_DIR}})
 add_dependencies(build_tests ${{CPP_TEST}})
-
-# C++ setup stop ######
