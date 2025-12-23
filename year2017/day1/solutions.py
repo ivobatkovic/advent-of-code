@@ -25,7 +25,9 @@ def solve_part2(input_):
 
     N = len(inp) // 2
     inp_aug = inp + inp[0 : len(inp) // 2]
-    return sum([inp_aug[i] for i in range(len(inp)) if inp_aug[i] == inp_aug[i + N]])
+    return sum(
+        [inp_aug[i] for i in range(len(inp)) if inp_aug[i] == inp_aug[i + N]]
+    )
 
 
 def parse_args():
