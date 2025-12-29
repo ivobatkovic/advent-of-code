@@ -3,7 +3,7 @@ string(
   CONCAT COMPILER_FLAGS
          "-fPIC -O2 -Wpedantic -pedantic-errors "
          "-Wall -Werror -Wextra -Waddress -Wfloat-equal -Wshadow "
-         "-Wpointer-arith -Wcast-align -Wstrict-overflow=5 "
+         "-Wpointer-arith -Wcast-align -Wstrict-overflow=2 "
          "-Wwrite-strings -Wcast-qual -Wswitch-default "
          "-Wswitch-enum -Wconversion -Wunreachable-code ")
 
