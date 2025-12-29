@@ -29,19 +29,9 @@ http_archive(
 )
 
 ############################################
-# rules_boost
+# boost
 ############################################
-_RULES_BOOST_COMMIT = "652b21e35e4eeed5579e696da0facbe8dba52b1f"
-
-http_archive(
-    name = "com_github_nelhage_rules_boost",
-    urls = [
-        "https://github.com/nelhage/rules_boost/archive/%s.tar.gz"
-        % _RULES_BOOST_COMMIT,
-    ],
-    strip_prefix = "rules_boost-%s" % _RULES_BOOST_COMMIT,
-    sha256 = "c1b8b2adc3b4201683cf94dda7eef3fc0f4f4c0ea5caa3ed3feffe07e1fb5b15",
-)
+bazel_dep(name = "boost.regex", version = "1.89.0.bcr.2")
 
 ############################################
 # rules_foreign_cc
