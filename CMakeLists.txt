@@ -8,15 +8,10 @@ if (NOT CMAKE_BUILD_TYPE)
 endif (NOT CMAKE_BUILD_TYPE)
 
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS
-    ON
-    CACHE INTERNAL "") # works
-
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake"
-                      ${CMAKE_MODULE_PATH})
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
 # Configure third-party dependencies
-include(cmake/gtest_build.cmake)
+include(cmake/googletest.cmake)
 
 # Compilation flags to be used on the projects
 include(cmake/compile_flags.cmake)
