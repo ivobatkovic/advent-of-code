@@ -9,6 +9,8 @@ on:
       - '**/*.hpp'
   pull_request:
     paths:
+      - 'cmake/*'
+      - '**/CMakeLists.txt'
       - '**/*.cpp'
       - '**/*.hpp'
 
