@@ -27,7 +27,7 @@ cc_test(
     name = "test",
     srcs = ["cpp/test.cpp"],
     deps = [
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
         ":day1",
     ],
     copts = get_cxx_compiler_flags(),
