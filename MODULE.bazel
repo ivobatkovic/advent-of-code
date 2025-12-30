@@ -18,10 +18,12 @@ bazel_dep(name = "googletest", version = "1.17.0.bcr.2")
 ############################################
 bazel_dep(name = "boost.regex", version = "1.89.0.bcr.2")
 
-# Hedron's Compile Commands Extractor for Bazel
+############################################
+# hedron_compile_commands
+############################################
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
 git_override(
     module_name = "hedron_compile_commands",
-    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
-    commit = "abb61a688167623088f8768cc9264798df6a9d10",
+    remote = "https://github.com/mikael-s-persson/bazel-compile-commands-extractor",
+    commit = "f5fbd4cee671d8d908f37c83abaf70fba5928fc7"
 )
