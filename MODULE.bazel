@@ -9,62 +9,19 @@ module(
 bazel_dep(name = "platforms", version = "0.0.11")
 
 ############################################
-# Import http_archive as a repo rule
-############################################
-http_archive = use_repo_rule(
-    "@bazel_tools//tools/build_defs/repo:http.bzl",
-    "http_archive",
-)
-
-############################################
 # googletest
 ############################################
-http_archive(
-    name = "com_google_googletest",
-    urls = [
-        "https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip",
-    ],
-    strip_prefix = "googletest-release-1.12.1",
-    sha256 = "24564e3b712d3eb30ac9a85d92f7d720f60cc0173730ac166f27dda7fed76cb2",
-)
+bazel_dep(name = "googletest", version = "1.17.0.bcr.2")
 
 ############################################
 # boost
 ############################################
 bazel_dep(name = "boost.regex", version = "1.89.0.bcr.2")
 
-############################################
-# rules_foreign_cc
-############################################
-http_archive(
-    name = "rules_foreign_cc",
-    urls = [
-        "https://github.com/bazelbuild/rules_foreign_cc/archive/0.4.0.tar.gz",
-    ],
-    strip_prefix = "rules_foreign_cc-0.4.0",
-    sha256 = "e14a159c452a68a97a7c59fa458033cc91edb8224516295b047a95555140af5f",
-)
-
-############################################
-# FTXUI
-############################################
-http_archive(
-    name = "ftxui",
-    urls = [
-        "https://github.com/ArthurSonzogni/FTXUI/archive/refs/tags/v3.0.0.tar.gz",
-    ],
-    strip_prefix = "FTXUI-3.0.0",
-    sha256 = "a8f2539ab95caafb21b0c534e8dfb0aeea4e658688797bb9e5539729d9258cc1",
-    build_file = "//bazel:BUILD.ftxui.bazel",
-)
-
 # Hedron's Compile Commands Extractor for Bazel
-# https://github.com/hedronvision/bazel-compile-commands-extractor
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
 git_override(
     module_name = "hedron_compile_commands",
     remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
-    commit = "0e990032f3c5a866e72615cf67e5ce22186dcb97",
-    # Replace the commit hash (above) with the latest (https://github.com/hedronvision/bazel-compile-commands-extractor/commits/main).
-    # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
+    commit = "abb61a688167623088f8768cc9264798df6a9d10",
 )

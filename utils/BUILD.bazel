@@ -14,7 +14,7 @@ cc_test(
     srcs = ["test_utils.cpp"],
     copts = get_cxx_compiler_flags(),
     deps = [
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
         ":utils",
     ],
 )
