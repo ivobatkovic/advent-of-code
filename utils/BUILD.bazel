@@ -4,6 +4,7 @@ cc_library(
     name = "utils",
     srcs = ["utils.cpp"],
     hdrs = ["utils.hpp"],
+    deps = ["@boost.regex",],
     copts = get_cxx_compiler_flags(),
     visibility = ["//visibility:public"],
 )

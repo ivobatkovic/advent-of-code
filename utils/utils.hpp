@@ -3,8 +3,8 @@
 
 #include <stddef.h>
 
+#include <boost/regex.hpp>
 #include <iterator>
-#include <regex>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -56,13 +56,18 @@ std::vector<T> split_string(std::string str, std::string delim) {
 /// @param str The string to search
 /// @param exp The regex expression to match in string
 template <typename T>
-std::vector<T> regex_find_all(std::string const& str, std::regex const& exp) {
+std::vector<T> regex_find_all(std::string const& str, boost::regex const& exp,
+                              int32_t const capture_group = 0) {
     std::vector<T> output{};
-    for (std::sregex_iterator it =
-             std::sregex_iterator(str.begin(), str.end(), exp);
-         it != std::sregex_iterator(); ++it) {
-        std::smatch m = *it;
-        push_transform<T>((*it).str(), output);
+    for (boost::sregex_iterator it(str.begin(), str.end(), exp), end; it != end;
+         ++it) {
+        boost::smatch m = *it;
+        if (m.size() > 1U) {
+            assert(m.size() > static_cast<size_t>(capture_group));
+            push_transform(m[capture_group].str(), output);
+        } else {
+            push_transform(m.str(), output);
+        }
     }
     return output;
 }
