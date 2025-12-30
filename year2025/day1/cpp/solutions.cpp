@@ -1,8 +1,5 @@
 #include "year2025/day1/cpp/solutions.hpp"
 
-#include <iostream>
-#include <numeric>
-#include <string>
 #include <vector>
 
 #include "utils/utils.hpp"

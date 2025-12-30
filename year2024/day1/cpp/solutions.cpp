@@ -1,6 +1,5 @@
 #include "year2024/day1/cpp/solutions.hpp"
 
-#include <iostream>
 #include <numeric>
 #include <string>
 #include <unordered_map>
