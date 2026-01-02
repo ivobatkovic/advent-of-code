@@ -29,8 +29,7 @@ jobs:
             exit_lint1=$?
             python3 -m flake8 "$folder" --count --max-complexity=10 --ignore=E203,E402,W503 --statistics
             exit_lint2=$?
-
-            if [ $exit_lint1 -ne 0] || [ $exit_lint2 -ne 0]; then
+            if [ "$exit_lint1" -ne 0 ] || [ "$exit_lint2" -ne 0 ]; then
               exit 1
             fi
           fi
