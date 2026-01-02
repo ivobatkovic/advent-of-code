@@ -22,7 +22,9 @@ def read_input(file_name):
 
 def solve_part1(input_):
     L, R = transform_input(input_)
-    return sum([abs(l - r) for l, r in zip(sorted(L), sorted(R))])
+    return sum(
+        [abs(left - right) for left, right in zip(sorted(L), sorted(R))]
+    )
 
 
 def solve_part2(input_):
@@ -31,7 +33,7 @@ def solve_part2(input_):
     occurence = defaultdict(lambda: 0)
     for r in R:
         occurence[r] = occurence[r] + 1
-    return sum([l * occurence[l] for l in L])
+    return sum([left * occurence[left] for left in L])
 
 
 def parse_args():
