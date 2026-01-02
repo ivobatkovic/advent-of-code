@@ -42,6 +42,7 @@ jobs:
             python3 -m black "$folder" --check --line-length 79
             if [ $? -ne 0 ]; then
               exit 1
+            fi
           fi
         done
 
