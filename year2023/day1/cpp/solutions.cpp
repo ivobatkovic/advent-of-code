@@ -31,9 +31,8 @@ static input_type transform_input(const string &input_string,
                  : boost::regex("(\\d)");
 
     for (auto &line : utils::split_string<string>(input_string, "\n")) {
-        vector<string> match =
-            utils::regex_find_all<string>(line, regex_exp, 1);
-        output.push_back(stoi(mapping[match.front()] + mapping[match.back()]));
+        vector<string> match = utils::regex_find_all<string>(line, regex_exp);
+        output.push_back(stoi(mapping[match.at(1U)] + mapping[match.back()]));
     }
     return output;
 }

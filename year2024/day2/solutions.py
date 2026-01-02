@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 import argparse
+import numpy as np
 import pytest
 import time
 
-from collections import defaultdict
-
 
 def transform_input(input_):
-    L, R = [], []
+    output = []
     for line in input_.splitlines():
-        nrs = line.split()
-        L.append(int(nrs[0]))
-        R.append(int(nrs[-1]))
-    return L, R
+        output.append([int(x) for x in line.split()])
+    return output
 
 
 def read_input(file_name):
@@ -20,28 +17,42 @@ def read_input(file_name):
         return f.read()
 
 
-def solve_part1(input_):
-    L, R = transform_input(input_)
-    return sum(
-        [abs(left - right) for left, right in zip(sorted(L), sorted(R))]
+def is_safe(x):
+    diff = np.diff(x)
+    return (
+        np.all(np.abs(diff) <= 3)
+        and np.all(np.abs(diff) >= 1)
+        and (np.all(diff > 0) or np.all(diff < 0))
     )
 
 
-def solve_part2(input_):
-    L, R = transform_input(input_)
+def solve_part1(input_):
+    inp = transform_input(input_)
 
-    occurence = defaultdict(lambda: 0)
-    for r in R:
-        occurence[r] = occurence[r] + 1
-    return sum([left * occurence[left] for left in L])
+    return sum([is_safe(report) for report in inp])
+
+
+def solve_part2(input_):
+    inp = transform_input(input_)
+
+    output = 0
+    for report in inp:
+        if is_safe(report):
+            output += 1
+        else:
+            for i in range(len(report)):
+                if is_safe(report[0:i] + report[i + 1 :]):
+                    output += 1
+                    break
+    return output
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Solution to 2024 day 1")
+    parser = argparse.ArgumentParser(description="Solution to 2024 day 2")
     parser.add_argument(
         "file_name",
         type=str,
-        default="year2024/day1/data/input.txt",
+        default="year2024/day2/data/input.txt",
         nargs="?",
         help="Path to data file",
     )
@@ -68,14 +79,14 @@ if __name__ == "__main__":
 
 
 @pytest.mark.parametrize(
-    "input1, output1", [("year2024/day1/data/test_input0.txt", 11)]
+    "input1, output1", [("year2024/day2/data/test_input0.txt", 2)]
 )
 def testPart1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
 
 @pytest.mark.parametrize(
-    "input2, output2", [("year2024/day1/data/test_input0.txt", 31)]
+    "input2, output2", [("year2024/day2/data/test_input0.txt", 4)]
 )
 def testPart2(input2, output2):
     assert solve_part2(read_input(input2)) == output2

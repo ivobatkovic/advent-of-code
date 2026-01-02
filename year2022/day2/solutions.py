@@ -3,16 +3,33 @@ import argparse
 import pytest
 import time
 
-from collections import defaultdict
+score_part_one = {
+    "A X": 3 + 1,
+    "A Y": 6 + 2,
+    "A Z": 0 + 3,
+    "B X": 0 + 1,
+    "B Y": 3 + 2,
+    "B Z": 6 + 3,
+    "C X": 6 + 1,
+    "C Y": 0 + 2,
+    "C Z": 3 + 3,
+}
+
+score_part_two = {
+    "A X": 0 + 3,
+    "A Y": 3 + 1,
+    "A Z": 6 + 2,
+    "B X": 0 + 1,
+    "B Y": 3 + 2,
+    "B Z": 6 + 3,
+    "C X": 0 + 2,
+    "C Y": 3 + 3,
+    "C Z": 6 + 1,
+}
 
 
 def transform_input(input_):
-    L, R = [], []
-    for line in input_.splitlines():
-        nrs = line.split()
-        L.append(int(nrs[0]))
-        R.append(int(nrs[-1]))
-    return L, R
+    return input_.splitlines()
 
 
 def read_input(file_name):
@@ -21,27 +38,21 @@ def read_input(file_name):
 
 
 def solve_part1(input_):
-    L, R = transform_input(input_)
-    return sum(
-        [abs(left - right) for left, right in zip(sorted(L), sorted(R))]
-    )
+    inp = transform_input(input_)
+    return sum([score_part_one[game] for game in inp])
 
 
 def solve_part2(input_):
-    L, R = transform_input(input_)
-
-    occurence = defaultdict(lambda: 0)
-    for r in R:
-        occurence[r] = occurence[r] + 1
-    return sum([left * occurence[left] for left in L])
+    inp = transform_input(input_)
+    return sum([score_part_two[game] for game in inp])
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Solution to 2024 day 1")
+    parser = argparse.ArgumentParser(description="Solution to 2022 day 2")
     parser.add_argument(
         "file_name",
         type=str,
-        default="year2024/day1/data/input.txt",
+        default="year2022/day2/data/input.txt",
         nargs="?",
         help="Path to data file",
     )
@@ -68,14 +79,14 @@ if __name__ == "__main__":
 
 
 @pytest.mark.parametrize(
-    "input1, output1", [("year2024/day1/data/test_input0.txt", 11)]
+    "input1, output1", [("year2022/day2/data/test_input0.txt", 15)]
 )
 def testPart1(input1, output1):
     assert solve_part1(read_input(input1)) == output1
 
 
 @pytest.mark.parametrize(
-    "input2, output2", [("year2024/day1/data/test_input0.txt", 31)]
+    "input2, output2", [("year2022/day2/data/test_input0.txt", 12)]
 )
 def testPart2(input2, output2):
     assert solve_part2(read_input(input2)) == output2
