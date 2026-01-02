@@ -26,10 +26,11 @@ jobs:
           if [ -d "$folder" ]; then
             echo "Linting folder: $folder"
             python3 -m flake8 "$folder" --count --select=E9,F63,F7,F82 --ignore=E203,402 --show-source --statistics
-            exit_lint=$?
+            exit_lint1=$?
             python3 -m flake8 "$folder" --count --max-complexity=10 --ignore=E203,E402,W503 --statistics
+            exit_lint2=$?
 
-            if [ $? -ne 0] || [ $exit_code_lint -ne 0]; then
+            if [ $exit_lint1 -ne 0] || [ $exit_lint2 -ne 0]; then
               exit 1
             fi
           fi
@@ -40,12 +41,12 @@ jobs:
           if [ -d "$folder" ]; then
             echo "Running Black on folder: $folder"
             python3 -m black "$folder" --check --line-length 79
-            if [ $? -ne 0 ]; then
+            exit_black=$?
+            if [ $exit_black -ne 0 ]; then
               exit 1
             fi
           fi
         done
-
     - name: Python unit tests
       run: |
         for folder in year20*; do
