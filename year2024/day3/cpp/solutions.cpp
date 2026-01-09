@@ -1,5 +1,6 @@
 #include "year2024/day3/cpp/solutions.hpp"
 
+#include <boost/regex.hpp>
 #include <boost/regex/v5/regex_iterator.hpp>
 #include <numeric>
 #include <string>

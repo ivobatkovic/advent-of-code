@@ -25,7 +25,10 @@ jobs:
     - name: Install Ubuntu dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libncurses5-dev libboost-dev libboost-regex-dev clang-format iwyu
+        sudo apt-get install -y \
+          libboost-regex-dev \
+          libboost-system-dev \libboost-filesystem-dev \
+          clang-format
     - name: Check clang-format
       working-directory: .
       run: ./tools/check_clang_format.sh
@@ -35,5 +38,6 @@ jobs:
         version: 11
         platform: x64
     - name: Bazel build
-      working-directory: .
-      run: bazelisk test //...
+      run: bazelisk test //... && bazelisk clean
+    - name: Cmake build
+      run: cmake -S . -B build && cd build && make build_tests -j$(nproc) && make test

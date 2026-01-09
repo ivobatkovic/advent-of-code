@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.10)
-
 project(day3)
 
 # Get parent directory name

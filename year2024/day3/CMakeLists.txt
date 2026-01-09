@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.10)
-
 project(day3)
+
+find_package(Boost REQUIRED COMPONENTS regex)
 
 # Get parent directory name
 get_filename_component(YEAR ../ ABSOLUTE)
@@ -18,7 +18,7 @@ set(CPP_SOURCES "cpp/solutions.cpp")
 set(CPP_SOL "${YEAR}-${PROJECT_NAME}")
 
 add_library(${CPP_SOL} ${CPP_SOURCES})
-target_link_libraries(${CPP_SOL} utils)
+target_link_libraries(${CPP_SOL} utils Boost::regex)
 target_include_directories(${CPP_SOL} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/cpp")
 
 # Main

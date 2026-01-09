@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.10)
-
 project(2020)
 
 # Find all sub folders containing CMakeLists.txt

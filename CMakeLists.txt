@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.24)
 
 project(adventofcode)
+
 
 if (NOT CMAKE_BUILD_TYPE)
     message(STATUS "Configuring with Release mode")
