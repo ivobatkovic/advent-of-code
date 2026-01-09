@@ -27,9 +27,9 @@ def setup_python_source(year, day):
         join(*[f"year{year}", f"day{day}", "__init__year.py_tmp"]),
     ]
     dst_files = [
-        join(*[f"year{year}", f"day{day}", f"solutions.py"]),
-        join(*[f"year{year}", f"day{day}", f"__init__.py"]),
-        join(*[f"year{year}", f"__init__.py"]),
+        join(*[f"year{year}", f"day{day}", "solutions.py"]),
+        join(*[f"year{year}", f"day{day}", "__init__.py"]),
+        join(*[f"year{year}", "__init__.py"]),
     ]
 
     for src, dst in zip(src_files, dst_files):

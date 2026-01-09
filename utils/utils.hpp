@@ -62,8 +62,8 @@ std::vector<T> regex_find_all(std::string const& str, boost::regex const& exp) {
          ++it) {
         boost::smatch m = *it;
         if (m.size() > 1U) {
-            for (std::size_t i{0U}; i < m.size(); ++i) {
-                push_transform(m[i].str(), output);
+            for (auto const& sub_match : m) {
+                push_transform(sub_match.str(), output);
             }
         } else {
             push_transform(m.str(), output);
