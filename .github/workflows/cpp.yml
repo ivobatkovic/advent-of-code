@@ -36,7 +36,7 @@ jobs:
         platform: x64
     - name: Bazel build
       working-directory: .
-      run: bazelisk test //...
+      run: bazelisk test //... && bazelisk clean
     - name: Cmake build
       working-directory: .
       run: cmake -S . -B build && cd build && make build_tests -j$(nproc) && make test
