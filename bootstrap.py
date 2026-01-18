@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Credit: code taken and modified from https://github.com/amrit110/aoc"""
+
 import argparse
 import os
 from os.path import join
