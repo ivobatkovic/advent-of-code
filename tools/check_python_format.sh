@@ -9,7 +9,7 @@ else
     folders=$1
 fi
 
-if ! python3 -m black ${folders[@]} --check --line-length 79; then
+if ! python3 -m black --check --line-length 79 --diff ${folders[@]}; then
     exit 1
 fi
 
